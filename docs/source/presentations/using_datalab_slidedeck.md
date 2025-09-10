@@ -227,8 +227,6 @@ s3.put_object(Bucket='your-bucket', Key='marine_analysis.csv',
 
 ## Key Benefits
 
-✅ **No Setup** - Everything pre-installed  
-✅ **Free Storage** - Personal cloud storage included  
 ✅ **Marine Data** - Direct access to EDITO datasets  
 ✅ **Multiple Languages** - R, Python, and more
 ✅ **Interactive** - Step-by-step guided workflows
@@ -244,21 +242,11 @@ s3.put_object(Bucket='your-bucket', Key='marine_analysis.csv',
 3. **Run the code examples** from this presentation
 4. **Save your results** to personal storage (MyFiles)
 
-## Three Ways to Get Started
-
-
-## Resources
-
-- **Datalab**: [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
-- **GitHub**: [Workshop Repository](https://github.com/EDITO-Infra/edito-workshops-presentations)
-- **Support**: edito-infra-dev@mercator-ocean.eu
-- **Documentation**: [EDITO Tutorials](https://dive.edito.eu/training)
-
 ---
 
 # 🆘 Questions?
 
-## We're Here to Help!
+## Main docs and support
 
 **Email**: edito-infra-dev@mercator-ocean.eu  
 **Documentation**: [EDITO Tutorials](https://dive.edito.eu/training)
