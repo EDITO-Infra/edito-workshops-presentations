@@ -1,0 +1,89 @@
+name: Build & Deploy Documentation
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+          cache: "pip"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Create virtual environment and install dependencies
+        run: |
+          # Create virtual environment
+          uv venv
+          # Activate virtual environment and install from pyproject.toml
+          source .venv/bin/activate
+          # Install dependencies from pyproject.toml
+          uv sync
+
+      - name: Setup Node.js for Marp
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install Marp CLI
+        run: npm install -g @marp-team/marp-cli
+
+      - name: Build documentation and presentations
+        run: |
+          # Activate virtual environment
+          source .venv/bin/activate
+          
+          # Build MkDocs documentation
+          echo "Building MkDocs documentation..."
+          mkdocs build --site-dir docs/build/html
+          
+          # Ensure Pages doesn't run Jekyll
+          touch docs/build/html/.nojekyll
+          
+          # Copy static files to build directory
+          echo "Copying static files..."
+          cp -r docs/source/static/* docs/build/html/static/
+          
+          # Build HTML presentations
+          echo "Building HTML presentations..."
+          mkdir -p docs/build/html/presentations
+          marp docs/source/presentations/add_edito_service_slidedeck.md --output docs/build/html/presentations/add_edito_service_slidedeck.html --theme docs/source/static/styles/edito-marp.css --allow-local-files
+          marp docs/source/presentations/add_edito_tutorial_slidedeck.md --output docs/build/html/presentations/add_edito_tutorial_slidedeck.html --theme docs/source/static/styles/edito-marp.css --allow-local-files
+          marp docs/source/presentations/explore_data_slidedeck.md --output docs/build/html/presentations/explore_data_slidedeck.html --theme docs/source/static/styles/edito-marp.css --allow-local-files
+          marp docs/source/presentations/using_datalab_slidedeck.md --output docs/build/html/presentations/using_datalab_slidedeck.html --theme docs/source/static/styles/edito-marp.css --allow-local-files
+          
+          echo "✅ Documentation and presentations built successfully!"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/build/html
+
+  deploy:
+    needs: build-docs
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

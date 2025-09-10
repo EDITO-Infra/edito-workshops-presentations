@@ -1,0 +1,148 @@
+/* @theme edito-marp */
+
+@import 'default';
+
+/* ---------------- EDITO Brand Palette ---------------- */
+:root {
+  --edito-blue-900: #001D6C;
+  --edito-blue-700: #0043CE;
+  --edito-blue-200: #A6C8FF;
+  --edito-red: #F0354B;
+  --edito-purple: #9C6EFF;
+  --edito-cyan: #00BFFF;
+  --edito-amber: #FFC107;
+  --edito-text-dark: #0d1b2a;
+  --edito-text-light: #ffffff;
+  
+  /* Background gradients inspired by nczarr viewer */
+  --background-gradient: linear-gradient(135deg, #001D6C 0%, #0043CE 50%, #9C6EFF 100%);
+  --light-gradient: linear-gradient(135deg, #f0faff 0%, #e6f7ff 100%);
+  --font-family: 'Lato', 'Roboto', sans-serif;
+}
+
+/* Title slide overlay layout */
+.title-slide {
+  position: relative;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .45);
+}
+
+/* Scoped title-slide text styling */
+section.title-slide .title-wrap {
+  background-size: 100% auto !important;
+  background-position: center top !important;
+  position: absolute;
+  left: 72px;
+  bottom: 120px;
+  max-width: 70%;
+  z-index: 2;
+}
+
+section.title-slide .title {
+  font-size: 3.2em;
+  line-height: 1.1;
+  color: #A6C8FF;
+  margin: 0 0 12px 0;
+}
+
+section.title-slide .subtitle {
+  font-size: 1.6em;
+  /* use something less huge if needed */
+  margin: 0 0 12px 0;
+  color: #A6C8FF;
+}
+
+section.title-slide .meta {
+  font-size: 1.0em;
+  opacity: 0.95;
+  margin: 0 0 14px 0;
+}
+
+/* Hide page number on title */
+.no-pagination::after {
+  display: none !important;
+}
+
+/* ---------------- Default (dark background) text ---------------- */
+section {
+  color: var(--edito-text-light);
+}
+
+section h1,
+section h2,
+section h3 {
+  color: var(--edito-blue-200);
+}
+
+section strong {
+  color: var(--edito-blue-200);
+}
+
+/* Links */
+section a {
+  color: var(--edito-cyan);
+  text-decoration: none;
+  border-bottom: 2px solid rgba(0, 191, 255, .4);
+}
+
+section a:hover {
+  border-bottom-color: var(--edito-cyan);
+}
+
+/* ---------------- Footer pinned bottom-right ---------------- */
+section>footer {
+  position: absolute;
+  right: 56px;
+  bottom: 12px;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  text-align: right;
+}
+
+section>footer img {
+  height: 32px;
+}
+
+/* ---------------- Pagination chip ---------------- */
+section::after {
+  right: 10px;
+  bottom: 10px;
+  background: rgba(0, 0, 0, .35);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+/* ---------------- Light slide helper ---------------- */
+.light-slide {
+  color: var(--edito-text-dark) !important;
+}
+
+.light-slide h1,
+.light-slide h2,
+.light-slide h3 {
+  color: var(--edito-blue-900) !important;
+}
+
+.light-slide strong {
+  color: var(--edito-blue-700) !important;
+}
+
+/* ---------------- Accent helpers ---------------- */
+.accent-red {
+  color: var(--edito-red);
+}
+
+.accent-purple {
+  color: var(--edito-purple);
+}
+
+.accent-cyan {
+  color: var(--edito-cyan);
+}
+
+.accent-amber {
+  color: var(--edito-amber);
+}

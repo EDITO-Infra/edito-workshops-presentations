@@ -1,0 +1,410 @@
+---
+title: "Using EDITO Datalab: A Complete Guide for Marine Researchers"
+subtitle: "From RStudio to Jupyter to VSCode - Everything you need to know"
+author: "EDITO Tutorial Team"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+    code_folding: show
+    fig_width: 10
+    fig_height: 6
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 10,
+  fig.height = 6
+)
+```
+
+# Introduction
+
+Welcome to the comprehensive guide for using EDITO Datalab! This tutorial is designed for marine researchers who want to leverage cloud computing and modern data formats for their research.
+
+## What is EDITO Datalab?
+
+**EDITO** (European Digital Twin of the Ocean) provides a powerful cloud platform for marine research. The Datalab offers:
+
+- **RStudio Service**: For R-based analysis and visualization
+- **Jupyter Service**: For Python-based machine learning and data science
+- **VSCode Service**: For larger projects and multi-language development
+- **Personal Storage**: Secure, persistent storage for your data
+- **ARCO Data Access**: Analysis Ready Cloud Optimized data formats
+
+## Why This Matters for Marine Research
+
+- **Large datasets**: Handle millions of marine records efficiently
+- **Environmental data**: Access oceanographic data for analysis
+- **Collaboration**: Share code and data with research teams
+- **Reproducibility**: Version control and documented workflows
+- **Scalability**: Process data that won't fit on your local computer
+
+---
+
+# Getting Started with RStudio Service
+
+## Launching RStudio
+
+1. Go to [EDITO Datalab](https://datalab.dive.edito.eu/)
+2. Select "RStudio" from the service catalog
+3. Configure resources (CPU, memory) as needed
+4. Launch the service
+
+## Basic Data Access
+
+```{r load-packages}
+# Load required packages
+library(arrow)      # For reading Parquet files (ARCO data)
+library(sf)         # For spatial data handling
+library(dplyr)      # For data manipulation
+library(ggplot2)    # For plotting
+library(rstac)      # For accessing EDITO STAC API
+```
+
+```{r explore-stac}
+# Connect to EDITO STAC API
+stac_endpoint <- "https://api.dive.edito.eu/data/"
+collections <- stac(stac_endpoint) %>%
+  rstac::collections() %>%
+  get_request()
+
+# See what data collections are available
+cat("Available data collections:\n")
+for(i in 1:min(10, length(collections$collections))) {
+  cat(i, ":", collections$collections[[i]]$id, "\n")
+}
+```
+
+## Working with Biodiversity Data
+
+```{r biodiversity-data}
+# Read EUROBIS occurrence data (contains marine biodiversity observations)
+parquet_url <- "https://s3.waw3-1.cloudferro.com/emodnet/biology/eurobis_occurrence_data/eurobis_occurrences_geoparquet_2024-10-01.parquet"
+
+# Read a sample of the data
+biodiversity_occurrences <- arrow::read_parquet(parquet_url) %>%
+  head(1000)
+
+# Filter for marine species (including fish, invertebrates, algae, etc.)
+marine_data <- biodiversity_occurrences %>%
+  filter(grepl("fish|Fish|pisces|Pisces|mollusca|Mollusca|algae|Algae|crustacea|Crustacea", scientificName, ignore.case = TRUE) |
+         grepl("fish|Fish|mollusk|Mollusk|algae|Algae|crab|Crab", vernacularName, ignore.case = TRUE))
+
+cat("Found", nrow(marine_data), "marine biodiversity occurrence records\n")
+```
+
+```{r biodiversity-visualization}
+# Create a simple map of marine biodiversity occurrences
+if(nrow(marine_data) > 0) {
+  # Convert to spatial data
+  marine_sf <- st_as_sf(marine_data, wkt = "geometry")
+  
+  # Plot
+  ggplot(marine_sf) +
+    geom_sf(aes(color = scientificName), size = 0.5) +
+    labs(title = "Marine Biodiversity Occurrences from EDITO Data",
+         subtitle = paste("Total records:", nrow(marine_sf)),
+         color = "Species") +
+    theme_minimal() +
+    theme(legend.position = "bottom")
+}
+```
+
+---
+
+# Using Jupyter Service for Python Analysis
+
+## Launching Jupyter
+
+1. Go to [EDITO Datalab](https://datalab.dive.edito.eu/)
+2. Select "Jupyter" from the service catalog
+3. Choose Python environment
+4. Launch the service
+
+## Python Data Analysis
+
+```python
+# Example Python code for Jupyter
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Create sample marine biodiversity data
+np.random.seed(42)
+marine_data = pd.DataFrame({
+    'species_id': np.repeat(range(1, 51), 20),
+    'timestamp': pd.date_range('2024-01-01', '2024-12-31', periods=1000),
+    'latitude': np.random.uniform(50, 60, 1000),
+    'longitude': np.random.uniform(0, 10, 1000),
+    'depth': np.random.uniform(5, 200, 1000),
+    'temperature': np.random.normal(10, 3, 1000)
+})
+
+# Basic analysis
+print(f"Dataset shape: {marine_data.shape}")
+print(f"Species count: {marine_data['species_id'].nunique()}")
+print(f"Date range: {marine_data['timestamp'].min()} to {marine_data['timestamp'].max()}")
+```
+
+## Machine Learning for Habitat Modeling
+
+```python
+# Simple habitat suitability modeling
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+
+# Create habitat suitability classes
+marine_data['habitat_suitability'] = (
+    (marine_data['temperature'] > 8) & 
+    (marine_data['temperature'] < 15) &
+    (marine_data['depth'] > 20) &
+    (marine_data['depth'] < 150)
+).astype(int)
+
+# Prepare features
+features = ['latitude', 'longitude', 'depth', 'temperature']
+X = marine_data[features]
+y = marine_data['habitat_suitability']
+
+# Split and train
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# Evaluate
+accuracy = model.score(X_test, y_test)
+print(f"Model accuracy: {accuracy:.3f}")
+```
+
+---
+
+# VSCode for Larger Projects
+
+## When to Use VSCode
+
+VSCode is perfect for:
+- Multi-language projects (R + Python)
+- Large codebases with many files
+- Git integration and version control
+- Collaborative development
+- Complex data processing pipelines
+
+## Project Organization
+
+```
+marine_research_project/
+├── data/
+│   ├── raw/                 # Original marine data
+│   ├── processed/           # Cleaned data
+│   └── environmental/       # Environmental data
+├── scripts/
+│   ├── data_processing/     # Data cleaning
+│   ├── analysis/           # Statistical analysis
+│   └── visualization/      # Plotting
+├── notebooks/
+│   ├── exploration.ipynb   # Data exploration
+│   └── analysis.ipynb      # Main analysis
+└── outputs/
+    ├── figures/            # Generated plots
+    └── reports/            # Generated reports
+```
+
+---
+
+# Personal Storage Integration
+
+## Accessing Your Personal Storage
+
+Your personal storage credentials are automatically available in EDITO services:
+
+```{r personal-storage}
+# Check if storage credentials are available
+if(Sys.getenv("AWS_ACCESS_KEY_ID") != "") {
+  cat("✅ Personal storage credentials found!\n")
+  cat("Storage endpoint:", Sys.getenv("AWS_S3_ENDPOINT"), "\n")
+  cat("Region:", Sys.getenv("AWS_DEFAULT_REGION"), "\n")
+} else {
+  cat("❌ No storage credentials found. Make sure you're running in EDITO Datalab.\n")
+}
+```
+
+## Saving Data to Personal Storage
+
+```{r save-data}
+# Example: Save processed marine data
+if(nrow(marine_data) > 0) {
+  # Save as CSV
+  write.csv(marine_data, "marine_analysis_results.csv", row.names = FALSE)
+  
+  # Save as Parquet (more efficient)
+  arrow::write_parquet(marine_data, "marine_analysis_results.parquet")
+  
+  cat("✅ Data saved locally\n")
+  cat("- marine_analysis_results.csv\n")
+  cat("- marine_analysis_results.parquet\n")
+}
+```
+
+## Python Storage Access
+
+```python
+# Python example for personal storage
+import boto3
+import os
+
+# Connect to EDITO's MinIO storage
+s3_client = boto3.client(
+    's3',
+    endpoint_url=f"https://{os.getenv('AWS_S3_ENDPOINT')}",
+    aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
+    aws_session_token=os.getenv('AWS_SESSION_TOKEN'),
+    region_name=os.getenv('AWS_DEFAULT_REGION')
+)
+
+# Save data to personal storage
+s3_client.put_object(
+    Bucket='your-bucket-name',
+    Key='marine_research/analysis_results.csv',
+    Body=marine_data.to_csv(index=False),
+    ContentType='text/csv'
+)
+```
+
+---
+
+# Working with ARCO Data
+
+## What is ARCO Data?
+
+**ARCO** = Analysis Ready Cloud Optimized
+
+- **Parquet**: Columnar format, perfect for tabular data
+- **Zarr**: Chunked arrays, ideal for raster data
+- **COG**: Cloud Optimized GeoTIFF for imagery
+
+## Reading Parquet Data
+
+```{r parquet-example}
+# Parquet is much faster than CSV for large datasets
+# Example: Reading marine biodiversity occurrence data
+parquet_url <- "https://s3.waw3-1.cloudferro.com/emodnet/biology/eurobis_occurrence_data/eurobis_occurrences_geoparquet_2024-10-01.parquet"
+
+# Read only specific columns (memory efficient)
+biodiversity_sample <- arrow::read_parquet(parquet_url) %>%
+  select(scientificName, vernacularName, decimalLatitude, decimalLongitude, eventDate) %>%
+  head(1000)
+
+cat("Loaded", nrow(biodiversity_sample), "records\n")
+print(head(biodiversity_sample))
+```
+
+## Python Parquet Access
+
+```python
+# Python example for Parquet data
+import pyarrow.parquet as pq
+import pandas as pd
+
+# Read Parquet data
+parquet_url = "https://s3.waw3-1.cloudferro.com/emodnet/biology/eurobis_occurrence_data/eurobis_occurrences_geoparquet_2024-10-01.parquet"
+
+# Read with specific columns
+columns = ['scientificName', 'decimalLatitude', 'decimalLongitude', 'eventDate']
+df = pd.read_parquet(parquet_url, columns=columns)
+
+print(f"Loaded {len(df)} records")
+print(df.head())
+```
+
+---
+
+# Best Practices for Marine Research
+
+## Data Organization
+
+1. **Use consistent naming conventions**
+2. **Organize data in logical folders**
+3. **Include metadata files**
+4. **Document your data processing steps**
+
+## Code Management
+
+1. **Use version control (Git)**
+2. **Write clear comments**
+3. **Test your code regularly**
+4. **Save intermediate results**
+
+## Collaboration
+
+1. **Share code via GitHub/GitLab**
+2. **Use personal storage for data sharing**
+3. **Document your methods**
+4. **Make your work reproducible**
+
+---
+
+# Troubleshooting Common Issues
+
+## RStudio Issues
+
+- **Package installation**: Use `install.packages()` in the console
+- **Memory issues**: Increase memory allocation in service configuration
+- **Data loading**: Use `arrow::read_parquet()` for large files
+
+## Jupyter Issues
+
+- **Kernel problems**: Restart the kernel
+- **Package installation**: Use `!pip install package_name` in cells
+- **Memory issues**: Process data in chunks
+
+## VSCode Issues
+
+- **Terminal access**: Use Ctrl+` to open terminal
+- **Git integration**: Use the Source Control panel
+- **Extensions**: Install from the Extensions marketplace
+
+---
+
+# Next Steps
+
+## Explore More
+
+1. **Try different services**: RStudio, Jupyter, VSCode
+2. **Access more data**: Explore EDITO's data collections
+3. **Learn about data sharing**: Use personal storage effectively
+4. **Join the community**: Connect with other researchers
+
+## Resources
+
+- [EDITO Datalab](https://datalab.dive.edito.eu/)
+- [Personal Storage](https://datalab.dive.edito.eu/account/storage)
+- [EDITO Tutorials](https://dive.edito.eu/training)
+- [Data API Documentation](https://pub.pages.mercator-ocean.fr/edito-infra/edito-tutorials-content/#/interactWithTheDataAPI)
+
+---
+
+# Conclusion
+
+EDITO Datalab provides powerful tools for marine research:
+
+- **RStudio**: Perfect for statistical analysis and visualization
+- **Jupyter**: Ideal for machine learning and data exploration
+- **VSCode**: Great for larger, multi-language projects
+- **Personal Storage**: Secure, persistent data management
+- **ARCO Data**: Fast, efficient access to large datasets
+
+Start with the service that matches your current workflow, then explore others as your needs grow. The cloud-based approach means you can work with datasets that would be impossible to handle on your local computer.
+
+Happy analyzing! 🌊🐠
+
+---
+
+*This tutorial was created for the EDITO Datalab workshop. For questions or support, contact edito-infra-dev@mercator-ocean.eu*

@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  rstudio:
+    image: rocker/verse:latest
+    container_name: read_parquet_demo
+    ports:
+      - "8787:8787"
+    environment:
+      - PASSWORD=rstudiodemo
+    volumes:
+      - ./view_parquet.Rmd:/home/rstudio/view_parquet.Rmd
+      - ./output:/home/rstudio/output
+      - ./data:/home/rstudio/data
+    working_dir: /home/rstudio
+    init: true
+    entrypoint: /bin/bash
+    command: >
+      -c "\
+      apt-get -y update && \
+      apt-get install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev && \
+      R -e 'install.packages(c(\"leaflet\", \"DT\"))' && \
+      /init && \
+      echo 'RStudio is ready to use. Open http://localhost:8787 in your browser.' && \
+      tail -f /dev/null"
+
+# Usage:
+# Run `docker-compose up` to start the container and access RStudio.
+# Access RStudio at http://localhost:8787 with username 'rstudio' and password 'demo'.
+# Edit the script in RStudio and render it manually.
