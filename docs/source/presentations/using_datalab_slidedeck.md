@@ -161,7 +161,7 @@ processed_data = marine_data.groupby('scientificName').agg({'decimalLatitude': '
 
 
 ### 🎥 **Using MyFiles in an EDITO Service**
-*[Video: Personal storage in action]*
+<video src="../static/videos/using_myfiles_netcdf_service.mp4" controls width="900"></video>
 
 - Set to public
 - Get the link via share button
@@ -210,7 +210,7 @@ s3.put_object(Bucket='your-bucket', Key='marine_analysis.csv',
 ---
 
 ### 🎥 **Save Data Analysis results to EDITO storage**
-<video src="../static/videos/searchSTAC_python.mp4" controls width="900"></video>
+<video src="../static/videos/saving_analysis_to_myfiles.mp4" controls width="900"></video>
 
 
 ---
