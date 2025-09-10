@@ -161,34 +161,51 @@ def main():
     print(f"🔗 Parquet URL: {parquet_url}")
     
     try:
-        # Use pyarrow to read parquet metadata without downloading the entire file
-        print("📥 Reading parquet schema and metadata...")
+        # Use fsspec to read parquet file directly from S3
+        print("📥 Reading parquet file using fsspec...")
         
-        # Create a filesystem for S3
-        import pyarrow.fs as fs
-        s3_fs = fs.S3FileSystem(endpoint_override="s3.waw3-1.cloudferro.com")
+        import fsspec
+        import s3fs
         
-        # Convert URL to S3 path format
+        # Create S3 filesystem with the correct endpoint
+        fs = s3fs.S3FileSystem(
+            endpoint_url="https://s3.waw3-1.cloudferro.com",
+            anon=True  # Anonymous access
+        )
+        
+        # Parse the S3 path from the URL
         s3_path = "emodnet/emodnet_biology/12639/eurobis_obisenv_view_2025-03-20.parquet"
         
-        # Read just the schema and metadata
-        parquet_file = pq.ParquetFile(s3_path, filesystem=s3_fs)
+        # Read parquet file metadata
+        parquet_file = pq.ParquetFile(s3_path, filesystem=fs)
         
         print(f"✅ Successfully connected to parquet file")
         print(f"📊 Number of row groups: {parquet_file.num_row_groups}")
         print(f"📏 Total rows: {parquet_file.metadata.num_rows}")
-        print(f"📋 Schema:")
+        print(f"📋 Schema (first 20 columns):")
         
         # Print schema information
         schema = parquet_file.schema
-        for i, field in enumerate(schema):
+        schema_fields = list(schema)
+        for i, field in enumerate(schema_fields[:20]):
             print(f"  {i+1:2d}. {field.name}: {field.physical_type}")
         
-        # Get row group information
-        print(f"\n📊 Row group details:")
-        for i in range(parquet_file.num_row_groups):
+        if len(schema_fields) > 20:
+            print(f"  ... and {len(schema_fields) - 20} more columns")
+        
+        # Get row group information (show only first few and last few)
+        print(f"\n📊 Row group details (showing first 5 and last 5):")
+        total_groups = parquet_file.num_row_groups
+        for i in range(min(5, total_groups)):
             rg = parquet_file.metadata.row_group(i)
-            if i % 100 == 0:
+            print(f"  Row group {i}: {rg.num_rows} rows, {rg.total_byte_size} bytes")
+        
+        if total_groups > 10:
+            print(f"  ... ({total_groups - 10} more row groups) ...")
+            # Show last 5 row groups
+            start_idx = total_groups - 5
+            for i in range(start_idx, total_groups):
+                rg = parquet_file.metadata.row_group(i)
                 print(f"  Row group {i}: {rg.num_rows} rows, {rg.total_byte_size} bytes")
         
         # Read just a small sample to show data structure
@@ -199,7 +216,7 @@ def main():
         sample_df = sample_table.to_pandas().head(10)  # Only take first 10 rows
         
         print(f"✅ Sample data loaded: {len(sample_df)} rows")
-        print(f"📋 Sample columns: {list(sample_df.columns)[:10]}...")
+        print(f"📋 Sample columns: {list(sample_df.columns)}")
         print(f"\nFirst 3 rows of sample data:")
         print(sample_df.head(3))
         
