@@ -1,54 +1,111 @@
-# Using EDITO Datalab
+# Using EDITO Datalab - 15 Minute Tutorial
 
-Learn how to effectively use the EDITO Datalab environment for marine data analysis.
+Learn how to use EDITO Datalab for marine data analysis in just 15 minutes! This simplified guide focuses on the core workflow: **find services → configure → run analysis**.
 
 ## 🎯 What You'll Learn
 
-- Navigate the EDITO Datalab interface
-- Use Jupyter notebooks and RStudio in the cloud
-- Access personal and shared storage
-- Work with marine datasets in Python and R
-- Deploy and share your analyses
+- Navigate to [EDITO Datalab](https://datalab.dive.edito.eu/) and find services
+- Configure RStudio, Jupyter, or VSCode services
+- Search the STAC catalog for marine data
+- Read Parquet files (biodiversity data)
+- Work with Zarr data (oceanographic data)
 
-## 🚀 Quick Start
+## 🚀 Quick Start (15 minutes)
 
-1. **Follow the presentation**: [Datalab Usage Guide](presentations/using_datalab_slidedeck.html)
-2. **Try the examples**: Run the provided Python and R scripts
-3. **Start analyzing**: Use the templates and guidelines provided
+### Step 1: Find Services
+1. Go to [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
+2. Browse the service catalog
+3. Choose your preferred environment:
+   - **RStudio** for R analysis
+   - **Jupyter** for Python notebooks
+   - **VSCode** for mixed R/Python projects
 
-## 📁 Contents
+### Step 2: Configure Service
+- Select appropriate CPU/memory resources
+- Choose your preferred environment
+- Launch the service
 
-- `python_scripts/` - Python analysis examples
-- `r_scripts/` - R analysis examples
-- `using_datalab_tutorial.Rmd` - Comprehensive tutorial
-- `vscode_example.md` - VS Code integration example
-- `presentations/using_datalab_slidedeck.html` - Interactive presentation
-- `presentations/using_datalab_slidedeck.pdf` - PDF version
+### Step 3: Run Analysis
+- Use the provided examples to get started
+- Search STAC catalog for data
+- Read Parquet and Zarr files
+- Create visualizations
 
-## 🛠️ Requirements
+## 📁 Examples
 
-- **EDITO Datalab account**
-- **Basic programming knowledge** (Python or R)
+### R Scripts
+- `r_scripts/01_stac_search.R` - Search EDITO STAC catalog
+- `r_scripts/02_read_parquet.R` - Read biodiversity data from Parquet
 
-## 📚 Key Files
+### Jupyter Notebooks
+- `jupyter_notebooks/01_edito_datalab_demo.ipynb` - Complete demo with STAC, Parquet, and Zarr
 
-- `01_jupyter_basics.py` - Jupyter notebook fundamentals
-- `01_marine_data_analysis.py` - Marine data analysis example
-- `02_personal_storage_python.py` - Storage management
-- `01_basic_r_analysis.R` - Basic R analysis
-- `02_fish_tracking_analysis.R` - Fish tracking analysis
-- `02_oceanographic_analysis.R` - Oceanographic data analysis
+## 🛠️ Services Available
 
-## 🎥 Presentation
+### RStudio Service
+Perfect for:
+- Statistical analysis
+- Data visualization
+- R-based marine research
 
-[View the interactive presentation](presentations/using_datalab_slidedeck.html) to get started with using the EDITO Datalab environment.
+**Example**: Run `01_stac_search.R` to search for marine data
+
+### Jupyter Service
+Perfect for:
+- Machine learning
+- Data exploration
+- Python-based analysis
+
+**Example**: Open `01_edito_datalab_demo.ipynb` for a complete workflow
+
+### VSCode Service
+Perfect for:
+- Mixed R/Python projects
+- Large codebases
+- Collaborative development
+
+## 📊 Data Formats
+
+### STAC (SpatioTemporal Asset Catalog)
+- **Purpose**: Find and discover marine datasets
+- **API**: `https://api.dive.edito.eu/data/`
+- **Use**: Search for available data collections
+
+### Parquet
+- **Purpose**: Efficient tabular data storage
+- **Use**: Biodiversity observations, occurrence data
+- **Example**: EUROBIS marine species data
+
+### Zarr
+- **Purpose**: Cloud-optimized array data
+- **Use**: Oceanographic data, climate reanalyses
+- **Tools**: xarray, zarr-python
+
+## 🎥 Video Examples
+
+The tutorial includes video demonstrations of:
+- RStudio service configuration and usage
+- Jupyter service setup and analysis
+- VSCode service for mixed R/Python projects
+
+## 🚀 Next Steps
+
+1. **Try the examples**: Run the provided R scripts and Jupyter notebook
+2. **Explore more data**: Use STAC search to find additional datasets
+3. **Save your work**: Use personal storage to persist your results
+4. **Share your analysis**: Export and share your findings
+
+## 📖 Additional Resources
+
+- [EDITO Datalab](https://datalab.dive.edito.eu/)
+- [EDITO Data API](https://data.dive.edito.eu/)
+- [STAC Specification](https://stacspec.org/)
+- [Personal Storage](https://datalab.dive.edito.eu/account/storage)
 
 ## 🤝 Contributing
 
 Found an issue or have suggestions? Please contribute to improve this workshop!
 
-## 📖 Additional Resources
+---
 
-- [EDITO Datalab](https://datalab.dive.edito.eu/)
-- [Jupyter Documentation](https://jupyter.org/documentation)
-- [RStudio Documentation](https://docs.rstudio.com/)
+**Ready to start?** Go to [datalab.dive.edito.eu](https://datalab.dive.edito.eu/) and launch your first service! 🌊🐠

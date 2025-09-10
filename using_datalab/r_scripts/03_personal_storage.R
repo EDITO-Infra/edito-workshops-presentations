@@ -1,259 +1,201 @@
 # =============================================================================
-# EDITO Datalab Tutorial: Using Personal Storage
+# EDITO Datalab: Personal Storage Connection Example
 # =============================================================================
-# This script demonstrates how to connect to and use personal storage
-# on EDITO Datalab for data persistence and sharing
+# This script shows how to connect to personal storage and transfer data
+# Perfect for a 15-minute tutorial on using EDITO Datalab
 
 # Load required packages
-library(arrow)      # For reading/writing Parquet files
-library(aws.s3)     # For S3-compatible storage access
+library(aws.s3)     # For S3 storage access
+library(arrow)      # For reading Parquet files
 library(dplyr)      # For data manipulation
-library(sf)         # For spatial data
 
 # =============================================================================
-# 1. SETUP: CONNECTING TO PERSONAL STORAGE
+# 1. CHECK STORAGE CREDENTIALS
 # =============================================================================
 
-# Your personal storage credentials are automatically available in EDITO
-# These environment variables are set when you launch a service
+print("💾 Checking personal storage credentials...")
 
 # Check if storage credentials are available
 if(Sys.getenv("AWS_ACCESS_KEY_ID") != "") {
-  print("✅ Personal storage credentials found!")
-  print("Storage endpoint:", Sys.getenv("AWS_S3_ENDPOINT"))
-  print("Region:", Sys.getenv("AWS_DEFAULT_REGION"))
+  cat("✅ Personal storage credentials found!\n")
+  cat("Storage endpoint:", Sys.getenv("AWS_S3_ENDPOINT"), "\n")
+  cat("Region:", Sys.getenv("AWS_DEFAULT_REGION"), "\n")
+  cat("Access Key ID:", substr(Sys.getenv("AWS_ACCESS_KEY_ID"), 1, 8), "...\n")
 } else {
-  print("❌ No storage credentials found. Make sure you're running in EDITO Datalab.")
+  cat("❌ No storage credentials found. Make sure you're running in EDITO Datalab.\n")
+  cat("💡 Your credentials will be automatically available in EDITO services\n")
+  cat("💡 For demo purposes, we'll show the connection code\n")
 }
 
 # =============================================================================
-# 2. CONNECTING TO MINIO (EDITO's S3-compatible storage)
+# 2. CONNECT TO PERSONAL STORAGE
 # =============================================================================
 
-# Set up connection to EDITO's MinIO storage
-# This uses the same interface as Amazon S3 but connects to EDITO's storage
+print("\n🔗 Connecting to personal storage...")
 
-# Configure AWS credentials for MinIO
-Sys.setenv(
-  "AWS_ACCESS_KEY_ID" = Sys.getenv("AWS_ACCESS_KEY_ID"),
-  "AWS_SECRET_ACCESS_KEY" = Sys.getenv("AWS_SECRET_ACCESS_KEY"),
-  "AWS_DEFAULT_REGION" = Sys.getenv("AWS_DEFAULT_REGION"),
-  "AWS_SESSION_TOKEN" = Sys.getenv("AWS_SESSION_TOKEN"),
-  "AWS_S3_ENDPOINT" = Sys.getenv("AWS_S3_ENDPOINT")
-)
+# In EDITO Datalab, your credentials are automatically available as environment variables
+# No need to go to project settings - they're already there!
 
-# =============================================================================
-# 3. EXPLORING YOUR PERSONAL STORAGE
-# =============================================================================
+# Get credentials from environment variables
+aws_access_key_id <- Sys.getenv("AWS_ACCESS_KEY_ID")
+aws_secret_access_key <- Sys.getenv("AWS_SECRET_ACCESS_KEY")
+aws_session_token <- Sys.getenv("AWS_SESSION_TOKEN")
+s3_endpoint <- Sys.getenv("AWS_S3_ENDPOINT")
+s3_region <- Sys.getenv("AWS_DEFAULT_REGION")
 
-# List your personal buckets
-tryCatch({
-  buckets <- aws.s3::bucketlist()
-  print("Your personal storage buckets:")
-  print(buckets)
-}, error = function(e) {
-  print("Could not access storage. Make sure you're in EDITO Datalab with storage enabled.")
-  print("Error:", e$message)
-})
-
-# =============================================================================
-# 4. WORKING WITH YOUR PERSONAL BUCKET
-# =============================================================================
-
-# Get your personal bucket name (usually your username)
-personal_bucket <- Sys.getenv("AWS_S3_BUCKET")
-if(personal_bucket == "") {
-  # Try to get from the first available bucket
-  if(exists("buckets") && nrow(buckets) > 0) {
-    personal_bucket <- buckets$Bucket[1]
-  }
-}
-
-if(personal_bucket != "") {
-  print(paste("Using personal bucket:", personal_bucket))
+# Check if credentials are available
+if(aws_access_key_id != "") {
+  cat("✅ AWS credentials found in environment variables!\n")
+#   cat("Storage endpoint:", s3_endpoint, "\n")
+#   cat("Region:", s3_region, "\n")
+#   cat("Access Key ID:", substr(aws_access_key_id, 1, 8), "...\n")
   
-  # List contents of your personal bucket
-  tryCatch({
-    bucket_contents <- aws.s3::get_bucket(personal_bucket)
-    print("Contents of your personal bucket:")
-    print(bucket_contents)
-  }, error = function(e) {
-    print("Could not list bucket contents. This might be normal for a new bucket.")
-  })
+  # Set AWS credentials for aws.s3 package
+  Sys.setenv(
+    "AWS_ACCESS_KEY_ID" = aws_access_key_id,
+    "AWS_SECRET_ACCESS_KEY" = aws_secret_access_key,
+    "AWS_SESSION_TOKEN" = aws_session_token,
+    "AWS_DEFAULT_REGION" = s3_region
+  )
+  
+  cat("✅ AWS credentials configured!\n")
 } else {
-  print("Could not determine personal bucket name.")
+  cat("❌ No storage credentials found. Make sure you're running in EDITO Datalab.\n")
+  cat("💡 Your credentials are automatically available in EDITO services\n")
+  cat("💡 No need to go to project settings - they're already there!\n")
 }
 
 # =============================================================================
-# 5. SAVING DATA TO PERSONAL STORAGE
+# 3. CREATE SAMPLE DATA
 # =============================================================================
 
-# Create some sample data to save
-sample_data <- data.frame(
-  species = c("Cod", "Haddock", "Mackerel", "Herring"),
-  latitude = c(54.5, 55.2, 53.8, 54.1),
-  longitude = c(3.2, 2.8, 3.5, 3.1),
-  depth = c(45, 60, 25, 35),
-  temperature = c(8.5, 7.2, 12.1, 9.8)
+print("\n📊 Creating sample marine data...")
+
+# Create sample marine biodiversity data
+marine_data <- data.frame(
+  scientificName = rep(c("Scomber scombrus", "Gadus morhua", "Pleuronectes platessa"), 100),
+  decimalLatitude = runif(300, 50, 60),
+  decimalLongitude = runif(300, 0, 10),
+  eventDate = seq(as.Date("2020-01-01"), as.Date("2023-12-31"), length.out = 300),
+  depth = runif(300, 5, 200),
+  temperature = rnorm(300, 10, 3)
 )
 
-print("Sample fish data created:")
-print(sample_data)
+print(paste("✅ Created", nrow(marine_data), "marine records"))
 
-# Save as CSV to personal storage
-if(personal_bucket != "") {
+# =============================================================================
+# 4. PROCESS DATA
+# =============================================================================
+
+print("\n🔄 Processing data...")
+
+# Process the data
+processed_data <- marine_data %>%
+  group_by(scientificName) %>%
+  summarise(
+    count = n(),
+    mean_latitude = mean(decimalLatitude, na.rm = TRUE),
+    mean_longitude = mean(decimalLongitude, na.rm = TRUE),
+    mean_depth = mean(depth, na.rm = TRUE),
+    mean_temperature = mean(temperature, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+print("✅ Data processed!")
+print(processed_data)
+
+# =============================================================================
+# 5. SAVE DATA LOCALLY
+# =============================================================================
+
+print("\n💾 Saving data locally...")
+
+# Save as CSV
+write.csv(processed_data, "processed_marine_data.csv", row.names = FALSE)
+
+# Save as Parquet (more efficient)
+arrow::write_parquet(processed_data, "processed_marine_data.parquet")
+
+cat("✅ Data saved locally:\n")
+cat("- processed_marine_data.csv\n")
+cat("- processed_marine_data.parquet\n")
+
+# =============================================================================
+# 6. UPLOAD TO PERSONAL STORAGE
+# =============================================================================
+
+print("\n☁️ Uploading to personal storage...")
+
+# Get your bucket name from environment or use a default
+bucket_name <- Sys.getenv("AWS_S3_BUCKET", "your-bucket-name")
+
+if(aws_access_key_id != "") {
   tryCatch({
-    # Save as CSV
+    # Upload CSV file
     aws.s3::s3write_using(
-      sample_data,
-      FUN = write.csv,
-      bucket = personal_bucket,
-      object = "fish_data/sample_fish_data.csv",
+      processed_data, 
+      FUN = write.csv, 
+      bucket = bucket_name, 
+      object = "marine_analysis/processed_marine_data.csv",
       row.names = FALSE
     )
-    print("✅ Sample data saved to personal storage as CSV")
     
-    # Save as Parquet (more efficient for large datasets)
+    # Upload Parquet file
     aws.s3::s3write_using(
-      sample_data,
-      FUN = arrow::write_parquet,
-      bucket = personal_bucket,
-      object = "fish_data/sample_fish_data.parquet"
+      processed_data, 
+      FUN = arrow::write_parquet, 
+      bucket = bucket_name, 
+      object = "marine_analysis/processed_marine_data.parquet"
     )
-    print("✅ Sample data saved to personal storage as Parquet")
+    
+    cat("✅ Data uploaded to personal storage!\n")
+    cat("📁 Files uploaded to:", paste0("s3://", bucket_name, "/marine_analysis/\n"))
     
   }, error = function(e) {
-    print("Error saving to storage:")
-    print(e$message)
+    cat("❌ Error uploading to storage:", e$message, "\n")
+    cat("💡 Make sure to replace 'your-bucket-name' with your actual bucket name\n")
   })
+} else {
+  cat("💡 To upload to storage, make sure you're running in EDITO Datalab\n")
+  cat("💡 Your credentials are automatically available as environment variables\n")
 }
 
 # =============================================================================
-# 6. READING DATA FROM PERSONAL STORAGE
+# 7. DOWNLOAD FROM PERSONAL STORAGE
 # =============================================================================
 
-# Read data back from personal storage
-if(personal_bucket != "") {
+print("\n📥 Downloading from personal storage...")
+
+if(aws_access_key_id != "") {
   tryCatch({
-    # Read CSV
-    loaded_csv <- aws.s3::s3read_using(
+    # Download CSV file
+    downloaded_data <- aws.s3::s3read_using(
       FUN = read.csv,
-      bucket = personal_bucket,
-      object = "fish_data/sample_fish_data.csv"
+      bucket = bucket_name,
+      object = "marine_analysis/processed_marine_data.csv"
     )
-    print("✅ Data loaded from personal storage (CSV):")
-    print(loaded_csv)
     
-    # Read Parquet
-    loaded_parquet <- aws.s3::s3read_using(
-      FUN = arrow::read_parquet,
-      bucket = personal_bucket,
-      object = "fish_data/sample_fish_data.parquet"
-    )
-    print("✅ Data loaded from personal storage (Parquet):")
-    print(loaded_parquet)
+    cat("✅ Data downloaded from personal storage!\n")
+    cat("📊 Downloaded", nrow(downloaded_data), "records\n")
+    print(head(downloaded_data))
     
   }, error = function(e) {
-    print("Error reading from storage:")
-    print(e$message)
+    cat("❌ Error downloading from storage:", e$message, "\n")
+    cat("💡 Make sure the file exists in your storage\n")
   })
+} else {
+  cat("💡 To download from storage, make sure you're running in EDITO Datalab\n")
+  cat("💡 Your credentials are automatically available as environment variables\n")
 }
 
 # =============================================================================
-# 7. WORKING WITH LARGER DATASETS
+# 8. SUMMARY
 # =============================================================================
 
-# For larger datasets, you can work directly with files in storage
-# without loading everything into memory
-
-# Example: Process a large fish tracking dataset
-if(personal_bucket != "") {
-  tryCatch({
-    # Create a larger dataset
-    large_fish_data <- data.frame(
-      fish_id = rep(1:100, each = 10),
-      timestamp = rep(seq(as.POSIXct("2024-01-01"), 
-                         as.POSIXct("2024-01-10"), 
-                         length.out = 10), 100),
-      latitude = runif(1000, 50, 60),
-      longitude = runif(1000, 0, 10),
-      depth = runif(1000, 10, 100)
-    )
-    
-    # Save large dataset
-    aws.s3::s3write_using(
-      large_fish_data,
-      FUN = arrow::write_parquet,
-      bucket = personal_bucket,
-      object = "fish_data/large_tracking_dataset.parquet"
-    )
-    print("✅ Large tracking dataset saved to personal storage")
-    
-    # Read and process in chunks (memory efficient)
-    # This is useful for very large datasets
-    print("Processing large dataset in chunks...")
-    
-    # For demonstration, we'll read the whole thing
-    # In practice, you might use arrow::open_dataset() for chunked processing
-    loaded_large <- aws.s3::s3read_using(
-      FUN = arrow::read_parquet,
-      bucket = personal_bucket,
-      object = "fish_data/large_tracking_dataset.parquet"
-    )
-    
-    print(paste("✅ Loaded", nrow(loaded_large), "tracking records"))
-    
-  }, error = function(e) {
-    print("Error with large dataset:")
-    print(e$message)
-  })
-}
-
-# =============================================================================
-# 8. SHARING DATA WITH COLLABORATORS
-# =============================================================================
-
-# You can share data by making it publicly accessible
-# or by sharing the bucket/object names with collaborators
-
-if(personal_bucket != "") {
-  print("=== DATA SHARING OPTIONS ===")
-  print("1. Share bucket/object names with collaborators")
-  print("2. Make objects publicly readable (if needed)")
-  print("3. Export data to external services")
-  print("4. Use EDITO's data sharing features")
-  
-  # List all your data files
-  tryCatch({
-    all_files <- aws.s3::get_bucket_df(personal_bucket, prefix = "fish_data/")
-    print("Your fish data files:")
-    print(all_files)
-  }, error = function(e) {
-    print("Could not list files (this might be normal)")
-  })
-}
-
-# =============================================================================
-# 9. BEST PRACTICES FOR FISH TRACKING DATA
-# =============================================================================
-
-print("=== BEST PRACTICES ===")
-print("1. Use Parquet format for large datasets (faster, smaller)")
-print("2. Organize data in folders (e.g., fish_data/, environmental_data/)")
-print("3. Include metadata files describing your data")
-print("4. Use consistent naming conventions")
-print("5. Regular backups of important datasets")
-print("6. Document your data processing steps")
-
-# =============================================================================
-# 10. CLEANUP AND NEXT STEPS
-# =============================================================================
-
-print("=== PERSONAL STORAGE TUTORIAL COMPLETED ===")
-print("Next steps:")
-print("1. Try the Jupyter notebook for Python storage access")
-print("2. Explore VSCode for larger projects")
-print("3. Learn about data sharing and collaboration")
-print("4. Integrate with your fish tracking workflows")
-
-print("Personal storage tutorial completed!")
+print("\n✅ Personal storage workflow complete!")
+print("💡 This demonstrates how to:")
+print("   - Connect to personal storage")
+print("   - Process and save data")
+print("   - Upload to cloud storage")
+print("   - Download from cloud storage")
+print("\n🌊 Ready to use EDITO Datalab for your marine research!")

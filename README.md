@@ -136,7 +136,14 @@ edito-workshops-presentations/
 │   ├── images/               # Screenshots and diagrams
 │   └── videos/               # Tutorial demonstrations
 ├── 📊 data/                   # Example datasets and scripts
-└── 🛠️ Makefile               # Build system for presentations
+├── 🛠️ using_datalab/         # R package and Jupyter notebooks
+│   ├── r_scripts/            # R analysis scripts
+│   ├── jupyter_notebooks/    # Python/R notebooks
+│   └── check_credentials.py  # Credential validation
+├── 📋 DESCRIPTION            # R package metadata
+├── 🔒 renv.lock             # R package lock file
+├── 🐍 pyproject.toml        # Python package configuration
+└── 🛠️ Makefile              # Build system for presentations
 ```
 
 ## 🎥 Live Presentations
@@ -166,7 +173,13 @@ All slide decks are automatically rendered and hosted at:
 ### For Data Exploration
 
 - **Python** (with packages: `pystac-client`, `xarray`, `pyarrow`)
-- **R** (with packages: `rstac`, `arrow`, `sf`)
+- **R** (with packages: `rstac`, `arrow`, `sf`, `dplyr`, `ggplot2`, `terra`)
+
+### For R Development
+
+- **R 4.0+** with RStudio or VS Code
+- **R packages** (see `DESCRIPTION` file for complete list)
+- **renv** for reproducible R environments
 
 ### For Rebuilding Documentation and Presentations (Optional)
 
@@ -194,6 +207,29 @@ cd docs && make all
 **Output:**
 - Documentation: `docs/build/html/`
 - Presentations: `docs/build/html/presentations/`
+
+## 📦 R Package Setup
+
+This repository includes an R package (`edito.workshops`) with marine data analysis functions:
+
+**Install R dependencies:**
+```r
+# Install the package and its dependencies
+install.packages("devtools")
+devtools::install_deps()
+
+# Or use renv for reproducible environments
+renv::restore()
+```
+
+**Key R scripts:**
+- `using_datalab/r_scripts/01_stac_search.R` - STAC catalog search
+- `using_datalab/r_scripts/02_read_parquet.R` - Parquet data reading
+- `using_datalab/r_scripts/03_personal_storage.R` - Personal storage management
+
+**R package structure:**
+- `DESCRIPTION` - R package metadata and dependencies
+- `renv.lock` - Locked R package versions for reproducibility
 
 ## 🤝 Contributing
 

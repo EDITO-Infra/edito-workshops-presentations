@@ -1,0 +1,53 @@
+Package: edito.workshops
+Type: Package
+Title: EDITO Technical Workshop Repository
+Version: 0.1.0
+Authors@R: c(
+    person("EDITO", "Infrastructure Team", 
+           email = "edito-infra-dev@mercator-ocean.eu", 
+           role = c("aut", "cre")),
+    person("Samuel", "Fooks", 
+           email = "samuel.fooks@vliz.be", 
+           role = "ctb"))
+Description: Comprehensive resources and hands-on tutorials for contributing 
+    to the European Digital Twin of the Ocean (EDITO) platform. This package 
+    provides R scripts, examples, and documentation for marine data analysis, 
+    STAC catalog access, Parquet data reading, and personal storage management 
+    within the EDITO Datalab environment.
+License: MIT + file LICENSE
+URL: https://github.com/EDITO-Infra/edito-workshops-presentations,
+    https://edito-infra.github.io/edito-workshops-presentations/
+BugReports: https://github.com/EDITO-Infra/edito-workshops-presentations/issues
+Depends: R (>= 4.0.0)
+Imports:
+    arrow (>= 12.0.0),
+    dplyr (>= 1.1.0),
+    ggplot2 (>= 3.4.0),
+    sf (>= 1.0.0),
+    rstac (>= 1.1.0),
+    aws.s3 (>= 0.3.0),
+    terra (>= 1.7.0),
+    raster (>= 3.6.0),
+    shiny (>= 1.7.0),
+    leaflet (>= 2.1.0),
+    DT (>= 0.28.0),
+    leaflet.extras (>= 2.0.0),
+    shinythemes (>= 1.2.0)
+Suggests:
+    testthat (>= 3.1.0),
+    knitr (>= 1.42.0),
+    rmarkdown (>= 2.21.0),
+    devtools (>= 2.4.0),
+    usethis (>= 2.1.0),
+    roxygen2 (>= 7.2.0),
+    covr (>= 3.6.0)
+VignetteBuilder: knitr
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.0
+Collate:
+    'edito_workshops.R'
+    'stac_search.R'
+    'read_parquet.R'
+    'personal_storage.R'
+    'check_credentials.R'

@@ -1,13 +1,209 @@
 [project]
 name = "edito-workshops-presentations"
 version = "0.1.0"
-description = "EDITO Technical Workshop Repository"
+description = "EDITO Technical Workshop Repository - Comprehensive resources and hands-on tutorials for contributing to the European Digital Twin of the Ocean (EDITO) platform"
+authors = [
+    {name = "EDITO Infrastructure Team", email = "edito-infra-dev@mercator-ocean.eu"}
+]
+readme = "README.md"
+license = {text = "MIT"}
 requires-python = ">=3.10"
+keywords = ["edito", "marine", "ocean", "data", "tutorial", "workshop", "stac", "parquet", "zarr"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+]
+
 dependencies = [
+    # Core dependencies for documentation and presentations
     "mkdocs>=1.5.0",
     "mkdocs-material>=9.0.0",
     "mkdocs-git-revision-date-localized-plugin>=1.2.0",
+    
+    # Python data science and marine data analysis
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "requests>=2.31.0",
+    
+    # Marine data formats and APIs
+    "pyarrow>=12.0.0",
+    "xarray>=2023.1.0",
+    "zarr>=2.16.0",
+    "pystac-client>=0.7.0",
+    "boto3>=1.28.0",
+    "s3fs>=2023.6.0",
+    
+    # Jupyter notebook support
+    "jupyter>=1.0.0",
+    "ipykernel>=6.25.0",
+    "notebook>=7.0.0",
+    
+    # Additional utilities
+    "python-dotenv>=1.0.0",
+    "click>=8.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    # Development tools
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.7.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+    
+    # Documentation
+    "sphinx>=7.1.0",
+    "sphinx-rtd-theme>=1.3.0",
+    "myst-parser>=2.0.0",
+    
+    # Build tools
+    "build>=0.10.0",
+    "twine>=4.0.0",
+]
+
+r = [
+    # R integration (if using rpy2)
+    "rpy2>=3.5.0",
+]
+
+all = [
+    "edito-workshops-presentations[dev,r]",
+]
+
+[project.urls]
+Homepage = "https://github.com/EDITO-Infra/edito-workshops-presentations"
+Documentation = "https://edito-infra.github.io/edito-workshops-presentations/"
+Repository = "https://github.com/EDITO-Infra/edito-workshops-presentations"
+Issues = "https://github.com/EDITO-Infra/edito-workshops-presentations/issues"
+Changelog = "https://github.com/EDITO-Infra/edito-workshops-presentations/blob/main/CHANGELOG.md"
+
+[project.scripts]
+edito-workshop = "edito_workshops.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["edito_workshops"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/docs",
+    "/using_datalab",
+    "/explore_data", 
+    "/add_service",
+    "/add_tutorial",
+    "/data",
+    "*.md",
+    "*.yml",
+    "*.yaml",
+    "*.toml",
+    "*.sh",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+  | docs/build
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["edito_workshops"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=edito_workshops",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+]
+
+[tool.coverage.run]
+source = ["edito_workshops"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+    "*/venv/*",
+    "*/env/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
 ]
 
 [tool.uv]
-dev-dependencies = []
+dev-dependencies = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.7.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+    "sphinx>=7.1.0",
+    "sphinx-rtd-theme>=1.3.0",
+    "myst-parser>=2.0.0",
+    "build>=0.10.0",
+    "twine>=4.0.0",
+    "rpy2>=3.5.0",
+]
