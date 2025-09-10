@@ -242,22 +242,23 @@ def browse_storage_structure(s3_client, bucket_name, prefix="", max_depth=3, cur
         print(f"❌ Error browsing storage structure: {e}")
         return {"type": "error", "path": prefix, "error": str(e)}
 
-def display_storage_structure(structure, indent=0):
+def display_storage_structure(structure, indent=0, folder_name="root"):
     """
     Display the storage structure in a tree format
     
     Args:
         structure (dict): Structure tree
         indent (int): Current indentation level
+        folder_name (str): Name of the current folder
     """
     if structure["type"] == "folder":
-        print("  " * indent + f"📁 {structure['path'].split('/')[-1] if structure['path'] else 'root'}/")
+        print("  " * indent + f"📁 {folder_name}/")
         
         if "contents" in structure and isinstance(structure["contents"], dict):
             for name, content in structure["contents"].items():
                 if isinstance(content, dict) and "type" in content:
                     if content["type"] == "folder":
-                        display_storage_structure(content, indent + 1)
+                        display_storage_structure(content, indent + 1, name)
                     elif content["type"] == "file":
                         size_str = f"({content['size_mb']} MB)" if content['size_mb'] > 0 else "(<1 MB)"
                         print("  " * (indent + 1) + f"📄 {name} {size_str}")
@@ -272,7 +273,7 @@ def display_storage_structure(structure, indent=0):
     
     elif structure["type"] == "file":
         size_str = f"({structure['size_mb']} MB)" if structure['size_mb'] > 0 else "(<1 MB)"
-        print("  " * indent + f"📄 {structure['path'].split('/')[-1]} {size_str}")
+        print("  " * indent + f"📄 {folder_name} {size_str}")
 
 def browse_my_files(s3_client):
     """
@@ -314,7 +315,7 @@ def browse_my_files(s3_client):
     structure = browse_storage_structure(s3_client, bucket_name, max_depth=max_depth)
     
     print(f"\n📂 Storage Structure:")
-    display_storage_structure(structure)
+    display_storage_structure(structure, folder_name="root")
     
     # Ask if user wants to select a file
     print(f"\n🎯 Options:")
