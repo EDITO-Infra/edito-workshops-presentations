@@ -35,7 +35,7 @@ Perfect for researchers who want to get started quickly! 🚀
 
 ---
 
-# 🌍 What is EDITO Datalab?
+# 🌍 Whats in the EDITO Datalab?
 
 **EDITO** = European Digital Twin of the Ocean
 
@@ -45,7 +45,7 @@ Perfect for researchers who want to get started quickly! 🚀
 - Analysis-ready data formats (Zarr, Parquet, COG)
 - Personal storage for your data
 
-🌐 **Three main services:**
+🌐 **We'll look at 3 kinds of services:**
 - **RStudio** - Statistical analysis and visualization
 - **Jupyter** - Machine learning and data exploration  
 - **VSCode** - Multi-language development
@@ -82,13 +82,15 @@ Perfect for researchers who want to get started quickly! 🚀
 - **Resources**: 2-8 CPU cores, 4-16GB RAM
 - **Pre-installed**: Python packages (pandas, xarray, etc.)
 
+---
+
 ### VSCode Service
 - **Perfect for**: Multi-language projects, large codebases
 - **Resources**: 2-8 CPU cores, 4-16GB RAM
 - **Features**: Git integration, extensions, terminal
 
 ### 🎥 **LIVE DEMO VIDEO PLACEHOLDER**
-*[Video: Configuring and launching RStudio service]*
+*[Video: Configuring and launching VSCode Server]*
 
 ---
 
@@ -114,7 +116,9 @@ biodiversity_search <- stac(stac_endpoint) %>%
   get_request()
 ```
 
-### 🎥 **LIVE DEMO VIDEO PLACEHOLDER**
+---
+
+### 🎥 **Running STAC search in RStudio**
 *[Video: Running STAC search in RStudio]*
 
 ---
@@ -142,7 +146,9 @@ ggplot(marine_sf) +
   labs(title = "Marine Biodiversity from EDITO Data")
 ```
 
-### 🎥 **LIVE DEMO VIDEO PLACEHOLDER**
+---
+
+### 🎥 **Reading parquet data and creating visualizations**
 *[Video: Reading parquet data and creating visualizations]*
 
 ---
@@ -171,7 +177,9 @@ ds = xr.open_zarr("your-zarr-url")
 temperature = ds.temperature.mean(dim=['time'])
 ```
 
-### 🎥 **LIVE DEMO VIDEO PLACEHOLDER**
+---
+
+### 🎥 **Running Jupyter notebook with STAC, Parquet, and Zarr**
 *[Video: Running Jupyter notebook with STAC, Parquet, and Zarr]*
 
 ---
@@ -212,7 +220,7 @@ s3 = boto3.client(
 
 ---
 
-### 🎥 **LIVE DEMO VIDEO PLACEHOLDER**
+### 🎥 **LConnecting to personal storage and checking credentials**
 *[Video: Connecting to personal storage and checking credentials]*
 
 ---
@@ -230,9 +238,6 @@ s3 = boto3.client(
 - Browse your personal storage
 - Download files directly to your local computer
 - Share files with collaborators
-
-### 🎥 **LIVE DEMO VIDEO PLACEHOLDER**
-*[Video: Dragging and dropping files, browsing storage]*
 
 ---
 
@@ -301,35 +306,12 @@ downloaded_data = pd.read_csv(response['Body'])
 
 ## What We've Covered
 
-1. **Find Services** → Go to datalab.dive.edito.eu
-2. **Configure & Launch** → Choose RStudio, Jupyter, or VSCode
-3. **Run Analysis** → STAC search, Parquet reading, Zarr data
-4. **Connect Storage** → Access your personal storage
-5. **Upload/Download** → Drag & drop files
-6. **Process & Transfer** → Analyze data and save results
-
-## All in 15 Minutes! ⏱️
-
-### 🎥 **LIVE DEMO VIDEO PLACEHOLDER**
-*[Video: Complete workflow from start to finish]*
-
----
-
-# 🛠️ Services Comparison
-
-## Choose the Right Service
-
-| Service | Best For | Languages | Features |
-|---------|----------|-----------|----------|
-| **RStudio** | Statistical analysis, spatial data | R | Familiar R environment |
-| **Jupyter** | Machine learning, exploration | Python, R, others | Interactive notebooks |
-| **VSCode** | Multi-language projects | R, Python, others | Full development environment |
-
-## Quick Start Recommendations
-
-- **R users** → Start with RStudio
-- **Python users** → Start with Jupyter  
-- **Mixed projects** → Use VSCode
+  - **Find Services** → Go to datalab.dive.edito.eu
+  - **Configure & Launch** → Choose RStudio, Jupyter, or VSCode
+  - **Run Analysis** → STAC search, Parquet reading, Zarr data
+  - **Connect Storage** → Access your personal storage
+  - **Upload/Download** → Drag & drop files
+  - **Process & Transfer** → Analyze data and save results
 
 ---
 
@@ -380,64 +362,3 @@ downloaded_data = pd.read_csv(response['Body'])
 - **Email**: edito-infra-dev@mercator-ocean.eu
 - **Documentation**: [EDITO Tutorials](https://dive.edito.eu/training)
 - **GitHub**: [Workshop Repository](https://github.com/EDITO-Infra/edito-workshops-presentations)
-
-## Live Support
-
-- **Live demo** and Q&A session
-- **Hands-on help** with your projects
-- **Detailed discussions** about specific needs
-
----
-
-# 🙌 Summary
-
-## What You Can Now Do
-
-✅ **Find and launch services** in EDITO Datalab  
-✅ **Search STAC catalog** for marine data  
-✅ **Read Parquet files** efficiently  
-✅ **Work with Zarr data** using xarray  
-✅ **Connect to personal storage**  
-✅ **Upload, download, and process data**  
-✅ **Transfer results** to your storage  
-
-## Ready to Explore! 🌊🐠
-
-**Start with the service that matches your workflow, then explore others as your needs grow.**
-
----
-
-# 🌊 Happy Analyzing!
-
-**EDITO Datalab provides powerful tools for marine research:**
-
-- **RStudio**: Perfect for statistical analysis and visualization
-- **Jupyter**: Ideal for machine learning and data exploration  
-- **VSCode**: Great for larger, multi-language projects
-- **Personal Storage**: Secure, persistent data management
-- **ARCO Data**: Fast, efficient access to large datasets
-
-**The cloud-based approach means you can work with datasets that would be impossible to handle on your local computer.**
-
-🐠🌊 **Ready to dive in!**
-
----
-
-# Questions?
-
-**Available for detailed discussions:**
-- Live demo and Q&A
-- Hands-on help with your projects
-
-**Contact:**
-- Email: edito-infra-dev@mercator-ocean.eu
-- GitHub: [Workshop Repository](https://github.com/EDITO-Infra/edito-workshops-presentations)
-
-**Resources:**
-- [EDITO Datalab](https://datalab.dive.edito.eu/)
-- [Personal Storage](https://datalab.dive.edito.eu/account/storage)
-- [EDITO Tutorials](https://dive.edito.eu/training)
-
----
-
-*This tutorial was created for the EDITO Datalab workshop. Perfect for marine researchers getting started with cloud computing and modern data formats.*
