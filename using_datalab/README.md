@@ -1,14 +1,16 @@
-# Using EDITO Datalab - 15 Minute Tutorial
+# Using EDITO Datalab - Complete Tutorial
 
-Learn how to use EDITO Datalab for marine data analysis in just 15 minutes! This simplified guide focuses on the core workflow: **find services → configure → run analysis**.
+Learn how to use EDITO Datalab for marine data analysis with this comprehensive guide! From finding services to advanced data processing and storage, this tutorial covers everything you need to know.
 
 ## 🎯 What You'll Learn
 
 - Navigate to [EDITO Datalab](https://datalab.dive.edito.eu/) and find services
 - Configure RStudio, Jupyter, or VSCode services
-- Search the STAC catalog for marine data
-- Read Parquet files (biodiversity data)
-- Work with Zarr data (oceanographic data)
+- Search the STAC catalog for marine data collections
+- Process Parquet files (biodiversity data) and Zarr data (oceanographic data)
+- Combine different data types spatially
+- Save and manage data using personal storage
+- Work with both R and Python environments
 
 ## 🚀 Quick Start (15 minutes)
 
@@ -16,101 +18,170 @@ Learn how to use EDITO Datalab for marine data analysis in just 15 minutes! This
 1. Go to [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
 2. Browse the service catalog
 3. Choose your preferred environment:
-   - **RStudio** for R analysis
-   - **Jupyter** for Python notebooks
-   - **VSCode** for mixed R/Python projects
+   - **RStudio** for R analysis and visualization
+   - **Jupyter** for Python notebooks and machine learning
+   - **VSCode** for mixed R/Python projects and development
 
 ### Step 2: Configure Service
-- Select appropriate CPU/memory resources
+- Select appropriate CPU/memory resources (2-8 cores, 4-16GB RAM)
 - Choose your preferred environment
-- Launch the service
+- Launch the service (credentials are automatically configured)
 
 ### Step 3: Run Analysis
-- Use the provided examples to get started
-- Search STAC catalog for data
-- Read Parquet and Zarr files
-- Create visualizations
+- Use the provided scripts to get started
+- Search STAC catalog for data collections
+- Process Parquet and Zarr files
+- Combine and analyze marine data
 
-## 📁 Examples
+## 📁 Complete Workflow Scripts
 
-### R Scripts
-- `r/01_stac_search.R` - Search EDITO STAC catalog
-- `r/02_read_parquet.R` - Read biodiversity data from Parquet
-- `r/03_personal_storage.R` - Work with personal storage
+### R Scripts (Ready to Run)
+- **`r/01_stac_search.R`** - Search EDITO STAC catalog for marine data collections
+  - Connects to STAC API and lists available collections
+  - Filters for biodiversity-related data
+  - Shows data access URLs and formats
+- **`r/02_read_parquet.R`** - Read and process biodiversity data from Parquet files
+  - Direct access to EUROBIS marine species data
+  - Data filtering and basic analysis
+- **`r/03_personal_storage.R`** - Complete personal storage workflow
+  - Connect to EDITO storage (credentials auto-configured)
+  - Upload/download data to/from personal storage
+  - Process and save marine data in multiple formats
 
-### Python Workflow
-- `edito_interactive_workshop.ipynb` - **NEW!** Complete modular workflow
-- `python/edito_modules/` - Modular Python packages for data processing
-- `python/requirements.txt` - Python dependencies
+### Python Scripts (Interactive Workflow)
+- **`python/01_get_stac_collections.py`** - Get and explore STAC collections
+  - Interactive collection discovery
+  - Search functionality for specific data types
+  - Saves collections metadata for next steps
+- **`python/02_search_stac_assets.py`** - Search for specific data assets
+  - Filter collections by keywords (biodiversity, ocean, etc.)
+  - Find Parquet and Zarr data assets
+  - Interactive asset selection
+- **`python/03_get_zarr_to_df.py`** - Process oceanographic Zarr data
+  - Convert Zarr arrays to DataFrames
+  - Handle large datasets with smart sampling
+  - Spatial data processing
+- **`python/04_get_parquet_data.py`** - Process biodiversity Parquet data
+  - Read Parquet files from S3
+  - Data exploration and filtering
+  - Schema analysis and sample extraction
+- **`python/05_combine_and_save.py`** - Complete data combination workflow
+  - Select and combine Parquet + Zarr datasets
+  - Spatial data integration
+  - Save to local files and personal storage
+  - Metadata generation and tracking
 
-### Legacy Python Scripts
-- `python/01_get_stac_collections.py` - Get STAC collections (interactive)
-- `python/02_search_stac_assets.py` - Search for data assets (interactive)
-- `python/03_get_zarr_to_df.py` - Process raster data (interactive)
-- `python/04_get_parquet_data.py` - Process parquet data (interactive)
-- `python/05_combine_and_save.py` - Combine and save data (interactive)
+### Additional Tools
+- **`python/check_credentials.py`** - Verify storage credentials
+- **`python/run_full_demo.py`** - Run complete workflow automatically
 
 ## 🛠️ Services Available
 
 ### RStudio Service
-Perfect for:
-- Statistical analysis
-- Data visualization
-- R-based marine research
+**Perfect for:**
+- Statistical analysis and spatial data processing
+- Data visualization and reporting
+- R-based marine research workflows
+- Quick data exploration and analysis
 
-**Example**: Run `01_stac_search.R` to search for marine data
+**Getting Started:**
+1. Launch RStudio service in EDITO Datalab
+2. Run `r/01_stac_search.R` to discover data collections
+3. Use `r/02_read_parquet.R` to process biodiversity data
+4. Try `r/03_personal_storage.R` for data management
 
 ### Jupyter Service
-Perfect for:
-- Machine learning
-- Data exploration
-- Python-based analysis
+**Perfect for:**
+- Machine learning and data science
+- Interactive data exploration
+- Python-based analysis and visualization
+- Notebook-based research workflows
 
-**Example**: Open `edito_interactive_workshop.ipynb` for a complete modular workflow
+**Getting Started:**
+1. Launch Jupyter service in EDITO Datalab
+2. Run the Python scripts in sequence:
+   - `python/01_get_stac_collections.py`
+   - `python/02_search_stac_assets.py`
+   - `python/03_get_zarr_to_df.py`
+   - `python/04_get_parquet_data.py`
+   - `python/05_combine_and_save.py`
 
 ### VSCode Service
-Perfect for:
+**Perfect for:**
 - Mixed R/Python projects
-- Large codebases
-- Collaborative development
+- Large codebases and development
+- Collaborative research
+- Advanced data processing workflows
 
-## 📊 Data Formats
+**Getting Started:**
+1. Launch VSCode service in EDITO Datalab
+2. Open the `using_datalab` folder
+3. Run either R or Python scripts as needed
+4. Use integrated terminal for command-line tools
+
+## 📊 Data Formats & Sources
 
 ### STAC (SpatioTemporal Asset Catalog)
 - **Purpose**: Find and discover marine datasets
 - **API**: `https://api.dive.edito.eu/data/`
 - **Use**: Search for available data collections
+- **Scripts**: `01_stac_search.R`, `01_get_stac_collections.py`
 
-### Parquet
-- **Purpose**: Efficient tabular data storage
-- **Use**: Biodiversity observations, occurrence data
-- **Example**: EUROBIS marine species data
+### Parquet (Biodiversity Data)
+- **Purpose**: Efficient tabular data storage for occurrence records
+- **Use**: Marine species observations, biodiversity data
+- **Example**: EUROBIS marine species occurrence data
+- **Scripts**: `02_read_parquet.R`, `04_get_parquet_data.py`
+- **Features**: Fast querying, columnar storage, schema evolution
 
-### Zarr
-- **Purpose**: Cloud-optimized array data
-- **Use**: Oceanographic data, climate reanalyses
+### Zarr (Oceanographic Data)
+- **Purpose**: Cloud-optimized array data for large datasets
+- **Use**: Oceanographic data, climate reanalyses, satellite data
 - **Tools**: xarray, zarr-python
+- **Scripts**: `03_get_zarr_to_df.py`
+- **Features**: Chunked storage, parallel access, compression
+
+### Personal Storage (MyFiles)
+- **Purpose**: Your personal cloud storage for data and results
+- **Access**: Automatically configured in EDITO services
+- **Use**: Save processed data, share results, backup analysis
+- **Scripts**: `03_personal_storage.R`, `05_combine_and_save.py`
+- **Formats**: CSV, Parquet, JSON, any file type
 
 ## 🎥 Video Examples
 
 The tutorial includes video demonstrations of:
-- RStudio service configuration and usage
-- Jupyter service setup and analysis
-- VSCode service for mixed R/Python projects
+- **Service Configuration**: RStudio, Jupyter, and VSCode setup
+- **STAC Search**: Finding and exploring marine data collections
+- **Data Processing**: Working with Parquet and Zarr data
+- **Personal Storage**: Uploading and managing data in MyFiles
+- **Complete Workflow**: End-to-end data analysis pipeline
 
-## 🚀 Next Steps
+## 🚀 Getting Started
 
-1. **Try the examples**: Run the provided R scripts and Jupyter notebook
-2. **Explore more data**: Use STAC search to find additional datasets
-3. **Save your work**: Use personal storage to persist your results
-4. **Share your analysis**: Export and share your findings
+### Option 1: Quick Start (15 minutes)
+1. **Launch a service** at [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
+2. **Run one script** to get familiar with the workflow
+3. **Explore the data** and see what's available
+
+### Option 2: Complete Workflow (1 hour)
+1. **Start with R**: Run `r/01_stac_search.R` to discover data
+2. **Process data**: Use `r/02_read_parquet.R` for biodiversity data
+3. **Manage storage**: Try `r/03_personal_storage.R` for data management
+4. **Advanced Python**: Run the Python scripts in sequence for full workflow
+
+### Option 3: Automated Demo
+1. **Run the complete demo**: `python/run_full_demo.py`
+2. **Watch the process**: See all steps automated
+3. **Examine results**: Check the output files and storage
 
 ## 📖 Additional Resources
 
-- [EDITO Datalab](https://datalab.dive.edito.eu/)
-- [EDITO Data API](https://data.dive.edito.eu/)
-- [STAC Specification](https://stacspec.org/)
-- [Personal Storage](https://datalab.dive.edito.eu/account/storage)
+- **EDITO Datalab**: [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
+- **EDITO Data API**: [data.dive.edito.eu](https://data.dive.edito.eu/)
+- **STAC Specification**: [stacspec.org](https://stacspec.org/)
+- **Personal Storage**: [datalab.dive.edito.eu/account/storage](https://datalab.dive.edito.eu/account/storage)
+- **Workshop Repository**: [GitHub](https://github.com/EDITO-Infra/edito-workshops-presentations)
 
 ## 🤝 Contributing
 

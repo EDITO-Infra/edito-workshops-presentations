@@ -75,15 +75,23 @@ def process_parquet_item(item_data, sample_rows=100):
             # Extract S3 path from URL
             if 's3.waw3-1.cloudferro.com' in parquet_url:
                 # EDITO S3 endpoint
-                s3_path = parquet_url.split('s3.waw3-1.cloudferro.com/')[-1]
+                s3_path = parquet_url.split('s3.waw3-1.cloudferro.com/')[-1].rstrip('/')
                 fs = s3fs.S3FileSystem(
                     endpoint_url="https://s3.waw3-1.cloudferro.com",
                     anon=True
                 )
             else:
                 # Generic S3
-                s3_path = parquet_url.split('amazonaws.com/')[-1]
+                s3_path = parquet_url.split('amazonaws.com/')[-1].rstrip('/')
                 fs = s3fs.S3FileSystem(anon=True)
+            
+            # Debug: Print the S3 path being used
+            print(f"🔍 S3 path: {s3_path}")
+            
+            # Check if file exists first
+            if not fs.exists(s3_path):
+                print(f"❌ File does not exist on S3: {s3_path}")
+                raise FileNotFoundError(f"S3 file not found: {s3_path}")
             
             # Read parquet file metadata
             parquet_file = pq.ParquetFile(s3_path, filesystem=fs)
@@ -130,16 +138,35 @@ def process_parquet_item(item_data, sample_rows=100):
         print("📊 Creating sample parquet data...")
         
         # Create sample data for demonstration
+        species_list = ['Scomber scombrus', 'Gadus morhua', 'Pleuronectes platessa', 
+                       'Merlangius merlangus', 'Solea solea']
+        
+        # Debug: Print sample_rows value
+        print(f"🔍 Creating sample data with {sample_rows} rows")
+        
+        # Ensure all arrays have exactly sample_rows elements
+        scientific_names = (species_list * ((sample_rows // len(species_list)) + 1))[:sample_rows]
+        latitudes = np.random.uniform(50, 60, sample_rows)
+        longitudes = np.random.uniform(0, 10, sample_rows)
+        dates = pd.date_range('2020-01-01', '2023-12-31', periods=sample_rows)
+        item_ids = [item['id']] * sample_rows
+        item_titles = [item['properties'].get('title', 'No title')] * sample_rows
+        asset_names = [asset_name] * sample_rows
+        data_types = ['parquet'] * sample_rows
+        
+        # Debug: Check array lengths
+        print(f"🔍 Array lengths: scientific_names={len(scientific_names)}, latitudes={len(latitudes)}, longitudes={len(longitudes)}, dates={len(dates)}")
+        print(f"🔍 Array lengths: item_ids={len(item_ids)}, item_titles={len(item_titles)}, asset_names={len(asset_names)}, data_types={len(data_types)}")
+        
         sample_df = pd.DataFrame({
-            'scientificName': ['Scomber scombrus', 'Gadus morhua', 'Pleuronectes platessa', 
-                              'Merlangius merlangus', 'Solea solea'] * (sample_rows // 5 + 1),
-            'decimalLatitude': np.random.uniform(50, 60, sample_rows),
-            'decimalLongitude': np.random.uniform(0, 10, sample_rows),
-            'eventDate': pd.date_range('2020-01-01', '2023-12-31', periods=sample_rows),
-            'item_id': item['id'],
-            'item_title': item['properties'].get('title', 'No title'),
-            'asset_name': asset_name,
-            'data_type': 'parquet'
+            'scientificName': scientific_names,
+            'decimalLatitude': latitudes,
+            'decimalLongitude': longitudes,
+            'eventDate': dates,
+            'item_id': item_ids,
+            'item_title': item_titles,
+            'asset_name': asset_names,
+            'data_type': data_types
         })
         
         # Trim to requested size
@@ -256,14 +283,17 @@ def main():
         if create_sample == 'y':
             print("📊 Creating sample parquet data...")
             logger.info("Creating sample parquet data")
+            species_list = ['Scomber scombrus', 'Gadus morhua', 'Pleuronectes platessa']
+            sample_rows = 150
+            
             sample_data = pd.DataFrame({
-                'scientificName': ['Scomber scombrus', 'Gadus morhua', 'Pleuronectes platessa'] * 50,
-                'decimalLatitude': np.random.uniform(50, 60, 150),
-                'decimalLongitude': np.random.uniform(0, 10, 150),
-                'eventDate': pd.date_range('2020-01-01', '2023-12-31', periods=150),
-                'item_id': 'sample-parquet-data',
-                'item_title': 'Sample Parquet Data',
-                'data_type': 'parquet'
+                'scientificName': (species_list * ((sample_rows // len(species_list)) + 1))[:sample_rows],
+                'decimalLatitude': np.random.uniform(50, 60, sample_rows),
+                'decimalLongitude': np.random.uniform(0, 10, sample_rows),
+                'eventDate': pd.date_range('2020-01-01', '2023-12-31', periods=sample_rows),
+                'item_id': ['sample-parquet-data'] * sample_rows,
+                'item_title': ['Sample Parquet Data'] * sample_rows,
+                'data_type': ['parquet'] * sample_rows
             })
             save_parquet_data(sample_data)
         return

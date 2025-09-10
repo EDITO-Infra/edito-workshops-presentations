@@ -52,7 +52,7 @@ Perfect for researchers who want to get started quickly! 🚀
 
 ---
 
-# 🚀 Step 1: Find Services
+# 🚀 Find Services
 
 ## Go to EDITO Datalab
 
@@ -72,7 +72,7 @@ Perfect for researchers who want to get started quickly! 🚀
 
 ---
 
-# ⚙️ Step 2: Configure & Launch
+# ⚙️ Configure & Launch
 
 ## Choose Your Service
 
@@ -99,7 +99,7 @@ Perfect for researchers who want to get started quickly! 🚀
 
 ---
 
-# 🐠 Step 3: Run Analysis
+# 🐠 Run Analysis
 
 ## R Example - STAC Search & Parquet Reading
 
@@ -152,11 +152,24 @@ processed_data = marine_data.groupby('scientificName').agg({'decimalLatitude': '
 ---
 
 ### 🎥 **Data Analysis using Python scripts**
-*[Video: Running analysis in RStudio and Jupyter]*
+<video src="../static/videos/searchSTAC_python.mp4" controls width="900"></video>
+
 
 ---
 
-# 💾 Step 4: Personal Storage
+# Using your EDITO S3 Storage
+
+
+### 🎥 **Using MyFiles in an EDITO Service**
+*[Video: Personal storage in action]*
+
+- Set to public
+- Get the link via share button
+- Use in an EDITO Service (or locally!)
+
+---
+
+# 💾 Saving into EDITO Storage
 
 ## Your Storage is Ready!
 
@@ -176,6 +189,8 @@ if(Sys.getenv("AWS_ACCESS_KEY_ID") != "") {
 }
 ```
 
+---
+
 ### Python Example
 ```python
 import boto3
@@ -194,8 +209,9 @@ s3.put_object(Bucket='your-bucket', Key='marine_analysis.csv',
 
 ---
 
-### 🎥 **Personal storage in action**
-*[Video: Personal storage in action]*
+### 🎥 **Save Data Analysis results to EDITO storage**
+<video src="../static/videos/searchSTAC_python.mp4" controls width="900"></video>
+
 
 ---
 
@@ -206,7 +222,8 @@ s3.put_object(Bucket='your-bucket', Key='marine_analysis.csv',
 1. **Find Services** → Go to datalab.dive.edito.eu
 2. **Launch Service** → Choose RStudio, Jupyter, or VSCode  
 3. **Run Analysis** → STAC search, read Parquet data, process results
-4. **Save Data** → Upload to your personal storage
+4. **Save Data** → Upload to your personal storage (MyFiles)
+
 
 ## Key Benefits
 
@@ -214,6 +231,7 @@ s3.put_object(Bucket='your-bucket', Key='marine_analysis.csv',
 ✅ **Free Storage** - Personal cloud storage included  
 ✅ **Marine Data** - Direct access to EDITO datasets  
 ✅ **Multiple Languages** - R, Python, and more
+✅ **Interactive** - Step-by-step guided workflows
 
 ---
 
@@ -224,13 +242,17 @@ s3.put_object(Bucket='your-bucket', Key='marine_analysis.csv',
 1. **Go to**: [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
 2. **Launch RStudio or Jupyter**
 3. **Run the code examples** from this presentation
-4. **Save your results** to personal storage
+4. **Save your results** to personal storage (MyFiles)
+
+## Three Ways to Get Started
+
 
 ## Resources
 
 - **Datalab**: [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
 - **GitHub**: [Workshop Repository](https://github.com/EDITO-Infra/edito-workshops-presentations)
 - **Support**: edito-infra-dev@mercator-ocean.eu
+- **Documentation**: [EDITO Tutorials](https://dive.edito.eu/training)
 
 ---
 
