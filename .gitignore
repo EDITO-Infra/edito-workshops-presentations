@@ -251,7 +251,6 @@ docs/site/
 
 # Marp presentations (generated)
 *.html
-*.pdf
 !docs/source/presentations/*.html
 !docs/source/presentations/*.pdf
 

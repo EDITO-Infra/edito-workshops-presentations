@@ -20,7 +20,6 @@ Learn how to access and analyze marine data through EDITO's data infrastructure.
 - `viewparquet/` - Interactive Parquet data viewer
 - `shiny_parquet_app/` - Shiny application for data exploration
 - `../presentations/explore_data_slidedeck.html` - Interactive presentation
-- `../presentations/explore_data_slidedeck.pdf` - PDF version
 
 ## 🛠️ Requirements
 

@@ -3,7 +3,7 @@
 
 # Variables
 MARP = marp
-OUTPUT_DIR = ../../presentations
+OUTPUT_DIR = ../../build/html/presentations
 CSS_FILE = ../static/styles/edito-marp.css
 
 # Source files
@@ -12,7 +12,7 @@ HTML_TARGETS = $(SOURCES:.md=.html)
 PDF_TARGETS = $(SOURCES:.md=.pdf)
 
 # Default target
-all: html
+all: html pdf
 
 # Build HTML presentations
 html: $(HTML_TARGETS)
@@ -51,7 +51,7 @@ clean:
 # Help
 help:
 	@echo "Available targets:"
-	@echo "  all     - Build all HTML presentations"
+	@echo "  all     - Build all HTML and PDF presentations"
 	@echo "  html    - Build all HTML presentations"
 	@echo "  pdf     - Build all PDF presentations"
 	@echo "  clean   - Remove build artifacts"

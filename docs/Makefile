@@ -11,9 +11,9 @@ DOCS_DIR      = $(shell pwd)
 # Put it first so that "make" without argument is like "make help".
 help:
 	@echo "Available targets:"
-	@echo "  all          - Build documentation and presentations"
+	@echo "  all          - Build documentation and presentations (HTML + PDF)"
 	@echo "  html         - Build MkDocs documentation only"
-	@echo "  presentations - Build all presentations"
+	@echo "  presentations - Build all presentations (HTML + PDF)"
 	@echo "  clean        - Remove build artifacts"
 	@echo "  help         - Show this help"
 
@@ -53,7 +53,13 @@ presentations: check-marp
 	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/add_edito_tutorial_slidedeck.md --output docs/$(BUILDDIR)/html/presentations/add_edito_tutorial_slidedeck.html --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
 	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/explore_data_slidedeck.md --output docs/$(BUILDDIR)/html/presentations/explore_data_slidedeck.html --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
 	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/using_datalab_slidedeck.md --output docs/$(BUILDDIR)/html/presentations/using_datalab_slidedeck.html --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
-	@echo "✅ Local presentations built successfully!"
+	@echo "Building PDF presentations..."
+	@mkdir -p presentations
+	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/add_edito_service_slidedeck.md --pdf --output docs/presentations/add_edito_service_slidedeck.pdf --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
+	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/add_edito_tutorial_slidedeck.md --pdf --output docs/presentations/add_edito_tutorial_slidedeck.pdf --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
+	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/explore_data_slidedeck.md --pdf --output docs/presentations/explore_data_slidedeck.pdf --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
+	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/using_datalab_slidedeck.md --pdf --output docs/presentations/using_datalab_slidedeck.pdf --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
+	@echo "✅ Local presentations (HTML and PDF) built successfully!"
 
 # Build everything (for manual builds)
 all: html presentations

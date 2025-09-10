@@ -19,7 +19,6 @@ Learn how to deploy containerized web applications and services to EDITO Datalab
 
 - `view_parquet_service/` - Complete example Shiny application
 - `../presentations/add_edito_service_slidedeck.html` - Interactive presentation
-- `../presentations/add_edito_service_slidedeck.pdf` - PDF version
 
 ## 🛠️ Requirements
 
