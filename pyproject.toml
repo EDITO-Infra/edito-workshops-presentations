@@ -74,12 +74,12 @@ dev = [
 ]
 
 r = [
-    # R integration (if using rpy2)
+    # R integration (requires R to be installed)
     "rpy2>=3.5.0",
 ]
 
 all = [
-    "edito-workshops-presentations[dev,r]",
+    "edito-workshops-presentations[dev]",
 ]
 
 [project.urls]
@@ -205,5 +205,4 @@ dev-dependencies = [
     "myst-parser>=2.0.0",
     "build>=0.10.0",
     "twine>=4.0.0",
-    "rpy2>=3.5.0",
 ]

@@ -36,8 +36,9 @@ jobs:
           uv venv
           # Activate virtual environment and install from pyproject.toml
           source .venv/bin/activate
-          # Install dependencies from pyproject.toml
-          uv sync
+          # Install only core dependencies (skip R integration for CI)
+          uv pip install -e . --no-deps
+          uv pip install mkdocs mkdocs-material mkdocs-git-revision-date-localized-plugin
 
       - name: Setup Node.js for Marp
         uses: actions/setup-node@v4
