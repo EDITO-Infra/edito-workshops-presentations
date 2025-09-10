@@ -10,6 +10,8 @@ import json
 import pandas as pd
 import numpy as np
 import xarray as xr
+import boto3
+import os
 from datetime import datetime
 
 def load_raster_items(raster_file="stac_raster_items.json"):
@@ -246,19 +248,49 @@ def save_raster_data(raster_df, output_file="raster_data.csv"):
         print("❌ No raster data to save")
 
 def main():
-    """Main function"""
-    print("🗺️ EDITO Datalab: Processing Raster Data")
-    print("=" * 50)
+    """Interactive main function"""
+    print("🗺️ EDITO Datalab: Interactive Raster Data Processing")
+    print("=" * 60)
     
-    # Load raster items
-    raster_items = load_raster_items()
+    print("\n🎯 Data Source Options:")
+    print("1. Load from STAC search results (existing processed data)")
+    print("2. Browse MyFiles storage for Zarr/NetCDF files")
+    print("3. Create sample raster data")
     
-    if not raster_items:
-        print("❌ No raster items available. Run 02_search_stac_assets.py first.")
-        return
-    
-    # Process raster items
-    raster_df = process_all_raster_items(raster_items)
+    while True:
+        choice = input("Enter choice (1-3): ").strip()
+        if choice == '1':
+            # Load from STAC search results
+            raster_items = load_raster_items()
+            if not raster_items:
+                print("❌ No raster items available. Run 02_search_stac_assets.py first.")
+                print("💡 Creating sample data instead.")
+                raster_df = create_sample_raster_data()
+            else:
+                raster_df = process_all_raster_items(raster_items)
+            break
+        elif choice == '2':
+            # Browse MyFiles storage
+            from using_storage import connect_to_storage, browse_my_files
+            s3_client = connect_to_storage()
+            if s3_client:
+                selected_file = browse_my_files(s3_client)
+                if selected_file:
+                    print(f"📁 Selected file: {selected_file}")
+                    print("💡 You can use this file path in other scripts!")
+                    print("💡 For this demo, creating sample data instead.")
+                else:
+                    print("⏭️ No file selected. Creating sample data instead.")
+            else:
+                print("❌ Could not connect to storage. Creating sample data instead.")
+            raster_df = create_sample_raster_data()
+            break
+        elif choice == '3':
+            # Create sample data
+            raster_df = create_sample_raster_data()
+            break
+        else:
+            print("❌ Invalid choice. Please enter 1, 2, or 3.")
     
     # Save to CSV
     save_raster_data(raster_df)
@@ -266,6 +298,32 @@ def main():
     print("\n🎯 Next steps:")
     print("1. Run 04_get_parquet_data.py to process parquet data")
     print("2. Run 05_combine_and_save.py to combine with parquet data and save to storage")
+
+def create_sample_raster_data():
+    """
+    Create sample raster data for demonstration
+    
+    Returns:
+        pd.DataFrame: Sample raster data
+    """
+    print("📊 Creating sample raster data...")
+    
+    # Create sample data
+    np.random.seed(42)  # For reproducible results
+    n_points = 50
+    
+    sample_data = pd.DataFrame({
+        'lat': np.random.uniform(50, 60, n_points),
+        'lon': np.random.uniform(0, 10, n_points),
+        'raster_value': np.random.normal(10, 2, n_points),
+        'item_id': 'sample-raster-data',
+        'item_title': 'Sample Raster Data',
+        'asset_name': 'sample_asset',
+        'data_type': 'raster'
+    })
+    
+    print(f"✅ Created {len(sample_data)} sample raster points")
+    return sample_data
 
 if __name__ == "__main__":
     main()

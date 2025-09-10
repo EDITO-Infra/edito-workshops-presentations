@@ -221,25 +221,65 @@ def save_parquet_data(parquet_df, output_file="parquet_data.csv"):
         print("❌ No parquet data to save")
 
 def main():
-    """Main function"""
-    print("📊 EDITO Datalab: Processing Parquet Data")
-    print("=" * 50)
+    """Interactive main function"""
+    print("📊 EDITO Datalab: Interactive Parquet Data Processing")
+    print("=" * 60)
     
     # Load parquet items
     parquet_items = load_parquet_items()
     
     if not parquet_items:
         print("❌ No parquet items available. Run 02_search_stac_assets.py first.")
+        print("\n🎯 Alternative: Create sample data for demonstration")
+        create_sample = input("Create sample parquet data? (y/n): ").strip().lower()
+        if create_sample == 'y':
+            print("📊 Creating sample parquet data...")
+            sample_data = pd.DataFrame({
+                'scientificName': ['Scomber scombrus', 'Gadus morhua', 'Pleuronectes platessa'] * 50,
+                'decimalLatitude': np.random.uniform(50, 60, 150),
+                'decimalLongitude': np.random.uniform(0, 10, 150),
+                'eventDate': pd.date_range('2020-01-01', '2023-12-31', periods=150),
+                'item_id': 'sample-parquet-data',
+                'item_title': 'Sample Parquet Data',
+                'data_type': 'parquet'
+            })
+            save_parquet_data(sample_data)
         return
     
+    # Show available parquet items
+    print(f"\n📋 Found {len(parquet_items)} parquet items:")
+    for i, item_data in enumerate(parquet_items[:5]):
+        item = item_data['item']
+        print(f"{i+1:2d}. {item['id']} - {item['properties'].get('title', 'No title')}")
+    
+    if len(parquet_items) > 5:
+        print(f"    ... and {len(parquet_items) - 5} more items")
+    
+    # Ask how many items to process
+    while True:
+        try:
+            max_items = input(f"\n🎯 How many items to process? (1-{len(parquet_items)}, default=2): ").strip()
+            if not max_items:
+                max_items = 2
+            else:
+                max_items = int(max_items)
+            
+            if 1 <= max_items <= len(parquet_items):
+                break
+            else:
+                print(f"❌ Please enter a number between 1 and {len(parquet_items)}")
+        except ValueError:
+            print("❌ Please enter a valid number")
+    
     # Process parquet items
-    parquet_df = process_all_parquet_items(parquet_items)
+    parquet_df = process_all_parquet_items(parquet_items, max_items=max_items)
     
     # Save to CSV
     save_parquet_data(parquet_df)
     
     print("\n🎯 Next steps:")
     print("1. Run 05_combine_and_save.py to combine with raster data and save to storage")
+    print("2. Analyze the parquet data directly")
 
 if __name__ == "__main__":
     main()

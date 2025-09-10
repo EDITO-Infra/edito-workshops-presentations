@@ -99,271 +99,146 @@ Perfect for researchers who want to get started quickly! 🚀
 
 ---
 
-# 🐠 Step 3: Run Analysis - R Example
+# 🐠 Step 3: Run Analysis
 
-## STAC Search for Marine Data
+## R Example - STAC Search & Parquet Reading
 
 ```r
-# Load packages
+# Connect to EDITO STAC API
 library(rstac)
 library(arrow)
 library(dplyr)
 
-# Connect to EDITO STAC API
 stac_endpoint <- "https://api.dive.edito.eu/data/"
-collections <- stac(stac_endpoint) %>%
-  rstac::collections() %>%
-  get_request()
+collections <- stac(stac_endpoint) %>% rstac::collections() %>% get_request()
 
-# Search for biodiversity data
-biodiversity_search <- stac(stac_endpoint) %>%
-  stac_search(collections = "eurobis-occurrence-data") %>%
-  get_request()
-```
-
----
-
-### 🎥 **Running STAC search in RStudio**
-*[Video: Running STAC search in RStudio]*
-
----
-
-# 📊 Reading Parquet Data - R
-
-## EUROBIS Biodiversity Data
-
-```r
-# Read biodiversity data from Parquet
+# Read biodiversity data
 parquet_url <- "https://s3.waw3-1.cloudferro.com/emodnet/biology/eurobis_occurrence_data/eurobis_occurrences_geoparquet_2024-10-01.parquet"
-
-# Read sample data
-biodiversity_data <- arrow::read_parquet(parquet_url) %>%
-  head(1000)
+biodiversity_data <- arrow::read_parquet(parquet_url) %>% head(1000)
 
 # Filter for marine species
 marine_data <- biodiversity_data %>%
-  filter(grepl("fish|Fish|mollusk|Mollusk|algae|Algae", 
-               scientificName, ignore.case = TRUE))
-
-# Create visualization
-ggplot(marine_sf) +
-  geom_sf(aes(color = scientificName), size = 0.5) +
-  labs(title = "Marine Biodiversity from EDITO Data")
+  filter(grepl("fish|mollusk|algae", scientificName, ignore.case = TRUE))
 ```
 
 ---
 
-### 🎥 **Reading parquet data and creating visualizations**
-*[Video: Reading parquet data and creating visualizations]*
+### 🎥 **Querying STAC using R in VSCode**
+
+<video src="../static/videos/searchSTAC_rscript.mp4" controls width="900"></video>
 
 ---
 
-# 🐍 Step 3: Run Analysis - Python Example
-
-## Jupyter Notebook Demo
+## Python Example - Data Processing
 
 ```python
-import requests
+import pyarrow.parquet as pq
+import s3fs
 import pandas as pd
-import xarray as xr
-import matplotlib.pyplot as plt
 
-# STAC Search
-stac_endpoint = "https://api.dive.edito.eu/data/"
-response = requests.get(f"{stac_endpoint}collections")
-collections = response.json()
-
-# Read Parquet Data
+# Read parquet data
 parquet_url = "https://s3.waw3-1.cloudferro.com/emodnet/biology/eurobis_occurrence_data/eurobis_occurrences_geoparquet_2024-10-01.parquet"
-df = pd.read_parquet(parquet_url)
+s3_path = parquet_url.split('s3.waw3-1.cloudferro.com/')[-1]
+fs = s3fs.S3FileSystem(endpoint_url="https://s3.waw3-1.cloudferro.com", anon=True)
 
-# Zarr Data Analysis
-ds = xr.open_zarr("your-zarr-url")
-temperature = ds.temperature.mean(dim=['time'])
+parquet_file = pq.ParquetFile(s3_path, filesystem=fs)
+biodiversity_data = parquet_file.read_row_groups([0]).to_pandas().head(1000)
+
+# Filter and process
+marine_data = biodiversity_data[biodiversity_data['scientificName'].str.contains('fish|mollusk|algae', case=False)]
+processed_data = marine_data.groupby('scientificName').agg({'decimalLatitude': 'mean', 'decimalLongitude': 'mean'})
 ```
 
 ---
 
-### 🎥 **Running Jupyter notebook with STAC, Parquet, and Zarr**
-*[Video: Running Jupyter notebook with STAC, Parquet, and Zarr]*
+### 🎥 **Data Analysis using Python scripts**
+*[Video: Running analysis in RStudio and Jupyter]*
 
 ---
 
-# 💾 Step 4: Personal Storage - Connect
+# 💾 Step 4: Personal Storage
 
-## Your Storage Credentials
+## Your Storage is Ready!
 
 Your personal storage credentials are automatically available in EDITO services!
 
 ### R Example
 ```r
-# Check if credentials are available
+# Check credentials and save data
 if(Sys.getenv("AWS_ACCESS_KEY_ID") != "") {
-  cat("✅ Personal storage credentials found!\n")
-  cat("Storage endpoint:", Sys.getenv("AWS_S3_ENDPOINT"), "\n")
-} else {
-  cat("❌ No storage credentials found.\n")
+  # Process and save data
+  processed_data <- marine_data %>% group_by(scientificName) %>% summarise(count = n())
+  write.csv(processed_data, "marine_analysis.csv", row.names = FALSE)
+  
+  # Upload to storage
+  aws.s3::s3write_using(processed_data, FUN = write.csv, 
+                        bucket = "your-bucket", object = "marine_analysis.csv")
 }
 ```
-
----
 
 ### Python Example
 ```python
 import boto3
 import os
 
-# Connect to EDITO's MinIO storage
-s3 = boto3.client(
-    "s3",
-    endpoint_url='https://minio.dive.edito.eu',
-    aws_access_key_id='YOUR_ACCESS_KEY_HERE',
-    aws_secret_access_key='YOUR_SECRET_KEY_HERE',
-    aws_session_token='YOUR_SESSION_TOKEN_HERE'
-)
+# Connect to storage
+s3 = boto3.client("s3", endpoint_url=f"https://{os.getenv('AWS_S3_ENDPOINT')}",
+                  aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+                  aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'))
+
+# Save and upload data
+processed_data.to_csv('marine_analysis.csv', index=False)
+s3.put_object(Bucket='your-bucket', Key='marine_analysis.csv', 
+              Body=processed_data.to_csv(index=False))
 ```
 
 ---
 
-### 🎥 **LConnecting to personal storage and checking credentials**
-*[Video: Connecting to personal storage and checking credentials]*
+### 🎥 **Personal storage in action**
+*[Video: Personal storage in action]*
 
 ---
 
-# 📁 Step 5: Upload & Download Data
+# 🎯 Complete Workflow
 
-## Drag & Drop Interface
+## 4 Simple Steps
 
-### Upload Data
-- Use the file browser in your service
-- Drag and drop files from your local computer
-- Files are automatically uploaded to your personal storage
+1. **Find Services** → Go to datalab.dive.edito.eu
+2. **Launch Service** → Choose RStudio, Jupyter, or VSCode  
+3. **Run Analysis** → STAC search, read Parquet data, process results
+4. **Save Data** → Upload to your personal storage
 
-### Download Data
-- Browse your personal storage
-- Download files directly to your local computer
-- Share files with collaborators
+## Key Benefits
 
----
-
-# 🔄 Step 6: Data Processing & Transfer
-
-## R Example - Process and Save
-
-```r
-# Process your data
-processed_data <- marine_data %>%
-  group_by(scientificName) %>%
-  summarise(
-    count = n(),
-    mean_lat = mean(decimalLatitude, na.rm = TRUE),
-    mean_lon = mean(decimalLongitude, na.rm = TRUE)
-  )
-
-# Save to personal storage
-library(aws.s3)
-aws.s3::s3write_using(
-  processed_data, 
-  FUN = write.csv, 
-  bucket = "your-bucket-name", 
-  object = "processed_marine_data.csv"
-)
-```
+✅ **No Setup** - Everything pre-installed  
+✅ **Free Storage** - Personal cloud storage included  
+✅ **Marine Data** - Direct access to EDITO datasets  
+✅ **Multiple Languages** - R, Python, and more
 
 ---
 
-### 🎥 **LIVE DEMO VIDEO PLACEHOLDER**
-*[Video: Processing data and saving to personal storage]*
+# 🚀 Try It Now!
 
----
-
-# 🐍 Python Example - Process and Save
-
-## Process and Transfer Data
-
-```python
-# Process your data
-processed_data = marine_data.groupby('scientificName').agg({
-    'decimalLatitude': 'mean',
-    'decimalLongitude': 'mean',
-    'eventDate': 'count'
-}).reset_index()
-
-# Save to personal storage
-s3.put_object(
-    Bucket='your-bucket-name',
-    Key='processed_marine_data.csv',
-    Body=processed_data.to_csv(index=False),
-    ContentType='text/csv'
-)
-
-# Download from storage
-response = s3.get_object(Bucket='your-bucket-name', Key='processed_marine_data.csv')
-downloaded_data = pd.read_csv(response['Body'])
-```
-
-### 🎥 **LIVE DEMO VIDEO PLACEHOLDER**
-*[Video: Processing data in Python and transferring to storage]*
-
----
-
-# 🎯 Complete Workflow Summary
-
-## What We've Covered
-
-  - **Find Services** → Go to datalab.dive.edito.eu
-  - **Configure & Launch** → Choose RStudio, Jupyter, or VSCode
-  - **Run Analysis** → STAC search, Parquet reading, Zarr data
-  - **Connect Storage** → Access your personal storage
-  - **Upload/Download** → Drag & drop files
-  - **Process & Transfer** → Analyze data and save results
-
----
-
-# 📊 Data Formats Explained
-
-## ARCO Data (Analysis Ready Cloud Optimized)
-
-### STAC (SpatioTemporal Asset Catalog)
-- **Purpose**: Find and discover marine datasets
-- **API**: `https://api.dive.edito.eu/data/`
-- **Use**: Search for available data collections
-
-### Parquet
-- **Purpose**: Efficient tabular data storage
-- **Use**: Biodiversity observations, occurrence data
-- **Example**: EUROBIS marine species data
-
-### Zarr
-- **Purpose**: Cloud-optimized array data
-- **Use**: Oceanographic data, climate reanalyses
-- **Tools**: xarray, zarr-python
-
----
-
-# 🚀 Next Steps
-
-## Try It Yourself!
+## Get Started in 2 Minutes
 
 1. **Go to**: [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
-2. **Launch a service** (RStudio, Jupyter, or VSCode)
-3. **Run the examples** from the GitHub repository
-4. **Connect your storage** and try uploading data
-5. **Explore more datasets** in the EDITO STAC catalog
+2. **Launch RStudio or Jupyter**
+3. **Run the code examples** from this presentation
+4. **Save your results** to personal storage
 
 ## Resources
 
-- **GitHub**: [Workshop Repository](https://github.com/EDITO-Infra/edito-workshops-presentations)
 - **Datalab**: [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
-- **Storage**: [Personal Storage](https://datalab.dive.edito.eu/account/storage)
-- **Data Explorer**: [viewer.dive.edito.eu](https://viewer.dive.edito.eu/)
+- **GitHub**: [Workshop Repository](https://github.com/EDITO-Infra/edito-workshops-presentations)
+- **Support**: edito-infra-dev@mercator-ocean.eu
 
 ---
 
-# 🆘 Support and Help
+# 🆘 Questions?
 
-## Getting Help
+## We're Here to Help!
 
-- **Email**: edito-infra-dev@mercator-ocean.eu
-- **Documentation**: [EDITO Tutorials](https://dive.edito.eu/training)
-- **GitHub**: [Workshop Repository](https://github.com/EDITO-Infra/edito-workshops-presentations)
+**Email**: edito-infra-dev@mercator-ocean.eu  
+**Documentation**: [EDITO Tutorials](https://dive.edito.eu/training)
+
+**Ready to dive into marine data analysis?** 🌊

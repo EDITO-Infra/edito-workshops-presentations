@@ -85,16 +85,44 @@ def save_collections(collections, output_file="stac_collections.json"):
         print("❌ No collections data to save")
 
 def main():
-    """Main function"""
+    """Interactive main function"""
+    print("🌊 EDITO Datalab: Interactive STAC Collections Discovery")
+    print("=" * 60)
+    
     # Get collections
     collections = get_stac_collections()
     
-    # Save to file
-    save_collections(collections)
-    
-    print("\n🎯 Next steps:")
-    print("1. Run 02_search_stac_assets.py to find parquet and raster data")
-    print("2. Use the collections information to search for specific data types")
+    if collections:
+        # Save to file
+        save_collections(collections)
+        
+        # Show interactive options
+        print("\n🎯 What would you like to do next?")
+        print("1. Search for specific data types (parquet/raster)")
+        print("2. Explore collection details")
+        print("3. Exit")
+        
+        while True:
+            choice = input("Enter choice (1-3): ").strip()
+            if choice == '1':
+                print("💡 Run: python 02_search_stac_assets.py")
+                break
+            elif choice == '2':
+                # Show detailed info for first few collections
+                print("\n📋 Collection Details:")
+                for i, collection in enumerate(collections['collections'][:5]):
+                    print(f"\n{i+1}. {collection['id']}")
+                    print(f"   Title: {collection.get('title', 'No title')}")
+                    print(f"   Description: {collection.get('description', 'No description')[:100]}...")
+                    print(f"   Keywords: {collection.get('keywords', [])}")
+                break
+            elif choice == '3':
+                print("👋 Goodbye!")
+                break
+            else:
+                print("❌ Invalid choice. Please enter 1, 2, or 3.")
+    else:
+        print("❌ Could not fetch collections. Please check your connection.")
 
 if __name__ == "__main__":
     main()

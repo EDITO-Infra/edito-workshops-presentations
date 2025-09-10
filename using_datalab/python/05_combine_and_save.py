@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """
-EDITO Datalab Demo: Combine Data and Save to Storage
+EDITO Datalab Demo: Interactive Data Processing and Storage
 
-This script combines raster and parquet data from previous processing steps,
-creates a unified dataset, and saves it to both local storage and personal storage.
+This script provides an interactive interface for:
+- Selecting STAC collections
+- Choosing datasets to overlay
+- Selecting storage buckets and folders
+- Saving processed data to personal storage
 """
 
 import pandas as pd
@@ -12,7 +15,9 @@ import boto3
 import os
 import json
 import re
+import requests
 from datetime import datetime
+from collections import defaultdict
 
 def extract_coords_from_geometry(geometry_str):
     """
@@ -260,6 +265,73 @@ def save_to_local(combined_df, output_file="combined_marine_data.csv"):
     else:
         print("❌ No data to save locally")
 
+def get_stac_collections():
+    """
+    Get available STAC collections from EDITO API
+    
+    Returns:
+        list: List of collection dictionaries
+    """
+    print("🔍 Fetching available STAC collections...")
+    
+    try:
+        stac_endpoint = "https://api.dive.edito.eu/data/"
+        response = requests.get(f"{stac_endpoint}collections")
+        
+        if response.status_code == 200:
+            collections_data = response.json()
+            collections = collections_data.get('collections', [])
+            print(f"✅ Found {len(collections)} collections")
+            return collections
+        else:
+            print(f"❌ Failed to fetch collections: HTTP {response.status_code}")
+            return []
+    except Exception as e:
+        print(f"❌ Error fetching collections: {e}")
+        return []
+
+def select_collection(collections):
+    """
+    Interactive collection selection
+    
+    Args:
+        collections (list): List of collection dictionaries
+        
+    Returns:
+        str: Selected collection ID
+    """
+    if not collections:
+        print("❌ No collections available")
+        return None
+    
+    print("\n📋 Available collections:")
+    for i, collection in enumerate(collections[:20]):  # Show first 20
+        title = collection.get('title', 'No title')
+        collection_id = collection.get('id', 'No ID')
+        print(f"{i+1:2d}. {collection_id} - {title}")
+    
+    if len(collections) > 20:
+        print(f"    ... and {len(collections) - 20} more collections")
+    
+    while True:
+        try:
+            choice = input(f"\n🎯 Select collection (1-{min(20, len(collections))}): ").strip()
+            if choice.lower() == 'q':
+                return None
+            
+            choice_num = int(choice)
+            if 1 <= choice_num <= min(20, len(collections)):
+                selected_collection = collections[choice_num - 1]
+                print(f"✅ Selected: {selected_collection['id']} - {selected_collection.get('title', 'No title')}")
+                return selected_collection['id']
+            else:
+                print(f"❌ Please enter a number between 1 and {min(20, len(collections))}")
+        except ValueError:
+            print("❌ Please enter a valid number or 'q' to quit")
+        except KeyboardInterrupt:
+            print("\n👋 Goodbye!")
+            return None
+
 def connect_to_storage():
     """
     Connect to personal storage using environment variables
@@ -285,14 +357,6 @@ def connect_to_storage():
             )
             
             print("✅ Connected to personal storage!")
-            
-            # List your buckets to verify connection
-            try:
-                response = s3.list_buckets()
-                print(f"📁 Available buckets: {[bucket['Name'] for bucket in response['Buckets']]}")
-            except Exception as e:
-                print(f"⚠️ Could not list buckets: {e}")
-            
             return s3
             
         except Exception as e:
@@ -303,101 +367,320 @@ def connect_to_storage():
         print("💡 Your credentials are automatically available in EDITO services")
         return None
 
-def save_to_storage(combined_df, s3_client, bucket_name="your-bucket-name", 
-                   key_prefix="marine_analysis/"):
+def list_buckets(s3_client):
     """
-    Save combined data to personal storage
+    List available buckets and let user select one
+    
+    Args:
+        s3_client: S3 client
+        
+    Returns:
+        str: Selected bucket name
+    """
+    try:
+        response = s3_client.list_buckets()
+        buckets = [bucket['Name'] for bucket in response['Buckets']]
+        
+        if not buckets:
+            print("❌ No buckets found")
+            return None
+        
+        print(f"\n📁 Available buckets ({len(buckets)}):")
+        for i, bucket in enumerate(buckets):
+            print(f"{i+1:2d}. {bucket}")
+        
+        while True:
+            try:
+                choice = input(f"\n🎯 Select bucket (1-{len(buckets)}): ").strip()
+                if choice.lower() == 'q':
+                    return None
+                
+                choice_num = int(choice)
+                if 1 <= choice_num <= len(buckets):
+                    selected_bucket = buckets[choice_num - 1]
+                    print(f"✅ Selected bucket: {selected_bucket}")
+                    return selected_bucket
+                else:
+                    print(f"❌ Please enter a number between 1 and {len(buckets)}")
+            except ValueError:
+                print("❌ Please enter a valid number or 'q' to quit")
+            except KeyboardInterrupt:
+                print("\n👋 Goodbye!")
+                return None
+                
+    except Exception as e:
+        print(f"❌ Error listing buckets: {e}")
+        return None
+
+def list_folders(s3_client, bucket_name):
+    """
+    List folders in the selected bucket
+    
+    Args:
+        s3_client: S3 client
+        bucket_name (str): Bucket name
+        
+    Returns:
+        list: List of folder names
+    """
+    try:
+        response = s3_client.list_objects_v2(Bucket=bucket_name, Delimiter='/')
+        folders = []
+        
+        if 'CommonPrefixes' in response:
+            folders = [prefix['Prefix'].rstrip('/') for prefix in response['CommonPrefixes']]
+        
+        print(f"\n📁 Available folders in '{bucket_name}' ({len(folders)}):")
+        if folders:
+            for i, folder in enumerate(folders):
+                print(f"{i+1:2d}. {folder}")
+        else:
+            print("   No folders found (bucket is empty or has no folders)")
+        
+        return folders
+        
+    except Exception as e:
+        print(f"❌ Error listing folders: {e}")
+        return []
+
+def select_folder(s3_client, bucket_name, folders):
+    """
+    Let user select a folder or create a new one
+    
+    Args:
+        s3_client: S3 client
+        bucket_name (str): Bucket name
+        folders (list): List of available folders
+        
+    Returns:
+        str: Selected folder path
+    """
+    while True:
+        print(f"\n🎯 Folder options:")
+        print("1. Create new folder")
+        if folders:
+            print("2. Select existing folder")
+            print("3. Use root directory (no folder)")
+        
+        choice = input("Enter choice (1-3): ").strip()
+        
+        if choice == '1':
+            folder_name = input("Enter new folder name: ").strip()
+            if folder_name:
+                folder_path = f"{folder_name}/"
+                print(f"✅ Will create folder: {folder_path}")
+                return folder_path
+            else:
+                print("❌ Please enter a valid folder name")
+        
+        elif choice == '2' and folders:
+            print("\nSelect existing folder:")
+            for i, folder in enumerate(folders):
+                print(f"{i+1:2d}. {folder}")
+            
+            try:
+                folder_choice = int(input(f"Enter choice (1-{len(folders)}): "))
+                if 1 <= folder_choice <= len(folders):
+                    selected_folder = folders[folder_choice - 1] + "/"
+                    print(f"✅ Selected folder: {selected_folder}")
+                    return selected_folder
+                else:
+                    print(f"❌ Please enter a number between 1 and {len(folders)}")
+            except ValueError:
+                print("❌ Please enter a valid number")
+        
+        elif choice == '3':
+            print("✅ Using root directory")
+            return ""
+        
+        else:
+            print("❌ Invalid choice. Please try again.")
+
+def save_to_storage_interactive(combined_df, s3_client, collection_id=None):
+    """
+    Interactive save to personal storage with bucket and folder selection
     
     Args:
         combined_df (pd.DataFrame): Combined dataset
         s3_client: S3 client for storage
-        bucket_name (str): S3 bucket name
-        key_prefix (str): Key prefix for storage
+        collection_id (str): Selected collection ID for naming
     """
-    if s3_client and not combined_df.empty:
-        try:
-            # Create timestamp for unique filenames
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            
-            # Save main dataset
-            main_key = f"{key_prefix}combined_marine_data_{timestamp}.csv"
-            s3_client.put_object(
-                Bucket=bucket_name,
-                Key=main_key,
-                Body=combined_df.to_csv(index=False),
-                ContentType='text/csv'
-            )
-            print(f"✅ Combined data uploaded to storage: {main_key}")
-            
-            # Save summary statistics
-            summary_data = {
-                'total_records': len(combined_df),
-                'data_sources': combined_df['data_source'].value_counts().to_dict() if 'data_source' in combined_df.columns else {},
-                'unique_species': combined_df['species'].nunique() if 'species' in combined_df.columns else 0,
-                'raster_value_range': {
-                    'min': float(combined_df['raster_value'].min()) if 'raster_value' in combined_df.columns else None,
-                    'max': float(combined_df['raster_value'].max()) if 'raster_value' in combined_df.columns else None
-                } if 'raster_value' in combined_df.columns else {},
-                'created_at': datetime.now().isoformat()
-            }
-            
-            summary_key = f"{key_prefix}summary_{timestamp}.json"
-            import json
-            s3_client.put_object(
-                Bucket=bucket_name,
-                Key=summary_key,
-                Body=json.dumps(summary_data, indent=2),
-                ContentType='application/json'
-            )
-            print(f"✅ Summary statistics uploaded: {summary_key}")
-            
-        except Exception as e:
-            print(f"❌ Error uploading to storage: {e}")
-            print("💡 Make sure to replace 'your-bucket-name' with your actual bucket name")
-    else:
+    if not s3_client or combined_df.empty:
         if not s3_client:
             print("💡 To upload to storage, make sure you're running in EDITO Datalab")
         if combined_df.empty:
             print("❌ No data to upload to storage")
+        return
+    
+    print("\n💾 Saving to Personal Storage")
+    print("=" * 40)
+    
+    # Select bucket
+    bucket_name = list_buckets(s3_client)
+    if not bucket_name:
+        print("❌ No bucket selected. Skipping storage upload.")
+        return
+    
+    # List and select folder
+    folders = list_folders(s3_client, bucket_name)
+    folder_path = select_folder(s3_client, bucket_name, folders)
+    if folder_path is None:
+        print("❌ No folder selected. Skipping storage upload.")
+        return
+    
+    # Generate filename based on collection and timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    if collection_id:
+        filename = f"marine_data_{collection_id}_{timestamp}.csv"
+        summary_filename = f"summary_{collection_id}_{timestamp}.json"
+    else:
+        filename = f"marine_data_{timestamp}.csv"
+        summary_filename = f"summary_{timestamp}.json"
+    
+    try:
+        # Save main dataset
+        main_key = f"{folder_path}{filename}"
+        s3_client.put_object(
+            Bucket=bucket_name,
+            Key=main_key,
+            Body=combined_df.to_csv(index=False),
+            ContentType='text/csv'
+        )
+        print(f"✅ Combined data uploaded: s3://{bucket_name}/{main_key}")
+        
+        # Save summary statistics
+        summary_data = {
+            'collection_id': collection_id,
+            'total_records': len(combined_df),
+            'data_sources': combined_df['data_source'].value_counts().to_dict() if 'data_source' in combined_df.columns else {},
+            'unique_species': combined_df['species'].nunique() if 'species' in combined_df.columns else 0,
+            'raster_value_range': {
+                'min': float(combined_df['raster_value'].min()) if 'raster_value' in combined_df.columns else None,
+                'max': float(combined_df['raster_value'].max()) if 'raster_value' in combined_df.columns else None
+            } if 'raster_value' in combined_df.columns else {},
+            'created_at': datetime.now().isoformat(),
+            'bucket': bucket_name,
+            'folder': folder_path
+        }
+        
+        summary_key = f"{folder_path}{summary_filename}"
+        s3_client.put_object(
+            Bucket=bucket_name,
+            Key=summary_key,
+            Body=json.dumps(summary_data, indent=2),
+            ContentType='application/json'
+        )
+        print(f"✅ Summary statistics uploaded: s3://{bucket_name}/{summary_key}")
+        
+        print(f"\n🎯 Files saved successfully!")
+        print(f"   📁 Bucket: {bucket_name}")
+        print(f"   📂 Folder: {folder_path}")
+        print(f"   📊 Data file: {filename}")
+        print(f"   📋 Summary file: {summary_filename}")
+        
+    except Exception as e:
+        print(f"❌ Error uploading to storage: {e}")
+
+def create_sample_data(collection_id):
+    """
+    Create sample marine data for demonstration
+    
+    Args:
+        collection_id (str): Collection ID for context
+        
+    Returns:
+        pd.DataFrame: Sample marine data
+    """
+    print(f"📊 Creating sample marine data for collection: {collection_id}")
+    
+    # Create sample data
+    np.random.seed(42)  # For reproducible results
+    n_records = 100
+    
+    sample_data = pd.DataFrame({
+        'scientificName': np.random.choice([
+            'Scomber scombrus', 'Gadus morhua', 'Pleuronectes platessa',
+            'Merlangius merlangus', 'Solea solea', 'Clupea harengus'
+        ], n_records),
+        'decimalLatitude': np.random.uniform(50, 60, n_records),
+        'decimalLongitude': np.random.uniform(0, 10, n_records),
+        'eventDate': pd.date_range('2020-01-01', '2023-12-31', periods=n_records),
+        'depth': np.random.uniform(5, 200, n_records),
+        'temperature': np.random.normal(10, 3, n_records),
+        'data_source': 'parquet',
+        'item_id': collection_id,
+        'item_title': f'Sample data from {collection_id}',
+        'raster_value': np.nan
+    })
+    
+    print(f"✅ Created {len(sample_data)} sample records")
+    return sample_data
 
 def main():
-    """Main function"""
-    print("🔗 EDITO Datalab: Combining and Saving Data")
+    """Interactive main function"""
+    print("🌊 EDITO Datalab: Interactive Data Processing")
     print("=" * 50)
     
-    # Load processed data
-    raster_df, parquet_df = load_processed_data()
-    
-    if raster_df.empty and parquet_df.empty:
-        print("❌ No processed data available. Run previous scripts first:")
-        print("  1. 03_get_zarr_to_df.py")
-        print("  2. 04_get_parquet_data.py")
+    # Step 1: Get STAC collections
+    collections = get_stac_collections()
+    if not collections:
+        print("❌ Could not fetch STAC collections. Exiting.")
         return
     
-    # Combine datasets
-    combined_df = combine_datasets(raster_df, parquet_df)
+    # Step 2: Select collection
+    collection_id = select_collection(collections)
+    if not collection_id:
+        print("👋 No collection selected. Exiting.")
+        return
+    
+    # Step 3: Ask about data overlay
+    print(f"\n🔄 Data Processing Options for '{collection_id}':")
+    print("1. Use existing processed data (from previous scripts)")
+    print("2. Create sample data for demonstration")
+    print("3. Search and process data from this collection")
+    
+    while True:
+        choice = input("Enter choice (1-3): ").strip()
+        if choice == '1':
+            # Try to load existing data
+            raster_df, parquet_df = load_processed_data()
+            if raster_df.empty and parquet_df.empty:
+                print("❌ No existing data found. Creating sample data instead.")
+                combined_df = create_sample_data(collection_id)
+            else:
+                combined_df = combine_datasets(raster_df, parquet_df)
+            break
+        elif choice == '2':
+            # Create sample data
+            combined_df = create_sample_data(collection_id)
+            break
+        elif choice == '3':
+            print("🔍 This would search and process data from the selected collection.")
+            print("💡 For now, creating sample data instead.")
+            combined_df = create_sample_data(collection_id)
+            break
+        else:
+            print("❌ Invalid choice. Please enter 1, 2, or 3.")
     
     if combined_df.empty:
-        print("❌ No data to combine")
+        print("❌ No data to process")
         return
     
-    # Save to local storage
+    # Step 4: Save locally
+    print(f"\n💾 Saving data locally...")
     save_to_local(combined_df)
     
-    # Connect to personal storage
+    # Step 5: Connect to storage
     s3_client = connect_to_storage()
+    if not s3_client:
+        print("❌ Could not connect to storage. Data saved locally only.")
+        return
     
-    # Save to personal storage
-    save_to_storage(combined_df, s3_client)
+    # Step 6: Interactive save to storage
+    save_to_storage_interactive(combined_df, s3_client, collection_id)
     
     print("\n🎯 Workflow Complete!")
-    print("✅ Data has been processed and saved:")
-    print("  - Local CSV file: combined_marine_data.csv")
-    print("  - Personal storage: marine_analysis/ folder")
-    print("\n🚀 Next steps:")
-    print("  - Analyze the combined dataset")
-    print("  - Create visualizations")
-    print("  - Explore the data in your preferred analysis environment")
+    print("✅ Interactive data processing finished successfully!")
 
 if __name__ == "__main__":
     main()
