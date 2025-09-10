@@ -18,8 +18,41 @@ import re
 import requests
 import logging
 from datetime import datetime
-from collections import defaultdict
-from using_storage import connect_to_storage, save_to_storage_interactive
+
+def connect_to_storage():
+    """
+    Connect to personal storage using environment variables
+    
+    Returns:
+        boto3.client or None: S3 client if credentials available
+    """
+    print("💾 Connecting to personal storage...")
+    
+    # Check if storage credentials are available
+    if os.getenv("AWS_ACCESS_KEY_ID"):
+        print("✅ Personal storage credentials found!")
+        
+        try:
+            # Connect to EDITO's MinIO storage using environment variables
+            s3 = boto3.client(
+                "s3",
+                endpoint_url=f"https://{os.getenv('AWS_S3_ENDPOINT')}",
+                aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+                aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
+                aws_session_token=os.getenv('AWS_SESSION_TOKEN'),
+                region_name=os.getenv('AWS_DEFAULT_REGION')
+            )
+            
+            print("✅ Connected to personal storage!")
+            return s3
+            
+        except Exception as e:
+            print(f"❌ Error connecting to storage: {e}")
+            return None
+    else:
+        print("❌ No storage credentials found. Make sure you're running in EDITO Datalab.")
+        print("💡 Your credentials are automatically available in EDITO services")
+        return None
 
 def extract_coords_from_geometry(geometry_str):
     """
@@ -349,41 +382,6 @@ def select_collection(collections):
         except KeyboardInterrupt:
             print("\n👋 Goodbye!")
             return None
-
-def connect_to_storage():
-    """
-    Connect to personal storage using environment variables
-    
-    Returns:
-        boto3.client or None: S3 client if credentials available
-    """
-    print("💾 Connecting to personal storage...")
-    
-    # Check if storage credentials are available
-    if os.getenv("AWS_ACCESS_KEY_ID"):
-        print("✅ Personal storage credentials found!")
-        
-        try:
-            # Connect to EDITO's MinIO storage using environment variables
-            s3 = boto3.client(
-                "s3",
-                endpoint_url=f"https://{os.getenv('AWS_S3_ENDPOINT')}",
-                aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-                aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
-                aws_session_token=os.getenv('AWS_SESSION_TOKEN'),
-                region_name=os.getenv('AWS_DEFAULT_REGION')
-            )
-            
-            print("✅ Connected to personal storage!")
-            return s3
-            
-        except Exception as e:
-            print(f"❌ Error connecting to storage: {e}")
-            return None
-    else:
-        print("❌ No storage credentials found. Make sure you're running in EDITO Datalab.")
-        print("💡 Your credentials are automatically available in EDITO services")
-        return None
 
 def list_buckets(s3_client):
     """

@@ -34,11 +34,21 @@ Learn how to use EDITO Datalab for marine data analysis in just 15 minutes! This
 ## 📁 Examples
 
 ### R Scripts
-- `r_scripts/01_stac_search.R` - Search EDITO STAC catalog
-- `r_scripts/02_read_parquet.R` - Read biodiversity data from Parquet
+- `r/01_stac_search.R` - Search EDITO STAC catalog
+- `r/02_read_parquet.R` - Read biodiversity data from Parquet
+- `r/03_personal_storage.R` - Work with personal storage
 
-### Jupyter Notebooks
-- `jupyter_notebooks/01_edito_datalab_demo.ipynb` - Complete demo with STAC, Parquet, and Zarr
+### Python Workflow
+- `edito_interactive_workshop.ipynb` - **NEW!** Complete modular workflow
+- `python/edito_modules/` - Modular Python packages for data processing
+- `python/requirements.txt` - Python dependencies
+
+### Legacy Python Scripts
+- `python/01_get_stac_collections.py` - Get STAC collections (interactive)
+- `python/02_search_stac_assets.py` - Search for data assets (interactive)
+- `python/03_get_zarr_to_df.py` - Process raster data (interactive)
+- `python/04_get_parquet_data.py` - Process parquet data (interactive)
+- `python/05_combine_and_save.py` - Combine and save data (interactive)
 
 ## 🛠️ Services Available
 
@@ -56,7 +66,7 @@ Perfect for:
 - Data exploration
 - Python-based analysis
 
-**Example**: Open `01_edito_datalab_demo.ipynb` for a complete workflow
+**Example**: Open `edito_interactive_workshop.ipynb` for a complete modular workflow
 
 ### VSCode Service
 Perfect for:
