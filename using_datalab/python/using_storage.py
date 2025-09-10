@@ -218,7 +218,7 @@ def browse_storage_structure(s3_client, bucket_name, prefix="", max_depth=3, cur
                         s3_client, bucket_name, folder['Prefix'], max_depth, current_depth + 1
                     )
                 else:
-                    structure["contents"][folder_short] = {"type": "folder", "path": folder['Prefix'], "contents": "..."}
+                    structure["contents"][folder_short] = {"type": "max_depth_reached", "path": folder['Prefix']}
         
         # Process files (Contents)
         if 'Contents' in response:
@@ -253,17 +253,22 @@ def display_storage_structure(structure, indent=0):
     if structure["type"] == "folder":
         print("  " * indent + f"📁 {structure['path'].split('/')[-1] if structure['path'] else 'root'}/")
         
-        if "contents" in structure:
+        if "contents" in structure and isinstance(structure["contents"], dict):
             for name, content in structure["contents"].items():
-                if content["type"] == "folder":
-                    display_storage_structure(content, indent + 1)
-                elif content["type"] == "file":
-                    size_str = f"({content['size_mb']} MB)" if content['size_mb'] > 0 else "(<1 MB)"
-                    print("  " * (indent + 1) + f"📄 {name} {size_str}")
-                elif content["type"] == "max_depth_reached":
-                    print("  " * (indent + 1) + "... (max depth reached)")
-                elif content["type"] == "error":
-                    print("  " * (indent + 1) + f"❌ Error: {content['error']}")
+                if isinstance(content, dict) and "type" in content:
+                    if content["type"] == "folder":
+                        display_storage_structure(content, indent + 1)
+                    elif content["type"] == "file":
+                        size_str = f"({content['size_mb']} MB)" if content['size_mb'] > 0 else "(<1 MB)"
+                        print("  " * (indent + 1) + f"📄 {name} {size_str}")
+                    elif content["type"] == "max_depth_reached":
+                        print("  " * (indent + 1) + "... (max depth reached)")
+                    elif content["type"] == "error":
+                        print("  " * (indent + 1) + f"❌ Error: {content['error']}")
+                    else:
+                        print("  " * (indent + 1) + f"❓ Unknown type: {content.get('type', 'unknown')}")
+                else:
+                    print("  " * (indent + 1) + f"❓ Invalid content structure: {name}")
     
     elif structure["type"] == "file":
         size_str = f"({structure['size_mb']} MB)" if structure['size_mb'] > 0 else "(<1 MB)"
