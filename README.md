@@ -146,10 +146,16 @@ edito-workshops-presentations/
 └── 🛠️ Makefile              # Build system for presentations
 ```
 
-## 🎥 Live Presentations
+## 📖 Live Documentation
 
-All slide decks are automatically rendered and hosted at:
+The complete documentation and presentations are automatically rendered and hosted at:
 **[https://edito-infra.github.io/edito-workshops-presentations/](https://edito-infra.github.io/edito-workshops-presentations/)**
+
+This includes:
+- Interactive tutorials and guides for each section
+- Step-by-step instructions with code examples
+- Live presentations and slide decks
+- Complete reference documentation
 
 ## 🛠️ Requirements
 
