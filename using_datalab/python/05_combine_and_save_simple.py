@@ -215,15 +215,47 @@ def process_zarr_asset(zarr_item, asset, sample_points=1000):
         print("📥 Reading zarr file...")
         ds = xr.open_zarr(zarr_url)
         
-        print(f"✅ Loaded dataset with dimensions: {dict(ds.dims)}")
+        print(f"✅ Loaded dataset with dimensions: {dict(ds.sizes)}")
         print(f"Variables: {list(ds.data_vars)}")
         
-        # Convert to DataFrame
-        df = ds.to_dataframe().reset_index()
+        # Calculate total size
+        total_points = 1
+        for dim_size in ds.sizes.values():
+            total_points *= dim_size
         
-        # Sample the data if it's too large
+        print(f"📊 Total data points: {total_points:,}")
+        
+        if total_points > sample_points * 10:  # If very large, sample spatially
+            print(f"📊 Dataset is very large, sampling spatially...")
+            
+            # Sample every nth point in each dimension
+            sample_factor = int((total_points / sample_points) ** 0.5) + 1
+            print(f"📊 Using sampling factor: {sample_factor}")
+            
+            # Create sampling indices
+            sample_indices = {}
+            for dim_name, dim_size in ds.sizes.items():
+                if dim_name in ['latitude', 'longitude', 'lat', 'lon', 'y', 'x']:
+                    # Sample spatial dimensions more aggressively
+                    sample_indices[dim_name] = slice(None, None, sample_factor)
+                else:
+                    # Keep all non-spatial dimensions
+                    sample_indices[dim_name] = slice(None)
+            
+            # Sample the dataset
+            ds_sampled = ds.isel(sample_indices)
+            print(f"📊 Sampled dataset dimensions: {dict(ds_sampled.sizes)}")
+            
+            # Convert to DataFrame
+            df = ds_sampled.to_dataframe().reset_index()
+            
+        else:
+            # Convert to DataFrame directly
+            df = ds.to_dataframe().reset_index()
+        
+        # Further sample if still too large
         if len(df) > sample_points:
-            print(f"📊 Sampling {sample_points} points from {len(df)} total points")
+            print(f"📊 Final sampling: {sample_points} points from {len(df)} total points")
             df = df.sample(n=sample_points, random_state=42)
         
         # Add metadata
@@ -231,6 +263,7 @@ def process_zarr_asset(zarr_item, asset, sample_points=1000):
         df['asset_id'] = zarr_item['id']
         df['collection'] = zarr_item['collection']
         
+        print(f"✅ Zarr processing complete: {len(df)} rows")
         return df
         
     except Exception as e:
