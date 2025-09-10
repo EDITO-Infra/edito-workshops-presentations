@@ -12,6 +12,7 @@ This script provides utilities for interacting with EDITO personal storage:
 import boto3
 import os
 import json
+import logging
 from datetime import datetime
 from collections import defaultdict
 

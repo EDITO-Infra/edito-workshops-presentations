@@ -11,6 +11,7 @@ import requests
 import json
 import os
 from datetime import datetime
+import logging
 
 def load_collections(collections_file="stac_collections.json"):
     """
@@ -28,10 +29,14 @@ def load_collections(collections_file="stac_collections.json"):
         
         available_collections = [col['id'] for col in collections_data['collections']]
         print(f"✅ Loaded {len(available_collections)} collections from {collections_file}")
+        logger = logging.getLogger(__name__)
+        logger.info(f"✅ Loaded {len(available_collections)} collections from {collections_file}")
         return available_collections
         
     except Exception as e:
         print(f"❌ Error loading collections: {e}")
+        logger = logging.getLogger(__name__)
+        logger.error(f"❌ Error loading collections: {e}")
         return []
 
 def search_stac_assets(stac_endpoint="https://api.dive.edito.eu/data/", 
@@ -48,11 +53,16 @@ def search_stac_assets(stac_endpoint="https://api.dive.edito.eu/data/",
     Returns:
         tuple: (parquet_items, raster_items)
     """
+    logger = logging.getLogger(__name__)
+    
     print("🔍 EDITO Datalab: Searching STAC for Assets")
     print("=" * 50)
+    logger.info("🔍 EDITO Datalab: Searching STAC for Assets")
+    logger.info("=" * 50)
     
     if not collections:
         print("❌ No collections provided")
+        logger.error("No collections provided")
         return [], []
     
     # Look for biodiversity collections that might have different data types
@@ -63,9 +73,11 @@ def search_stac_assets(stac_endpoint="https://api.dive.edito.eu/data/",
     if bio_collections:
         search_collections = bio_collections[:5]  # Search in top 5 biodiversity collections
         print(f"🔍 Searching in biodiversity collections: {search_collections}")
+        logger.info(f"Searching in biodiversity collections: {search_collections}")
     else:
         search_collections = collections[:5]  # Use first 5 available collections
         print(f"🔍 Searching in available collections: {search_collections}")
+        logger.info(f"Searching in available collections: {search_collections}")
     
     try:
         search_url = f"{stac_endpoint}search"
@@ -75,13 +87,17 @@ def search_stac_assets(stac_endpoint="https://api.dive.edito.eu/data/",
         }
         
         print(f"📡 Searching STAC API...")
+        logger.info(f"Searching STAC API: {search_url}")
+        logger.info(f"Search parameters: {search_params}")
         response = requests.post(search_url, json=search_params)
         
         if response.status_code == 200:
             search_results = response.json()
+            logger.info(f"STAC API response received: {response.status_code}")
             
             if 'features' in search_results and search_results['features']:
                 print(f"✅ Found {len(search_results['features'])} items")
+                logger.info(f"Found {len(search_results['features'])} items in search results")
                 
                 # Categorize items by asset types
                 parquet_items = []
@@ -117,21 +133,27 @@ def search_stac_assets(stac_endpoint="https://api.dive.edito.eu/data/",
                 
                 print(f"📊 Found {len(parquet_items)} items with parquet assets")
                 print(f"🗺️ Found {len(raster_items)} items with raster assets")
+                logger.info(f"📊 Found {len(parquet_items)} items with parquet assets")
+                logger.info(f"🗺️ Found {len(raster_items)} items with raster assets")
                 
                 return parquet_items, raster_items
                 
             else:
                 print("ℹ️ No items found in search results")
+                logger.info("ℹ️ No items found in search results")
                 return [], []
                 
         else:
             print(f"❌ STAC search failed with status {response.status_code}")
             error_response = response.json() if response.headers.get('content-type', '').startswith('application/json') else response.text
             print(f"Error details: {error_response}")
+            logger.error(f"❌ STAC search failed with status {response.status_code}")
+            logger.error(f"Error details: {error_response}")
             return [], []
             
     except Exception as e:
         print(f"❌ Error searching STAC: {e}")
+        logger.error(f"❌ Error searching STAC: {e}")
         return [], []
 
 def save_search_results(parquet_items, raster_items, 
@@ -147,6 +169,7 @@ def save_search_results(parquet_items, raster_items,
         raster_file (str): Output file for raster items
     """
     # Save parquet items
+    logger = logging.getLogger(__name__)
     if parquet_items:
         try:
             parquet_data = {
@@ -162,19 +185,25 @@ def save_search_results(parquet_items, raster_items,
                 json.dump(parquet_data, f, indent=2)
             
             print(f"✅ Parquet items saved to {parquet_file}")
+            logger.info(f"✅ Parquet items saved to {parquet_file}")
             
             # Show sample parquet items
             print(f"\n📊 Sample parquet items:")
+            logger.info("📊 Sample parquet items:")
             for i, item_data in enumerate(parquet_items[:3]):
                 item = item_data['item']
                 print(f"  {i+1}. {item['id']} - {item['properties'].get('title', 'No title')}")
+                logger.info(f"  Parquet item {i+1}: {item['id']} - {item['properties'].get('title', 'No title')}")
                 for asset_name, asset in item_data['assets']:
                     print(f"     - {asset_name}: {asset['href']}")
+                    logger.info(f"     - {asset_name}: {asset['href']}")
             
         except Exception as e:
             print(f"❌ Error saving parquet items: {e}")
+            logger.error(f"❌ Error saving parquet items: {e}")
     else:
         print("ℹ️ No parquet items to save")
+        logger.info("ℹ️ No parquet items to save")
     
     # Save raster items
     if raster_items:
@@ -192,27 +221,52 @@ def save_search_results(parquet_items, raster_items,
                 json.dump(raster_data, f, indent=2)
             
             print(f"✅ Raster items saved to {raster_file}")
+            logger.info(f"✅ Raster items saved to {raster_file}")
             
             # Show sample raster items
             print(f"\n🗺️ Sample raster items:")
+            logger.info("🗺️ Sample raster items:")
             for i, item_data in enumerate(raster_items[:3]):
                 item = item_data['item']
                 print(f"  {i+1}. {item['id']} - {item['properties'].get('title', 'No title')}")
+                logger.info(f"  Raster item {i+1}: {item['id']} - {item['properties'].get('title', 'No title')}")
                 for asset_name, asset in item_data['assets']:
                     print(f"     - {asset_name}: {asset['href']}")
+                    logger.info(f"     - {asset_name}: {asset['href']}")
             
         except Exception as e:
             print(f"❌ Error saving raster items: {e}")
+            logger.error(f"❌ Error saving raster items: {e}")
     else:
         print("ℹ️ No raster items to save")
+        logger.info("ℹ️ No raster items to save")
 
 def main():
     """Main function"""
+    # Create logs directory if it doesn't exist
+    os.makedirs('logs', exist_ok=True)
+    
+    # Setup logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler('logs/edito_workflow.log', mode='a'),
+            logging.StreamHandler()
+        ],
+        force=True  # Force reconfiguration
+    )
+    logger = logging.getLogger(__name__)
+    
+    logger.info("🔍 EDITO Datalab: STAC Asset Search")
+    logger.info("=" * 50)
+    
     # Load collections
     collections = load_collections()
     
     if not collections:
         print("❌ No collections available. Run 01_get_stac_collections.py first.")
+        logger.error("❌ No collections available. Run 01_get_stac_collections.py first.")
         return
     
     # Search for assets
@@ -221,10 +275,13 @@ def main():
     # Save results
     save_search_results(parquet_items, raster_items)
     
+    logger.info(f"Search completed: {len(parquet_items)} parquet items, {len(raster_items)} raster items")
+    
     print("\n🎯 Next steps:")
     print("1. Run 03_get_zarr_to_df.py to process raster data")
     print("2. Run 04_get_parquet_data.py to process parquet data")
     print("3. Run 05_combine_and_save.py to combine and save to storage")
+    logger.info("🎯 Next steps presented to user")
 
 if __name__ == "__main__":
     main()

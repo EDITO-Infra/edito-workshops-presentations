@@ -16,8 +16,10 @@ import os
 import json
 import re
 import requests
+import logging
 from datetime import datetime
 from collections import defaultdict
+from using_storage import connect_to_storage, save_to_storage_interactive
 
 def extract_coords_from_geometry(geometry_str):
     """
@@ -268,27 +270,43 @@ def save_to_local(combined_df, output_file="combined_marine_data.csv"):
 def get_stac_collections():
     """
     Get available STAC collections from EDITO API
-    
+
     Returns:
-        list: List of collection dictionaries
+        dict: Full collections response with 'collections' key
     """
-    print("🔍 Fetching available STAC collections...")
-    
+    logger = logging.getLogger(__name__)
+    logger.info("🔍 Fetching available STAC collections...")
+    logger.info("⏳ This may take a moment...")
+
     try:
         stac_endpoint = "https://api.dive.edito.eu/data/"
-        response = requests.get(f"{stac_endpoint}collections")
-        
+        logger.info(f"📡 Connecting to: {stac_endpoint}collections")
+
+        # Add timeout to prevent hanging
+        response = requests.get(f"{stac_endpoint}collections", timeout=30)
+
+        logger.info(f"📊 Response status: {response.status_code}")
+
         if response.status_code == 200:
+            logger.info("📥 Parsing response...")
             collections_data = response.json()
             collections = collections_data.get('collections', [])
-            print(f"✅ Found {len(collections)} collections")
-            return collections
+            logger.info(f"✅ Found {len(collections)} collections")
+            return collections_data
         else:
-            print(f"❌ Failed to fetch collections: HTTP {response.status_code}")
-            return []
+            logger.error(f"❌ Failed to fetch collections: HTTP {response.status_code}")
+            logger.error(f"Response: {response.text[:200]}...")
+            return None
+    except requests.exceptions.Timeout:
+        logger.error("❌ Request timed out. The API might be slow or unavailable.")
+        logger.info("💡 Try running the script again, or check your internet connection.")
+        return None
+    except requests.exceptions.ConnectionError:
+        logger.error("❌ Connection error. Please check your internet connection.")
+        return None
     except Exception as e:
-        print(f"❌ Error fetching collections: {e}")
-        return []
+        logger.error(f"❌ Error fetching collections: {e}")
+        return None
 
 def select_collection(collections):
     """
@@ -618,34 +636,88 @@ def create_sample_data(collection_id):
 
 def main():
     """Interactive main function"""
-    print("🌊 EDITO Datalab: Interactive Data Processing")
-    print("=" * 50)
+    # Create logs directory if it doesn't exist
+    os.makedirs('logs', exist_ok=True)
+    
+    # Setup logging - simple and direct
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler('logs/edito_workflow.log', mode='a'),
+            logging.StreamHandler()
+        ]
+    )
+    logger = logging.getLogger(__name__)
+    
+    logger.info("=" * 60)
+    logger.info("🚀 Starting EDITO Datalab: Interactive Data Processing")
+    logger.info("=" * 60)
     
     # Step 1: Get STAC collections
-    collections = get_stac_collections()
-    if not collections:
-        print("❌ Could not fetch STAC collections. Exiting.")
+    collections_data = get_stac_collections()
+    if not collections_data:
+        logger.error("Could not fetch STAC collections.")
+        logger.info("This might be due to network issues or API unavailability.")
+        logger.info("Would you like to continue with sample data instead?")
+
+        while True:
+            choice = input("Continue with sample data? (y/n): ").strip().lower()
+            if choice == 'y':
+                logger.info("Continuing with sample data...")
+                collection_id = "sample-collection"
+                break
+            elif choice == 'n':
+                logger.info("Exiting. Please check your connection and try again.")
+                return
+            else:
+                logger.error("Please enter 'y' or 'n'")
+        
+        # Skip to data processing with sample data
+        combined_df = create_sample_data(collection_id)
+        if combined_df.empty:
+            logger.error("No data to process")
+            return
+
+        # Save to local storage
+        logger.info("Saving data locally...")
+        save_to_local(combined_df)
+
+        # Connect to storage and save
+        s3_client = connect_to_storage()
+        if s3_client:
+            save_to_storage_interactive(combined_df, s3_client, collection_id)
+
+        logger.info("=" * 60)
+        logger.info("✅ Sample data processing finished successfully!")
+        logger.info("=" * 60)
         return
     
+    # Extract the collections list from the response
+    collections = collections_data.get('collections', [])
+    if not collections:
+        logger.error("No collections found in response. Exiting.")
+        return
+
     # Step 2: Select collection
     collection_id = select_collection(collections)
     if not collection_id:
-        print("👋 No collection selected. Exiting.")
+        logger.info("No collection selected. Exiting.")
         return
-    
+
     # Step 3: Ask about data overlay
-    print(f"\n🔄 Data Processing Options for '{collection_id}':")
+    logger.info(f"Data Processing Options for '{collection_id}':")
     print("1. Use existing processed data (from previous scripts)")
     print("2. Create sample data for demonstration")
     print("3. Search and process data from this collection")
-    
+
     while True:
         choice = input("Enter choice (1-3): ").strip()
         if choice == '1':
             # Try to load existing data
             raster_df, parquet_df = load_processed_data()
             if raster_df.empty and parquet_df.empty:
-                print("❌ No existing data found. Creating sample data instead.")
+                logger.error("No existing data found. Creating sample data instead.")
                 combined_df = create_sample_data(collection_id)
             else:
                 combined_df = combine_datasets(raster_df, parquet_df)
@@ -655,32 +727,33 @@ def main():
             combined_df = create_sample_data(collection_id)
             break
         elif choice == '3':
-            print("🔍 This would search and process data from the selected collection.")
-            print("💡 For now, creating sample data instead.")
+            logger.info("This would search and process data from the selected collection.")
+            logger.info("For now, creating sample data instead.")
             combined_df = create_sample_data(collection_id)
             break
         else:
-            print("❌ Invalid choice. Please enter 1, 2, or 3.")
+            logger.error("Invalid choice. Please enter 1, 2, or 3.")
     
     if combined_df.empty:
-        print("❌ No data to process")
+        logger.error("No data to process")
         return
     
     # Step 4: Save locally
-    print(f"\n💾 Saving data locally...")
+    logger.info("Saving data locally...")
     save_to_local(combined_df)
-    
+
     # Step 5: Connect to storage
     s3_client = connect_to_storage()
     if not s3_client:
-        print("❌ Could not connect to storage. Data saved locally only.")
+        logger.error("Could not connect to storage. Data saved locally only.")
         return
-    
+
     # Step 6: Interactive save to storage
     save_to_storage_interactive(combined_df, s3_client, collection_id)
-    
-    print("\n🎯 Workflow Complete!")
-    print("✅ Interactive data processing finished successfully!")
+
+    logger.info("=" * 60)
+    logger.info("✅ Interactive data processing finished successfully!")
+    logger.info("=" * 60)
 
 if __name__ == "__main__":
     main()

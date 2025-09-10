@@ -13,7 +13,9 @@ import pyarrow.parquet as pq
 import pyarrow as pa
 import fsspec
 import s3fs
+import os
 from datetime import datetime
+import logging
 
 def load_parquet_items(parquet_file="stac_parquet_items.json"):
     """
@@ -222,6 +224,24 @@ def save_parquet_data(parquet_df, output_file="parquet_data.csv"):
 
 def main():
     """Interactive main function"""
+    # Create logs directory if it doesn't exist
+    os.makedirs('logs', exist_ok=True)
+    
+    # Setup logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler('logs/edito_workflow.log', mode='a'),
+            logging.StreamHandler()
+        ],
+        force=True  # Force reconfiguration
+    )
+    logger = logging.getLogger(__name__)
+    
+    logger.info("📊 EDITO Datalab: Interactive Parquet Data Processing")
+    logger.info("=" * 60)
+    
     print("📊 EDITO Datalab: Interactive Parquet Data Processing")
     print("=" * 60)
     
@@ -231,9 +251,11 @@ def main():
     if not parquet_items:
         print("❌ No parquet items available. Run 02_search_stac_assets.py first.")
         print("\n🎯 Alternative: Create sample data for demonstration")
+        logger.warning("No parquet items available. Run 02_search_stac_assets.py first.")
         create_sample = input("Create sample parquet data? (y/n): ").strip().lower()
         if create_sample == 'y':
             print("📊 Creating sample parquet data...")
+            logger.info("Creating sample parquet data")
             sample_data = pd.DataFrame({
                 'scientificName': ['Scomber scombrus', 'Gadus morhua', 'Pleuronectes platessa'] * 50,
                 'decimalLatitude': np.random.uniform(50, 60, 150),
@@ -248,12 +270,15 @@ def main():
     
     # Show available parquet items
     print(f"\n📋 Found {len(parquet_items)} parquet items:")
+    logger.info(f"Found {len(parquet_items)} parquet items")
     for i, item_data in enumerate(parquet_items[:5]):
         item = item_data['item']
         print(f"{i+1:2d}. {item['id']} - {item['properties'].get('title', 'No title')}")
+        logger.info(f"Item {i+1}: {item['id']} - {item['properties'].get('title', 'No title')}")
     
     if len(parquet_items) > 5:
         print(f"    ... and {len(parquet_items) - 5} more items")
+        logger.info(f"Additional {len(parquet_items) - 5} items available")
     
     # Ask how many items to process
     while True:
@@ -271,11 +296,14 @@ def main():
         except ValueError:
             print("❌ Please enter a valid number")
     
+    logger.info(f"Processing {max_items} parquet items")
+    
     # Process parquet items
     parquet_df = process_all_parquet_items(parquet_items, max_items=max_items)
     
     # Save to CSV
     save_parquet_data(parquet_df)
+    logger.info(f"Parquet data processing completed: {len(parquet_df)} records")
     
     print("\n🎯 Next steps:")
     print("1. Run 05_combine_and_save.py to combine with raster data and save to storage")

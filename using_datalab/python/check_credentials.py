@@ -6,6 +6,7 @@ Run this in any EDITO Datalab service (RStudio, Jupyter, VSCode) terminal
 
 import os
 import boto3
+import logging
 
 print("🔍 Checking EDITO Datalab Personal Storage Credentials")
 print("=" * 60)

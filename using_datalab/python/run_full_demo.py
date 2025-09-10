@@ -11,6 +11,7 @@ import subprocess
 import sys
 import os
 from datetime import datetime
+import logging
 
 def run_script(script_name, description):
     """
@@ -89,6 +90,24 @@ def check_dependencies():
 
 def main():
     """Main function to run the complete workflow"""
+    # Create logs directory if it doesn't exist
+    os.makedirs('logs', exist_ok=True)
+    
+    # Setup logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler('logs/edito_workflow.log', mode='a'),
+            logging.StreamHandler()
+        ]
+    )
+    logger = logging.getLogger(__name__)
+    
+    logger.info("🌊 EDITO Datalab: Complete Workflow Runner")
+    logger.info("=" * 60)
+    logger.info(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    
     print("🌊 EDITO Datalab: Complete Workflow Runner")
     print("=" * 60)
     print(f"🕐 Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -96,6 +115,7 @@ def main():
     # Check dependencies
     if not check_dependencies():
         print("\n❌ Cannot proceed without required dependencies")
+        logger.error("Cannot proceed without required dependencies")
         return
     
     # Define the workflow steps
@@ -129,18 +149,22 @@ def main():
     # Run each step
     for i, step in enumerate(workflow_steps, 1):
         print(f"\n📋 Step {i}/{len(workflow_steps)}")
+        logger.info(f"Step {i}/{len(workflow_steps)}: {step['script']}")
         
         success = run_script(step['script'], step['description'])
         
         if success:
             successful_steps += 1
+            logger.info(f"Step {i} completed successfully: {step['script']}")
         else:
             failed_steps.append(step['script'])
+            logger.error(f"Step {i} failed: {step['script']}")
             
             # Ask if user wants to continue
             response = input(f"\n❓ Script {step['script']} failed. Continue with remaining steps? (y/n): ")
             if response.lower() != 'y':
                 print("🛑 Workflow stopped by user")
+                logger.info("Workflow stopped by user")
                 break
     
     # Summary
@@ -149,12 +173,17 @@ def main():
     print(f"{'='*60}")
     print(f"✅ Successful steps: {successful_steps}/{len(workflow_steps)}")
     
+    logger.info(f"Workflow completed: {successful_steps}/{len(workflow_steps)} successful steps")
+    
     if failed_steps:
         print(f"❌ Failed steps: {', '.join(failed_steps)}")
+        logger.error(f"Failed steps: {', '.join(failed_steps)}")
     else:
         print("🎉 All steps completed successfully!")
+        logger.info("All steps completed successfully!")
     
     print(f"\n🕐 Completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    logger.info(f"Completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     # Show output files
     print(f"\n📁 Output files created:")
@@ -171,8 +200,10 @@ def main():
         if os.path.exists(file):
             size = os.path.getsize(file)
             print(f"  ✅ {file} ({size:,} bytes)")
+            logger.info(f"Output file created: {file} ({size:,} bytes)")
         else:
             print(f"  ❌ {file} (not found)")
+            logger.warning(f"Output file not found: {file}")
     
     print(f"\n🎯 Next steps:")
     print("  - Review the output files")

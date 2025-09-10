@@ -13,6 +13,7 @@ import xarray as xr
 import boto3
 import os
 from datetime import datetime
+import logging
 
 def load_raster_items(raster_file="stac_raster_items.json"):
     """
@@ -249,6 +250,24 @@ def save_raster_data(raster_df, output_file="raster_data.csv"):
 
 def main():
     """Interactive main function"""
+    # Create logs directory if it doesn't exist
+    os.makedirs('logs', exist_ok=True)
+    
+    # Setup logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler('logs/edito_workflow.log', mode='a'),
+            logging.StreamHandler()
+        ],
+        force=True  # Force reconfiguration
+    )
+    logger = logging.getLogger(__name__)
+    
+    logger.info("🗺️ EDITO Datalab: Interactive Raster Data Processing")
+    logger.info("=" * 60)
+    
     print("🗺️ EDITO Datalab: Interactive Raster Data Processing")
     print("=" * 60)
     
@@ -265,8 +284,10 @@ def main():
             if not raster_items:
                 print("❌ No raster items available. Run 02_search_stac_assets.py first.")
                 print("💡 Creating sample data instead.")
+                logger.warning("No raster items available. Creating sample data instead.")
                 raster_df = create_sample_raster_data()
             else:
+                logger.info(f"Processing {len(raster_items)} raster items from STAC search")
                 raster_df = process_all_raster_items(raster_items)
             break
         elif choice == '2':
@@ -279,14 +300,18 @@ def main():
                     print(f"📁 Selected file: {selected_file}")
                     print("💡 You can use this file path in other scripts!")
                     print("💡 For this demo, creating sample data instead.")
+                    logger.info(f"Selected file from storage: {selected_file}")
                 else:
                     print("⏭️ No file selected. Creating sample data instead.")
+                    logger.info("No file selected from storage. Creating sample data instead.")
             else:
                 print("❌ Could not connect to storage. Creating sample data instead.")
+                logger.warning("Could not connect to storage. Creating sample data instead.")
             raster_df = create_sample_raster_data()
             break
         elif choice == '3':
             # Create sample data
+            logger.info("Creating sample raster data")
             raster_df = create_sample_raster_data()
             break
         else:
@@ -294,6 +319,7 @@ def main():
     
     # Save to CSV
     save_raster_data(raster_df)
+    logger.info(f"Raster data processing completed: {len(raster_df)} records")
     
     print("\n🎯 Next steps:")
     print("1. Run 04_get_parquet_data.py to process parquet data")
