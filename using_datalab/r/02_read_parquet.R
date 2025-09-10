@@ -4,6 +4,20 @@
 # This script shows how to read parquet files from EDITO data
 # Perfect for a 15-minute tutorial on using EDITO Datalab
 
+# Generic function to install packages if missing
+install_packages_if_missing <- function(packages) {
+  missing_packages <- packages[!sapply(packages, requireNamespace, quietly = TRUE)]
+  if (length(missing_packages) > 0) {
+    install.packages(missing_packages)
+  }
+}
+
+# Define required packages
+required_packages <- c("arrow", "dplyr", "ggplot2", "sf")
+
+# Install missing packages
+install_packages_if_missing(required_packages)
+
 # Load required packages
 library(arrow)      # For reading Parquet files
 library(dplyr)      # For data manipulation

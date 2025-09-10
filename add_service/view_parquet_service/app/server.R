@@ -1,4 +1,6 @@
 # server.R
+# Note: Required packages are loaded in global.R with automatic installation
+
 server <- function(input, output, session) {
   parquet_data <- reactiveVal(NULL)
   filtered_data <- reactiveVal(NULL)

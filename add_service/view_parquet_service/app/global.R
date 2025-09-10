@@ -1,4 +1,19 @@
 # global.R
+
+# Generic function to install packages if missing
+install_packages_if_missing <- function(packages) {
+  missing_packages <- packages[!sapply(packages, requireNamespace, quietly = TRUE)]
+  if (length(missing_packages) > 0) {
+    install.packages(missing_packages)
+  }
+}
+
+# Define required packages
+required_packages <- c("shiny", "arrow", "leaflet", "DT", "dplyr", "sf", "leaflet.extras", "shinythemes")
+
+# Install missing packages
+install_packages_if_missing(required_packages)
+
 library(shiny)
 library(arrow)
 library(leaflet)

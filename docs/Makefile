@@ -20,7 +20,7 @@ help:
 # Build MkDocs HTML documentation only
 html:
 	@echo "Building MkDocs documentation..."
-	cd .. && $(MKDOCS) build --site-dir docs/$(BUILDDIR)/html
+	cd .. && . .venv/bin/activate && $(MKDOCS) build --site-dir docs/$(BUILDDIR)/html
 	@echo "Copying static files to build/html/static..."
 	@mkdir -p $(BUILDDIR)/html/static
 	@cp -r $(DOCS_DIR)/source/static/* $(BUILDDIR)/html/static/
@@ -49,10 +49,10 @@ check-marp:
 presentations: check-marp
 	@echo "Building presentations locally..."
 	@mkdir -p $(BUILDDIR)/html/presentations
-	@marp $(SOURCEDIR)/presentations/add_edito_service_slidedeck.md --output $(BUILDDIR)/html/presentations/add_edito_service_slidedeck.html --theme $(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
-	@marp $(SOURCEDIR)/presentations/add_edito_tutorial_slidedeck.md --output $(BUILDDIR)/html/presentations/add_edito_tutorial_slidedeck.html --theme $(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
-	@marp $(SOURCEDIR)/presentations/explore_data_slidedeck.md --output $(BUILDDIR)/html/presentations/explore_data_slidedeck.html --theme $(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
-	@marp $(SOURCEDIR)/presentations/using_datalab_slidedeck.md --output $(BUILDDIR)/html/presentations/using_datalab_slidedeck.html --theme $(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
+	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/add_edito_service_slidedeck.md --output docs/$(BUILDDIR)/html/presentations/add_edito_service_slidedeck.html --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
+	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/add_edito_tutorial_slidedeck.md --output docs/$(BUILDDIR)/html/presentations/add_edito_tutorial_slidedeck.html --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
+	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/explore_data_slidedeck.md --output docs/$(BUILDDIR)/html/presentations/explore_data_slidedeck.html --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
+	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/using_datalab_slidedeck.md --output docs/$(BUILDDIR)/html/presentations/using_datalab_slidedeck.html --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
 	@echo "✅ Local presentations built successfully!"
 
 # Build everything (for manual builds)

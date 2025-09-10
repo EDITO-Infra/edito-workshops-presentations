@@ -62,9 +62,13 @@ Perfect for researchers who want to get started quickly! 🚀
 - Service catalog with available options
 - Resource configuration options
 - Launch buttons for each service
+- Creating an autolaunch link (you can use this when you create [tutorials](../add_tutorial/README.md#make-your-deployment-url))
+  
+---
 
-### 🎥 **LIVE DEMO VIDEO PLACEHOLDER**
-*[Video: Navigating to datalab.dive.edito.eu and browsing services]*
+### 🎥 **Navigating to datalab.dive.edito.eu and browsing services**
+
+<video src="../static/videos/launchingVSCodeserviceEDITO_configuration_saveautolaunchURL.mp4" controls width="900"></video>
 
 ---
 
@@ -89,8 +93,9 @@ Perfect for researchers who want to get started quickly! 🚀
 - **Resources**: 2-8 CPU cores, 4-16GB RAM
 - **Features**: Git integration, extensions, terminal
 
-### 🎥 **LIVE DEMO VIDEO PLACEHOLDER**
-*[Video: Configuring and launching VSCode Server]*
+### 🎥 **Launching VSCode Service in EDITO Datalab**
+
+<video src="../static/videos/launchingVSCodeserviceEDITO_configuration_saveautolaunchURL.mp4" controls width="900"></video>
 
 ---
 

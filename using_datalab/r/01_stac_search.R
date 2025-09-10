@@ -4,6 +4,20 @@
 # This script shows how to search the EDITO STAC catalog for marine data
 # Perfect for a 15-minute tutorial on using EDITO Datalab
 
+# Generic function to install packages if missing
+install_packages_if_missing <- function(packages) {
+  missing_packages <- packages[!sapply(packages, requireNamespace, quietly = TRUE)]
+  if (length(missing_packages) > 0) {
+    install.packages(missing_packages)
+  }
+}
+
+# Define required packages
+required_packages <- c("rstac", "dplyr")
+
+# Install missing packages
+install_packages_if_missing(required_packages)
+
 # Load required packages
 library(rstac)      # For accessing EDITO STAC API
 library(dplyr)      # For data manipulation

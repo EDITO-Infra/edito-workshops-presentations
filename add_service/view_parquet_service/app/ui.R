@@ -1,4 +1,19 @@
 # ui.R
+
+# Generic function to install packages if missing
+install_packages_if_missing <- function(packages) {
+  missing_packages <- packages[!sapply(packages, requireNamespace, quietly = TRUE)]
+  if (length(missing_packages) > 0) {
+    install.packages(missing_packages)
+  }
+}
+
+# Define required packages
+required_packages <- c("shinythemes")
+
+# Install missing packages
+install_packages_if_missing(required_packages)
+
 ui <- fluidPage(
   theme = shinythemes::shinytheme("flatly"),
   titlePanel("🧭 Interactive Parquet Viewer"),
