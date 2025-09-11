@@ -2,6 +2,12 @@
 
 Learn how to use EDITO Datalab for marine data analysis with this comprehensive guide! From finding services to advanced data processing and storage, this tutorial covers everything you need to know.
 
+## 🚀 Quick Start
+
+1. **Follow the presentation**: [Using the Datalab](../presentations/using_the_datalab.html)
+2. **Explore the examples**: Check out the various data viewers and scripts
+3. **Start analyzing**: Use the provided templates and examples
+
 ## 🎯 What You'll Learn
 
 - Navigate to [EDITO Datalab](https://datalab.dive.edito.eu/) and find services
