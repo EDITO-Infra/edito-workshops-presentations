@@ -6,10 +6,11 @@ This repository contains comprehensive resources and hands-on tutorials for cont
 
 ## 🎯 What You'll Learn
 
-This workshop covers three essential aspects of contributing to EDITO:
+This workshop covers four essential aspects of contributing to EDITO:
 
 - **📚 Add Tutorials**: Create and publish interactive R/Python tutorials on the EDITO platform
 - **🔧 Add Services**: Deploy containerized web applications and services to EDITO Datalab  
+- **⚙️ Add Process**: Deploy computational models and data processing workflows to EDITO
 - **🌊 Explore Data**: Access and analyze marine data through the EDITO Data API and STAC catalog
 
 ## 🚀 Quick Start Guide
@@ -22,6 +23,7 @@ Navigate to the section that matches your interest:
 |---------|----------------|---------------|---------------|
 | **[📚 Add Tutorial](#-add-tutorial)** | Create R Markdown tutorials and publish them | 30-45 min | R, GitHub account |
 | **[🔧 Add Service](#-add-service)** | Dockerize applications and deploy to EDITO | 45-60 min | Docker, GitLab access |
+| **[⚙️ Add Process](#-add-process)** | Deploy computational models and workflows | 45-60 min | Docker, GitLab access |
 | **[🌊 Explore Data](#-explore-data)** | Access marine data via STAC API | 20-30 min | Python/R basics |
 
 ### 2. Get Started
@@ -41,6 +43,9 @@ Navigate to the section that matches your interest:
    
    # For services  
    cd add_service/
+   
+   # For processes
+   cd add_process/
    
    # For data exploration
    cd explore_data/
@@ -94,6 +99,31 @@ cd add_service/
 - `view_parquet_service/` - Example Shiny application
 - `docs/add_service/` - Generated presentations
 
+## ⚙️ Add Process
+
+**Goal**: Deploy computational models and data processing workflows to EDITO
+
+**What you'll learn**:
+
+- Identify when your application is a model (input → output transformation)
+- Dockerize computational workflows and models
+- Configure Helm charts for batch processing jobs
+- Handle input data from online sources or personal storage
+- Deploy and manage process execution on EDITO infrastructure
+
+**Getting started**:
+
+```bash
+cd add_process/
+# Follow the step-by-step guide in add_edito_process_slidedeck.md
+```
+
+**Key files**:
+
+- `add_edito_process_slidedeck.md` - Complete process deployment guide
+- `example_model/` - Example model workflow
+- `docs/add_process/` - Generated presentations
+
 ## 🌊 Explore Data
 
 **Goal**: Access and analyze marine data through EDITO's data infrastructure
@@ -128,6 +158,9 @@ edito-workshops-presentations/
 ├── 🔧 add_service/            # Service deployment and containerization  
 │   ├── add_edito_service_slidedeck.md
 │   └── view_parquet_service/  # Example Shiny application
+├── ⚙️ add_process/            # Process deployment and model workflows
+│   ├── add_edito_process_slidedeck.md
+│   └── example_model/         # Example model workflow
 ├── 🌊 explore_data/           # Data access and analysis
 │   ├── explore_data_slidedeck.md
 │   └── viewparquet/           # Interactive data viewer

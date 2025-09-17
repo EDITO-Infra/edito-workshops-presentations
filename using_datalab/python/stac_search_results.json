@@ -1,0 +1,4579 @@
+{
+  "metadata": {
+    "retrieved_at": "2025-09-10T23:14:01.529676",
+    "total_items": 20,
+    "search_term": "occurrence"
+  },
+  "items": [
+    {
+      "type": "Feature",
+      "id": "4235c731-bb4b-51e0-86d8-331f0f648ee1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -31.5,
+              27.5
+            ],
+            [
+              69,
+              27.5
+            ],
+            [
+              69,
+              82
+            ],
+            [
+              -31.5,
+              82
+            ],
+            [
+              -31.5,
+              27.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data_map_scale_1:100000_-31.5_27.5_69.0_82.0_2021-07-30 00:00:00+00:00_2025-12-31 00:00:00+00:00",
+        "title": "Areas of fluid emissions occurrence no occurrence or no data map scale 1:100000 -31.5 27.5 69.0 82.0 2021-07-30 00:00:00+00:00 2025-12-31 00:00:00+00:00",
+        "start_datetime": "2021-07-30T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "Fluid_em",
+        "categorical_encoding": {
+          "no data": 2,
+          "no occurrence verified by direct surveys": 1,
+          "occurrence verified by direct surveys": 3
+        },
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:43:01.688787Z",
+        "created": "2025-05-21T13:43:01.688787Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          18.75,
+          54.75
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data/items/4235c731-bb4b-51e0-86d8-331f0f648ee1"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9nZW9sb2d5LzEzMTM1L0VNT0RuZXQ1X1dQNl9HRV9wb2xfMTAwa18yMDIzLnphcnIiLCBlbmdpbmU9InphcnIiKQpwcmludChkYXRhc2V0KQ==",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/e21924086c5e45fef5b40c88d84670e9702a50be/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=e21924086c5e45fef5b40c88d84670e9702a50be",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_100k&VERSION=1.1.1&CRS=CRS:84&BBOX=-16.0908523859999,33.2620845957202,30.2242949595203,65.8315764820691&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "zip": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "zarr": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "type": "application/vnd+zarr",
+          "title": "Zarr",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        },
+        "zarr-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "title": "Zarr (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -31.5,
+        27.5,
+        69,
+        82
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "4235c731-bb4b-51e0-86d8-331f0f648ee1",
+      "identifier": "4235c731-bb4b-51e0-86d8-331f0f648ee1",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data/items/4235c731-bb4b-51e0-86d8-331f0f648ee1",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data/items/4235c731-bb4b-51e0-86d8-331f0f648ee1",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-31.5 27.5 69 82"
+        }
+      },
+      "temporalCoverage": "2021-07-30T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/e21924086c5e45fef5b40c88d84670e9702a50be/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=e21924086c5e45fef5b40c88d84670e9702a50be",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_100k&VERSION=1.1.1&CRS=CRS:84&BBOX=-16.0908523859999,33.2620845957202,30.2242949595203,65.8315764820691&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "fileFormat": "application/vnd+zarr",
+          "title": "Zarr"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "fileFormat": "text/html",
+          "title": "Zarr (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "9ae91437-d010-5f03-91e7-57ace0a2da0b",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -31.5,
+              27.5
+            ],
+            [
+              69,
+              27.5
+            ],
+            [
+              69,
+              82
+            ],
+            [
+              -31.5,
+              82
+            ],
+            [
+              -31.5,
+              27.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "areas_of_landslides_occurrence_no_occurrence_or_no_data_map_scale_1:100000_-31.5_27.5_69.0_82.0_2021-07-30 00:00:00+00:00_2025-12-31 00:00:00+00:00",
+        "title": "Areas of landslides occurrence no occurrence or no data map scale 1:100000 -31.5 27.5 69.0 82.0 2021-07-30 00:00:00+00:00 2025-12-31 00:00:00+00:00",
+        "start_datetime": "2021-07-30T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "Landslide",
+        "categorical_encoding": {
+          "occurrence": 2,
+          "occurrence verified by direct surveys": 1
+        },
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:43:00.978740Z",
+        "created": "2025-05-21T13:43:00.978740Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          18.75,
+          54.75
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data/items/9ae91437-d010-5f03-91e7-57ace0a2da0b"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9nZW9sb2d5LzEzMTM1L0VNT0RuZXQ1X1dQNl9HRV9wb2xfMTAwa18yMDIzLnphcnIiLCBlbmdpbmU9InphcnIiKQpwcmludChkYXRhc2V0KQ==",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/e21924086c5e45fef5b40c88d84670e9702a50be/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=e21924086c5e45fef5b40c88d84670e9702a50be",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_100k&VERSION=1.1.1&CRS=CRS:84&BBOX=-16.0908523859999,33.2620845957202,30.2242949595203,65.8315764820691&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "zip": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "zarr": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "type": "application/vnd+zarr",
+          "title": "Zarr",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        },
+        "zarr-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "title": "Zarr (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -31.5,
+        27.5,
+        69,
+        82
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "9ae91437-d010-5f03-91e7-57ace0a2da0b",
+      "identifier": "9ae91437-d010-5f03-91e7-57ace0a2da0b",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data/items/9ae91437-d010-5f03-91e7-57ace0a2da0b",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data/items/9ae91437-d010-5f03-91e7-57ace0a2da0b",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-31.5 27.5 69 82"
+        }
+      },
+      "temporalCoverage": "2021-07-30T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/e21924086c5e45fef5b40c88d84670e9702a50be/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=e21924086c5e45fef5b40c88d84670e9702a50be",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_100k&VERSION=1.1.1&CRS=CRS:84&BBOX=-16.0908523859999,33.2620845957202,30.2242949595203,65.8315764820691&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "fileFormat": "application/vnd+zarr",
+          "title": "Zarr"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "fileFormat": "text/html",
+          "title": "Zarr (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "083f06f0-fc09-5881-a9d0-ceb067d4a8c2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -31.5,
+              27.5
+            ],
+            [
+              69,
+              27.5
+            ],
+            [
+              69,
+              82
+            ],
+            [
+              -31.5,
+              82
+            ],
+            [
+              -31.5,
+              27.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data_map_scale_1:100000_-31.5_27.5_69.0_82.0_2021-07-30 00:00:00+00:00_2025-12-31 00:00:00+00:00",
+        "title": "Areas of tectonic elements occurrence no occurrence or no data map scale 1:100000 -31.5 27.5 69.0 82.0 2021-07-30 00:00:00+00:00 2025-12-31 00:00:00+00:00",
+        "start_datetime": "2021-07-30T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "Tectonics",
+        "categorical_encoding": {
+          "no data": 2,
+          "no occurrence verified by direct surveys": 1,
+          "occurrence": 3
+        },
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:43:00.196604Z",
+        "created": "2025-05-21T13:43:00.196604Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          18.75,
+          54.75
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data/items/083f06f0-fc09-5881-a9d0-ceb067d4a8c2"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9nZW9sb2d5LzEzMTM1L0VNT0RuZXQ1X1dQNl9HRV9wb2xfMTAwa18yMDIzLnphcnIiLCBlbmdpbmU9InphcnIiKQpwcmludChkYXRhc2V0KQ==",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/e21924086c5e45fef5b40c88d84670e9702a50be/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=e21924086c5e45fef5b40c88d84670e9702a50be",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_100k&VERSION=1.1.1&CRS=CRS:84&BBOX=-16.0908523859999,33.2620845957202,30.2242949595203,65.8315764820691&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "zip": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "zarr": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "type": "application/vnd+zarr",
+          "title": "Zarr",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        },
+        "zarr-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "title": "Zarr (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -31.5,
+        27.5,
+        69,
+        82
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "083f06f0-fc09-5881-a9d0-ceb067d4a8c2",
+      "identifier": "083f06f0-fc09-5881-a9d0-ceb067d4a8c2",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data/items/083f06f0-fc09-5881-a9d0-ceb067d4a8c2",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data/items/083f06f0-fc09-5881-a9d0-ceb067d4a8c2",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-31.5 27.5 69 82"
+        }
+      },
+      "temporalCoverage": "2021-07-30T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/e21924086c5e45fef5b40c88d84670e9702a50be/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=e21924086c5e45fef5b40c88d84670e9702a50be",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_100k&VERSION=1.1.1&CRS=CRS:84&BBOX=-16.0908523859999,33.2620845957202,30.2242949595203,65.8315764820691&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "fileFormat": "application/vnd+zarr",
+          "title": "Zarr"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "fileFormat": "text/html",
+          "title": "Zarr (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "50e3f3d0-4d45-53c7-bf92-dea84b3a975a",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -31.5,
+              27.5
+            ],
+            [
+              69,
+              27.5
+            ],
+            [
+              69,
+              82
+            ],
+            [
+              -31.5,
+              82
+            ],
+            [
+              -31.5,
+              27.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "areas_of_tsunamis_occurrence_no_occurrence_or_no_data_map_scale_1:100000_-31.5_27.5_69.0_82.0_2021-07-30 00:00:00+00:00_2025-12-31 00:00:00+00:00",
+        "title": "Areas of tsunamis occurrence no occurrence or no data map scale 1:100000 -31.5 27.5 69.0 82.0 2021-07-30 00:00:00+00:00 2025-12-31 00:00:00+00:00",
+        "start_datetime": "2021-07-30T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "Tsunami",
+        "categorical_encoding": {
+          "no data": 2,
+          "no occurrence verified by direct surveys": 1,
+          "occurrence verified by direct survey": 3
+        },
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:42:59.461217Z",
+        "created": "2025-05-21T13:42:59.461217Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          18.75,
+          54.75
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data/items/50e3f3d0-4d45-53c7-bf92-dea84b3a975a"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9nZW9sb2d5LzEzMTM1L0VNT0RuZXQ1X1dQNl9HRV9wb2xfMTAwa18yMDIzLnphcnIiLCBlbmdpbmU9InphcnIiKQpwcmludChkYXRhc2V0KQ==",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/e21924086c5e45fef5b40c88d84670e9702a50be/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=e21924086c5e45fef5b40c88d84670e9702a50be",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_100k&VERSION=1.1.1&CRS=CRS:84&BBOX=-16.0908523859999,33.2620845957202,30.2242949595203,65.8315764820691&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "zip": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "zarr": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "type": "application/vnd+zarr",
+          "title": "Zarr",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        },
+        "zarr-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "title": "Zarr (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -31.5,
+        27.5,
+        69,
+        82
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "50e3f3d0-4d45-53c7-bf92-dea84b3a975a",
+      "identifier": "50e3f3d0-4d45-53c7-bf92-dea84b3a975a",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data/items/50e3f3d0-4d45-53c7-bf92-dea84b3a975a",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data/items/50e3f3d0-4d45-53c7-bf92-dea84b3a975a",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-31.5 27.5 69 82"
+        }
+      },
+      "temporalCoverage": "2021-07-30T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/e21924086c5e45fef5b40c88d84670e9702a50be/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=e21924086c5e45fef5b40c88d84670e9702a50be",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_100k&VERSION=1.1.1&CRS=CRS:84&BBOX=-16.0908523859999,33.2620845957202,30.2242949595203,65.8315764820691&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "fileFormat": "application/vnd+zarr",
+          "title": "Zarr"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "fileFormat": "text/html",
+          "title": "Zarr (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "c7d7266f-52b4-5f64-973c-e0ac8239a34b",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -31.5,
+              27.5
+            ],
+            [
+              69,
+              27.5
+            ],
+            [
+              69,
+              82
+            ],
+            [
+              -31.5,
+              82
+            ],
+            [
+              -31.5,
+              27.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data_map_scale_1:100000_-31.5_27.5_69.0_82.0_2021-07-30 00:00:00+00:00_2025-12-31 00:00:00+00:00",
+        "title": "Areas of volcanic structures occurrence no occurrence or no data map scale 1:100000 -31.5 27.5 69.0 82.0 2021-07-30 00:00:00+00:00 2025-12-31 00:00:00+00:00",
+        "start_datetime": "2021-07-30T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "Volcanic_c",
+        "categorical_encoding": {
+          "no data": 2,
+          "no occurrence": 3,
+          "no occurrence verified by direct surveys": 1,
+          "occurrence": 4
+        },
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:42:58.751750Z",
+        "created": "2025-05-21T13:42:58.751750Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          18.75,
+          54.75
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data/items/c7d7266f-52b4-5f64-973c-e0ac8239a34b"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9nZW9sb2d5LzEzMTM1L0VNT0RuZXQ1X1dQNl9HRV9wb2xfMTAwa18yMDIzLnphcnIiLCBlbmdpbmU9InphcnIiKQpwcmludChkYXRhc2V0KQ==",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/e21924086c5e45fef5b40c88d84670e9702a50be/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=e21924086c5e45fef5b40c88d84670e9702a50be",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_100k&VERSION=1.1.1&CRS=CRS:84&BBOX=-16.0908523859999,33.2620845957202,30.2242949595203,65.8315764820691&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "zip": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "zarr": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "type": "application/vnd+zarr",
+          "title": "Zarr",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        },
+        "zarr-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "title": "Zarr (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -31.5,
+        27.5,
+        69,
+        82
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "c7d7266f-52b4-5f64-973c-e0ac8239a34b",
+      "identifier": "c7d7266f-52b4-5f64-973c-e0ac8239a34b",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data/items/c7d7266f-52b4-5f64-973c-e0ac8239a34b",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data/items/c7d7266f-52b4-5f64-973c-e0ac8239a34b",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-31.5 27.5 69 82"
+        }
+      },
+      "temporalCoverage": "2021-07-30T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/e21924086c5e45fef5b40c88d84670e9702a50be/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=e21924086c5e45fef5b40c88d84670e9702a50be",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_100k&VERSION=1.1.1&CRS=CRS:84&BBOX=-16.0908523859999,33.2620845957202,30.2242949595203,65.8315764820691&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=e21924086c5e45fef5b40c88d84670e9702a50be&fname=e21924086c5e45fef5b40c88d84670e9702a50be_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "fileFormat": "application/vnd+zarr",
+          "title": "Zarr"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023_geoparquet.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13135/EMODnet5_WP6_GE_pol_100k_2023.zarr",
+          "fileFormat": "text/html",
+          "title": "Zarr (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "08ac48f6-6803-5776-bfd5-c1f8ebddfd8a",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -31.5,
+              27.5
+            ],
+            [
+              69,
+              27.5
+            ],
+            [
+              69,
+              82
+            ],
+            [
+              -31.5,
+              82
+            ],
+            [
+              -31.5,
+              27.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data_map_scale_1:250000_-31.5_27.5_69.0_82.0_2014-09-29 00:00:00+00:00_2025-12-31 00:00:00+00:00",
+        "title": "Areas of fluid emissions occurrence no occurrence or no data map scale 1:250000 -31.5 27.5 69.0 82.0 2014-09-29 00:00:00+00:00 2025-12-31 00:00:00+00:00",
+        "start_datetime": "2014-09-29T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "Fluid_em",
+        "categorical_encoding": {
+          "None": 3,
+          "no data": 2,
+          "no occurrences": 4,
+          "occurrences reported": 1
+        },
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:43:01.864826Z",
+        "created": "2025-05-21T13:43:01.864826Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          18.75,
+          54.75
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data/items/08ac48f6-6803-5776-bfd5-c1f8ebddfd8a"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9nZW9sb2d5LzEzMTM2L0VNT0RuZXQ1X1dQNl9HRV9wb2xfMjUwa18yMDIzLnphcnIiLCBlbmdpbmU9InphcnIiKQpwcmludChkYXRhc2V0KQ==",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_250k&VERSION=1.1.1&CRS=CRS:84&BBOX=-35.5793000004797,24.6036292157202,81.0572157865203,85.1901315837202&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "zip": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "zarr": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "type": "application/vnd+zarr",
+          "title": "Zarr",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        },
+        "zarr-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "title": "Zarr (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -31.5,
+        27.5,
+        69,
+        82
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "08ac48f6-6803-5776-bfd5-c1f8ebddfd8a",
+      "identifier": "08ac48f6-6803-5776-bfd5-c1f8ebddfd8a",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data/items/08ac48f6-6803-5776-bfd5-c1f8ebddfd8a",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-areas_of_fluid_emissions_occurrence_no_occurrence_or_no_data/items/08ac48f6-6803-5776-bfd5-c1f8ebddfd8a",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-31.5 27.5 69 82"
+        }
+      },
+      "temporalCoverage": "2014-09-29T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_250k&VERSION=1.1.1&CRS=CRS:84&BBOX=-35.5793000004797,24.6036292157202,81.0572157865203,85.1901315837202&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "fileFormat": "application/vnd+zarr",
+          "title": "Zarr"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "fileFormat": "text/html",
+          "title": "Zarr (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "a4683e98-7134-5a2f-90df-7edab902becf",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -31.5,
+              27.5
+            ],
+            [
+              69,
+              27.5
+            ],
+            [
+              69,
+              82
+            ],
+            [
+              -31.5,
+              82
+            ],
+            [
+              -31.5,
+              27.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "areas_of_landslides_occurrence_no_occurrence_or_no_data_map_scale_1:250000_-31.5_27.5_69.0_82.0_2014-09-29 00:00:00+00:00_2025-12-31 00:00:00+00:00",
+        "title": "Areas of landslides occurrence no occurrence or no data map scale 1:250000 -31.5 27.5 69.0 82.0 2014-09-29 00:00:00+00:00 2025-12-31 00:00:00+00:00",
+        "start_datetime": "2014-09-29T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "Landslide",
+        "categorical_encoding": {
+          "None": 3,
+          "no data": 2,
+          "no occurrences": 4,
+          "occurrences reported": 1
+        },
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:43:01.173779Z",
+        "created": "2025-05-21T13:43:01.173779Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          18.75,
+          54.75
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data/items/a4683e98-7134-5a2f-90df-7edab902becf"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9nZW9sb2d5LzEzMTM2L0VNT0RuZXQ1X1dQNl9HRV9wb2xfMjUwa18yMDIzLnphcnIiLCBlbmdpbmU9InphcnIiKQpwcmludChkYXRhc2V0KQ==",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_250k&VERSION=1.1.1&CRS=CRS:84&BBOX=-35.5793000004797,24.6036292157202,81.0572157865203,85.1901315837202&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "zip": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "zarr": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "type": "application/vnd+zarr",
+          "title": "Zarr",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        },
+        "zarr-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "title": "Zarr (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -31.5,
+        27.5,
+        69,
+        82
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "a4683e98-7134-5a2f-90df-7edab902becf",
+      "identifier": "a4683e98-7134-5a2f-90df-7edab902becf",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data/items/a4683e98-7134-5a2f-90df-7edab902becf",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-areas_of_landslides_occurrence_no_occurrence_or_no_data/items/a4683e98-7134-5a2f-90df-7edab902becf",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-31.5 27.5 69 82"
+        }
+      },
+      "temporalCoverage": "2014-09-29T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_250k&VERSION=1.1.1&CRS=CRS:84&BBOX=-35.5793000004797,24.6036292157202,81.0572157865203,85.1901315837202&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "fileFormat": "application/vnd+zarr",
+          "title": "Zarr"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "fileFormat": "text/html",
+          "title": "Zarr (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "655fc06b-29f6-5c84-baf0-f5c65cb704f8",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -31.5,
+              27.5
+            ],
+            [
+              69,
+              27.5
+            ],
+            [
+              69,
+              82
+            ],
+            [
+              -31.5,
+              82
+            ],
+            [
+              -31.5,
+              27.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data_map_scale_1:250000_-31.5_27.5_69.0_82.0_2014-09-29 00:00:00+00:00_2025-12-31 00:00:00+00:00",
+        "title": "Areas of tectonic elements occurrence no occurrence or no data map scale 1:250000 -31.5 27.5 69.0 82.0 2014-09-29 00:00:00+00:00 2025-12-31 00:00:00+00:00",
+        "start_datetime": "2014-09-29T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "Tectonics",
+        "categorical_encoding": {
+          "None": 4,
+          "no data": 2,
+          "no occurrences": 3,
+          "occurrences reported": 1
+        },
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:43:00.388485Z",
+        "created": "2025-05-21T13:43:00.388485Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          18.75,
+          54.75
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data/items/655fc06b-29f6-5c84-baf0-f5c65cb704f8"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9nZW9sb2d5LzEzMTM2L0VNT0RuZXQ1X1dQNl9HRV9wb2xfMjUwa18yMDIzLnphcnIiLCBlbmdpbmU9InphcnIiKQpwcmludChkYXRhc2V0KQ==",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_250k&VERSION=1.1.1&CRS=CRS:84&BBOX=-35.5793000004797,24.6036292157202,81.0572157865203,85.1901315837202&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "zip": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "zarr": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "type": "application/vnd+zarr",
+          "title": "Zarr",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        },
+        "zarr-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "title": "Zarr (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -31.5,
+        27.5,
+        69,
+        82
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "655fc06b-29f6-5c84-baf0-f5c65cb704f8",
+      "identifier": "655fc06b-29f6-5c84-baf0-f5c65cb704f8",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data/items/655fc06b-29f6-5c84-baf0-f5c65cb704f8",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-areas_of_tectonic_elements_occurrence_no_occurrence_or_no_data/items/655fc06b-29f6-5c84-baf0-f5c65cb704f8",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-31.5 27.5 69 82"
+        }
+      },
+      "temporalCoverage": "2014-09-29T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_250k&VERSION=1.1.1&CRS=CRS:84&BBOX=-35.5793000004797,24.6036292157202,81.0572157865203,85.1901315837202&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "fileFormat": "application/vnd+zarr",
+          "title": "Zarr"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "fileFormat": "text/html",
+          "title": "Zarr (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "171dcd21-a065-57d6-830a-c46755b2cc72",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -31.5,
+              27.5
+            ],
+            [
+              69,
+              27.5
+            ],
+            [
+              69,
+              82
+            ],
+            [
+              -31.5,
+              82
+            ],
+            [
+              -31.5,
+              27.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "areas_of_tsunamis_occurrence_no_occurrence_or_no_data_map_scale_1:250000_-31.5_27.5_69.0_82.0_2014-09-29 00:00:00+00:00_2025-12-31 00:00:00+00:00",
+        "title": "Areas of tsunamis occurrence no occurrence or no data map scale 1:250000 -31.5 27.5 69.0 82.0 2014-09-29 00:00:00+00:00 2025-12-31 00:00:00+00:00",
+        "start_datetime": "2014-09-29T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "Tsunami",
+        "categorical_encoding": {
+          "None": 3,
+          "no data": 2,
+          "no occurrences": 4,
+          "occurrences reported": 1
+        },
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:42:59.654005Z",
+        "created": "2025-05-21T13:42:59.654005Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          18.75,
+          54.75
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data/items/171dcd21-a065-57d6-830a-c46755b2cc72"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9nZW9sb2d5LzEzMTM2L0VNT0RuZXQ1X1dQNl9HRV9wb2xfMjUwa18yMDIzLnphcnIiLCBlbmdpbmU9InphcnIiKQpwcmludChkYXRhc2V0KQ==",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_250k&VERSION=1.1.1&CRS=CRS:84&BBOX=-35.5793000004797,24.6036292157202,81.0572157865203,85.1901315837202&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "zip": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "zarr": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "type": "application/vnd+zarr",
+          "title": "Zarr",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        },
+        "zarr-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "title": "Zarr (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -31.5,
+        27.5,
+        69,
+        82
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "171dcd21-a065-57d6-830a-c46755b2cc72",
+      "identifier": "171dcd21-a065-57d6-830a-c46755b2cc72",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data/items/171dcd21-a065-57d6-830a-c46755b2cc72",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-areas_of_tsunamis_occurrence_no_occurrence_or_no_data/items/171dcd21-a065-57d6-830a-c46755b2cc72",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-31.5 27.5 69 82"
+        }
+      },
+      "temporalCoverage": "2014-09-29T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_250k&VERSION=1.1.1&CRS=CRS:84&BBOX=-35.5793000004797,24.6036292157202,81.0572157865203,85.1901315837202&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "fileFormat": "application/vnd+zarr",
+          "title": "Zarr"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "fileFormat": "text/html",
+          "title": "Zarr (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "fb84903b-32b7-5ebb-b5bf-454a9ffb620b",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -31.5,
+              27.5
+            ],
+            [
+              69,
+              27.5
+            ],
+            [
+              69,
+              82
+            ],
+            [
+              -31.5,
+              82
+            ],
+            [
+              -31.5,
+              27.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data_map_scale_1:250000_-31.5_27.5_69.0_82.0_2014-09-29 00:00:00+00:00_2025-12-31 00:00:00+00:00",
+        "title": "Areas of volcanic structures occurrence no occurrence or no data map scale 1:250000 -31.5 27.5 69.0 82.0 2014-09-29 00:00:00+00:00 2025-12-31 00:00:00+00:00",
+        "start_datetime": "2014-09-29T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "Volcanic_c",
+        "categorical_encoding": {
+          "None": 3,
+          "no data": 4,
+          "no occurrences": 2,
+          "occurrences reported": 1
+        },
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:42:58.948305Z",
+        "created": "2025-05-21T13:42:58.948305Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          18.75,
+          54.75
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data/items/fb84903b-32b7-5ebb-b5bf-454a9ffb620b"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9nZW9sb2d5LzEzMTM2L0VNT0RuZXQ1X1dQNl9HRV9wb2xfMjUwa18yMDIzLnphcnIiLCBlbmdpbmU9InphcnIiKQpwcmludChkYXRhc2V0KQ==",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_250k&VERSION=1.1.1&CRS=CRS:84&BBOX=-35.5793000004797,24.6036292157202,81.0572157865203,85.1901315837202&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "zip": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "zarr": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "type": "application/vnd+zarr",
+          "title": "Zarr",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        },
+        "zarr-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "title": "Zarr (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -31.5,
+        27.5,
+        69,
+        82
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "fb84903b-32b7-5ebb-b5bf-454a9ffb620b",
+      "identifier": "fb84903b-32b7-5ebb-b5bf-454a9ffb620b",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data/items/fb84903b-32b7-5ebb-b5bf-454a9ffb620b",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-areas_of_volcanic_structures_occurrence_no_occurrence_or_no_data/items/fb84903b-32b7-5ebb-b5bf-454a9ffb620b",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-31.5 27.5 69 82"
+        }
+      },
+      "temporalCoverage": "2014-09-29T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp6_geological_event_distribution_250k&VERSION=1.1.1&CRS=CRS:84&BBOX=-35.5793000004797,24.6036292157202,81.0572157865203,85.1901315837202&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_native/emodnet_geology/geological_event_distribution/geological_event_distribution_250k_scale/events_and_probabilities.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace&fname=f0b6c07f01d78b781a21cfb5cad2054a0e0c3ace_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "fileFormat": "application/vnd+zarr",
+          "title": "Zarr"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023_geoparquet.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13136/EMODnet5_WP6_GE_pol_250k_2023.zarr",
+          "fileFormat": "text/html",
+          "title": "Zarr (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "bde28055-313d-5d8e-a1fd-d659a08d69e3",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -33.78,
+              23.71
+            ],
+            [
+              67.55,
+              23.71
+            ],
+            [
+              67.55,
+              77.51
+            ],
+            [
+              -33.78,
+              77.51
+            ],
+            [
+              -33.78,
+              23.71
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "type_of_marine_mineral_occurrence_2003-01-01T00:00:00Z_2020-12-31T00:00:00Z_-33.78_23.71_67.55_77.51",
+        "title": "Type of marine mineral occurrence 2003-01-01t00:00:00z 2020-12-31t00:00:00z -33.78 23.71 67.55 77.51",
+        "start_datetime": "2003-01-01T00:00:00.000000Z",
+        "end_datetime": "2020-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          },
+          {
+            "name": "Bundesanstalt f\u00fcr Geowissenschaften und Rohstoffe (BGR)",
+            "email": "Kristine.asch@bgr.de",
+            "role": "pointOfContact"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "deposit_ty",
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:43:10.616436Z",
+        "created": "2025-05-21T13:43:10.616436Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          16.885,
+          50.61
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-type_of_marine_mineral_occurrence",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence/items/bde28055-313d-5d8e-a1fd-d659a08d69e3"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-type_of_marine_mineral_occurrence",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-type_of_marine_mineral_occurrence",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/67862788-6130-4a9b-ac7f-5b4a0a010855/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=67862788-6130-4a9b-ac7f-5b4a0a010855",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "zip": {
+          "href": "https://www.emodnet-geology.eu/products/wp7/marine_minerals.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f876b437bee865e5d67f8b2ffb96a3c5e563f44c&fname=f876b437bee865e5d67f8b2ffb96a3c5e563f44c_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/15182/marine_minerals_EvaporitesArea_MarinePlacerDepositsArea_MetalRichSedimentsArea_PolymetallicSulphiesPoint_geoparquet_edito.parquet/",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -33.78,
+        23.71,
+        67.55000000000001,
+        77.51
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "bde28055-313d-5d8e-a1fd-d659a08d69e3",
+      "identifier": "bde28055-313d-5d8e-a1fd-d659a08d69e3",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence/items/bde28055-313d-5d8e-a1fd-d659a08d69e3",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence/items/bde28055-313d-5d8e-a1fd-d659a08d69e3",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-33.78 23.71 67.55 77.51"
+        }
+      },
+      "temporalCoverage": "2003-01-01T00:00:00.000000Z/2020-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f876b437bee865e5d67f8b2ffb96a3c5e563f44c&fname=f876b437bee865e5d67f8b2ffb96a3c5e563f44c_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/67862788-6130-4a9b-ac7f-5b4a0a010855/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=67862788-6130-4a9b-ac7f-5b4a0a010855",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://www.emodnet-geology.eu/products/wp7/marine_minerals.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=f876b437bee865e5d67f8b2ffb96a3c5e563f44c&fname=f876b437bee865e5d67f8b2ffb96a3c5e563f44c_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/15182/marine_minerals_EvaporitesArea_MarinePlacerDepositsArea_MetalRichSedimentsArea_PolymetallicSulphiesPoint_geoparquet_edito.parquet/",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "120adb1e-e36f-5de6-9eb7-f52b00b04dc6",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -33.78,
+              23.71
+            ],
+            [
+              67.55,
+              23.71
+            ],
+            [
+              67.55,
+              77.51
+            ],
+            [
+              -33.78,
+              77.51
+            ],
+            [
+              -33.78,
+              23.71
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "type_of_marine_hydrocarbon_occurrence_2000-01-01T00:00:00Z_2021-12-31T00:00:00Z_-33.78_23.71_67.55_77.51",
+        "title": "Type of marine hydrocarbon occurrence 2000-01-01t00:00:00z 2021-12-31t00:00:00z -33.78 23.71 67.55 77.51",
+        "start_datetime": "2000-01-01T00:00:00.000000Z",
+        "end_datetime": "2021-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          },
+          {
+            "name": "Bundesanstalt f\u00fcr Geowissenschaften und Rohstoffe (BGR)",
+            "email": "Kristine.asch@bgr.de",
+            "role": "pointOfContact"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "dep_sub_ty",
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:43:12.316885Z",
+        "created": "2025-05-21T13:43:12.316885Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          16.885,
+          50.61
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-type_of_marine_hydrocarbon_occurrence",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_hydrocarbon_occurrence/items/120adb1e-e36f-5de6-9eb7-f52b00b04dc6"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-type_of_marine_hydrocarbon_occurrence",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_hydrocarbon_occurrence"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-type_of_marine_hydrocarbon_occurrence",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_hydrocarbon_occurrence"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/67862ceb-c4a0-45df-a3c1-5b4c0a010855/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=67862ceb-c4a0-45df-a3c1-5b4c0a010855",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp7_marine_hydrocarbons_and_hydrates&VERSION=1.1.1&CRS=CRS:84&BBOX=-33.78,23.71,67.55,77.51&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "zip": {
+          "href": "https://www.emodnet-geology.eu/products/wp7/marine_minerals.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=93b28819c359973bd6ab9d6c7a4ade95845ff561&fname=93b28819c359973bd6ab9d6c7a4ade95845ff561_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/15181/marine_minerals_MarineHydrocarbonsArea_GasHydratesArea_MarineSapropelArea_geoparquet_edito.parquet/",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -33.78,
+        23.71,
+        67.55000000000001,
+        77.51
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "120adb1e-e36f-5de6-9eb7-f52b00b04dc6",
+      "identifier": "120adb1e-e36f-5de6-9eb7-f52b00b04dc6",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_hydrocarbon_occurrence/items/120adb1e-e36f-5de6-9eb7-f52b00b04dc6",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-type_of_marine_hydrocarbon_occurrence/items/120adb1e-e36f-5de6-9eb7-f52b00b04dc6",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-33.78 23.71 67.55 77.51"
+        }
+      },
+      "temporalCoverage": "2000-01-01T00:00:00.000000Z/2021-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=93b28819c359973bd6ab9d6c7a4ade95845ff561&fname=93b28819c359973bd6ab9d6c7a4ade95845ff561_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/67862ceb-c4a0-45df-a3c1-5b4c0a010855/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=67862ceb-c4a0-45df-a3c1-5b4c0a010855",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp7_marine_hydrocarbons_and_hydrates&VERSION=1.1.1&CRS=CRS:84&BBOX=-33.78,23.71,67.55,77.51&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://www.emodnet-geology.eu/products/wp7/marine_minerals.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=93b28819c359973bd6ab9d6c7a4ade95845ff561&fname=93b28819c359973bd6ab9d6c7a4ade95845ff561_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/15181/marine_minerals_MarineHydrocarbonsArea_GasHydratesArea_MarineSapropelArea_geoparquet_edito.parquet/",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "393d5b0c-0788-564c-9f28-0b44390de672",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -33.78,
+              23.71
+            ],
+            [
+              67.55,
+              23.71
+            ],
+            [
+              67.55,
+              77.51
+            ],
+            [
+              -33.78,
+              77.51
+            ],
+            [
+              -33.78,
+              23.71
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "type_of_marine_mineral_occurrence_2000-01-01T00:00:00Z_2021-12-31T00:00:00Z_-33.78_23.71_67.55_77.51",
+        "title": "Type of marine mineral occurrence 2000-01-01t00:00:00z 2021-12-31t00:00:00z -33.78 23.71 67.55 77.51",
+        "start_datetime": "2000-01-01T00:00:00.000000Z",
+        "end_datetime": "2021-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          },
+          {
+            "name": "Bundesanstalt f\u00fcr Geowissenschaften und Rohstoffe (BGR)",
+            "email": "Kristine.asch@bgr.de",
+            "role": "pointOfContact"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "deposit_ty",
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:43:10.424656Z",
+        "created": "2025-05-21T13:43:10.424656Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          16.885,
+          50.61
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-type_of_marine_mineral_occurrence",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence/items/393d5b0c-0788-564c-9f28-0b44390de672"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-type_of_marine_mineral_occurrence",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-type_of_marine_mineral_occurrence",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/67862ceb-c4a0-45df-a3c1-5b4c0a010855/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=67862ceb-c4a0-45df-a3c1-5b4c0a010855",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp7_marine_hydrocarbons_and_hydrates&VERSION=1.1.1&CRS=CRS:84&BBOX=-33.78,23.71,67.55,77.51&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "zip": {
+          "href": "https://www.emodnet-geology.eu/products/wp7/marine_minerals.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=93b28819c359973bd6ab9d6c7a4ade95845ff561&fname=93b28819c359973bd6ab9d6c7a4ade95845ff561_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/15181/marine_minerals_MarineHydrocarbonsArea_GasHydratesArea_MarineSapropelArea_geoparquet_edito.parquet/",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -33.78,
+        23.71,
+        67.55000000000001,
+        77.51
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "393d5b0c-0788-564c-9f28-0b44390de672",
+      "identifier": "393d5b0c-0788-564c-9f28-0b44390de672",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence/items/393d5b0c-0788-564c-9f28-0b44390de672",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence/items/393d5b0c-0788-564c-9f28-0b44390de672",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-33.78 23.71 67.55 77.51"
+        }
+      },
+      "temporalCoverage": "2000-01-01T00:00:00.000000Z/2021-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=93b28819c359973bd6ab9d6c7a4ade95845ff561&fname=93b28819c359973bd6ab9d6c7a4ade95845ff561_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/67862ceb-c4a0-45df-a3c1-5b4c0a010855/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=67862ceb-c4a0-45df-a3c1-5b4c0a010855",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp7_marine_hydrocarbons_and_hydrates&VERSION=1.1.1&CRS=CRS:84&BBOX=-33.78,23.71,67.55,77.51&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://www.emodnet-geology.eu/products/wp7/marine_minerals.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=93b28819c359973bd6ab9d6c7a4ade95845ff561&fname=93b28819c359973bd6ab9d6c7a4ade95845ff561_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/15181/marine_minerals_MarineHydrocarbonsArea_GasHydratesArea_MarineSapropelArea_geoparquet_edito.parquet/",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "6b53fc1d-3215-5c9f-9338-365318053095",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -33.78,
+              23.71
+            ],
+            [
+              67.55,
+              23.71
+            ],
+            [
+              67.55,
+              77.51
+            ],
+            [
+              -33.78,
+              77.51
+            ],
+            [
+              -33.78,
+              23.71
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "type_of_marine_mineral_occurrence_2000-01-01T00:00:00Z_2024-12-31T00:00:00Z_-33.78_23.71_67.55_77.51",
+        "title": "Type of marine mineral occurrence 2000-01-01t00:00:00z 2024-12-31t00:00:00z -33.78 23.71 67.55 77.51",
+        "start_datetime": "2000-01-01T00:00:00.000000Z",
+        "end_datetime": "2024-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          },
+          {
+            "name": "Bundesanstalt f\u00fcr Geowissenschaften und Rohstoffe (BGR)",
+            "email": "Kristine.asch@bgr.de",
+            "role": "pointOfContact"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "DEPOSIT_TY",
+        "categorical_encoding": {
+          "Aggregate": 1
+        },
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:43:10.223266Z",
+        "created": "2025-05-21T13:43:10.223266Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          16.885,
+          50.61
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-type_of_marine_mineral_occurrence",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence/items/6b53fc1d-3215-5c9f-9338-365318053095"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-type_of_marine_mineral_occurrence",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-type_of_marine_mineral_occurrence",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9nZW9sb2d5LzEyNTkxL01hcmluZUFnZ3JlZ2F0ZXNBcmVhLnphcnIiLCBlbmdpbmU9InphcnIiKQpwcmludChkYXRhc2V0KQ==",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/678625c4-5f4c-4cec-96cb-5b480a010855/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=678625c4-5f4c-4cec-96cb-5b480a010855",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp7_marine_aggregates&VERSION=1.1.1&CRS=CRS:84&BBOX=-33.78,23.71,67.55,77.51&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "zip": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13133/marine_minerals.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=60f4627e0e07ec13b21537f90ec74defb3863cad&fname=60f4627e0e07ec13b21537f90ec74defb3863cad_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea_geoparquet.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "zarr": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea.zarr",
+          "type": "application/vnd+zarr",
+          "title": "Zarr",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea_geoparquet.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        },
+        "zarr-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea.zarr",
+          "title": "Zarr (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -33.78,
+        23.71,
+        67.55000000000001,
+        77.51
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "6b53fc1d-3215-5c9f-9338-365318053095",
+      "identifier": "6b53fc1d-3215-5c9f-9338-365318053095",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence/items/6b53fc1d-3215-5c9f-9338-365318053095",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-type_of_marine_mineral_occurrence/items/6b53fc1d-3215-5c9f-9338-365318053095",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-33.78 23.71 67.55 77.51"
+        }
+      },
+      "temporalCoverage": "2000-01-01T00:00:00.000000Z/2024-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=60f4627e0e07ec13b21537f90ec74defb3863cad&fname=60f4627e0e07ec13b21537f90ec74defb3863cad_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/678625c4-5f4c-4cec-96cb-5b480a010855/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=678625c4-5f4c-4cec-96cb-5b480a010855",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp7_marine_aggregates&VERSION=1.1.1&CRS=CRS:84&BBOX=-33.78,23.71,67.55,77.51&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13133/marine_minerals.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=60f4627e0e07ec13b21537f90ec74defb3863cad&fname=60f4627e0e07ec13b21537f90ec74defb3863cad_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea_geoparquet.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea.zarr",
+          "fileFormat": "application/vnd+zarr",
+          "title": "Zarr"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea_geoparquet.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea.zarr",
+          "fileFormat": "text/html",
+          "title": "Zarr (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "f470e001-e4e3-5660-976c-5b0c1d6983e4",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -33.78,
+              23.71
+            ],
+            [
+              67.55,
+              23.71
+            ],
+            [
+              67.55,
+              77.51
+            ],
+            [
+              -33.78,
+              77.51
+            ],
+            [
+              -33.78,
+              23.71
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "type_of_marine_aggregate_occurrence_2000-01-01T00:00:00Z_2024-12-31T00:00:00Z_-33.78_23.71_67.55_77.51",
+        "title": "Type of marine aggregate occurrence 2000-01-01t00:00:00z 2024-12-31t00:00:00z -33.78 23.71 67.55 77.51",
+        "start_datetime": "2000-01-01T00:00:00.000000Z",
+        "end_datetime": "2024-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Geology",
+            "role": "resourceProvider"
+          },
+          {
+            "name": "EMODnet Geology",
+            "role": "originator"
+          },
+          {
+            "name": "Bundesanstalt f\u00fcr Geowissenschaften und Rohstoffe (BGR)",
+            "email": "Kristine.asch@bgr.de",
+            "role": "pointOfContact"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "native_variable": "DEP_SUB_TY",
+        "categorical_encoding": {
+          "Building sands": 11,
+          "Calcareous algae": 5,
+          "Fill Aggregate": 1,
+          "Filling Sand": 12,
+          "Filling sand": 9,
+          "Gravel": 3,
+          "Gravelly Sand": 6,
+          "N/A": 7,
+          "None": 14,
+          "Pebbles/Cobbles >2mm": 8,
+          "Pebbles/Cobbles>2mm": 15,
+          "Pebbles/cobbles": 13,
+          "Sand": 2,
+          "Sand and Gravel": 4,
+          "Sand and Silt": 10,
+          "Shell sand and shell gravel (bioclastic material)": 16
+        },
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:43:09.672750Z",
+        "created": "2025-05-21T13:43:09.672750Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          16.885,
+          50.61
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-type_of_marine_aggregate_occurrence",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_aggregate_occurrence/items/f470e001-e4e3-5660-976c-5b0c1d6983e4"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-type_of_marine_aggregate_occurrence",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_aggregate_occurrence"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-type_of_marine_aggregate_occurrence",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_aggregate_occurrence"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9nZW9sb2d5LzEyNTkxL01hcmluZUFnZ3JlZ2F0ZXNBcmVhLnphcnIiLCBlbmdpbmU9InphcnIiKQpwcmludChkYXRhc2V0KQ==",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/678625c4-5f4c-4cec-96cb-5b480a010855/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=678625c4-5f4c-4cec-96cb-5b480a010855",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp7_marine_aggregates&VERSION=1.1.1&CRS=CRS:84&BBOX=-33.78,23.71,67.55,77.51&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "zip": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13133/marine_minerals.zip",
+          "type": "application/zip",
+          "title": "Zip",
+          "roles": [
+            "data"
+          ]
+        },
+        "png": {
+          "href": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=60f4627e0e07ec13b21537f90ec74defb3863cad&fname=60f4627e0e07ec13b21537f90ec74defb3863cad_s.png",
+          "type": "image/png",
+          "title": "PNG",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea_geoparquet.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "zarr": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea.zarr",
+          "type": "application/vnd+zarr",
+          "title": "Zarr",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea_geoparquet.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        },
+        "zarr-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea.zarr",
+          "title": "Zarr (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -33.78,
+        23.71,
+        67.55000000000001,
+        77.51
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "f470e001-e4e3-5660-976c-5b0c1d6983e4",
+      "identifier": "f470e001-e4e3-5660-976c-5b0c1d6983e4",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-type_of_marine_aggregate_occurrence/items/f470e001-e4e3-5660-976c-5b0c1d6983e4",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-type_of_marine_aggregate_occurrence/items/f470e001-e4e3-5660-976c-5b0c1d6983e4",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-33.78 23.71 67.55 77.51"
+        }
+      },
+      "temporalCoverage": "2000-01-01T00:00:00.000000Z/2024-12-31T00:00:00.000000Z",
+      "image": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=60f4627e0e07ec13b21537f90ec74defb3863cad&fname=60f4627e0e07ec13b21537f90ec74defb3863cad_s.png",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/678625c4-5f4c-4cec-96cb-5b480a010855/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=678625c4-5f4c-4cec-96cb-5b480a010855",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://drive.emodnet-geology.eu/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=cp_wp7_marine_aggregates&VERSION=1.1.1&CRS=CRS:84&BBOX=-33.78,23.71,67.55,77.51&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/13133/marine_minerals.zip",
+          "fileFormat": "application/zip",
+          "title": "Zip"
+        },
+        {
+          "contentUrl": "http://drive.emodnet-geology.eu/geonetwork/srv/eng//resources.get?uuid=60f4627e0e07ec13b21537f90ec74defb3863cad&fname=60f4627e0e07ec13b21537f90ec74defb3863cad_s.png",
+          "fileFormat": "image/png",
+          "title": "PNG"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea_geoparquet.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea.zarr",
+          "fileFormat": "application/vnd+zarr",
+          "title": "Zarr"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea_geoparquet.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_geology/12591/MarineAggregatesArea.zarr",
+          "fileFormat": "text/html",
+          "title": "Zarr (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "73da2fc5-e870-5957-b0e4-dc9a2ae52246",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -36.06,
+              23.58
+            ],
+            [
+              43.04,
+              23.58
+            ],
+            [
+              43.04,
+              81.6
+            ],
+            [
+              -36.06,
+              81.6
+            ],
+            [
+              -36.06,
+              23.58
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "taxa_in_habitats",
+        "title": "Taxa in habitats",
+        "start_datetime": "1900-01-01T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "Department of Animal and Plant Sciences",
+            "role": "provider"
+          },
+          {
+            "name": "EMODnet Biology",
+            "role": "provider"
+          }
+        ],
+        "data rights and restrictions": "Attribution (CC BY)",
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:40:32.890973Z",
+        "created": "2025-05-21T13:40:32.890973Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          3.49,
+          52.59
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas/items/73da2fc5-e870-5957-b0e4-dc9a2ae52246"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/6d617269-6e65-696e-666f-000000008777/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=6d617269-6e65-696e-666f-000000008777",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://geo.vliz.be/geoserver/Emodnetbio/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=Emodnetbio:eb185_benthos_full_matched&VERSION=1.1.1&CRS=CRS:84&BBOX=-36.06,23.58,43.04,81.6&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/14172/benthos_full_matched.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/14172/benthos_full_matched.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -36.06,
+        23.58,
+        43.03999999999999,
+        81.6
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "73da2fc5-e870-5957-b0e4-dc9a2ae52246",
+      "identifier": "73da2fc5-e870-5957-b0e4-dc9a2ae52246",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas/items/73da2fc5-e870-5957-b0e4-dc9a2ae52246",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas/items/73da2fc5-e870-5957-b0e4-dc9a2ae52246",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-36.06 23.58 43.04 81.6"
+        }
+      },
+      "temporalCoverage": "1900-01-01T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/6d617269-6e65-696e-666f-000000008777/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=6d617269-6e65-696e-666f-000000008777",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://geo.vliz.be/geoserver/Emodnetbio/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=Emodnetbio:eb185_benthos_full_matched&VERSION=1.1.1&CRS=CRS:84&BBOX=-36.06,23.58,43.04,81.6&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/14172/benthos_full_matched.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/14172/benthos_full_matched.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "63ad5275-c0dd-5b1e-b69e-e1fdb1ce75b4",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -36.06,
+              23.58
+            ],
+            [
+              43.04,
+              23.58
+            ],
+            [
+              43.04,
+              81.6
+            ],
+            [
+              -36.06,
+              81.6
+            ],
+            [
+              -36.06,
+              23.58
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "species_richness",
+        "title": "Species richness",
+        "start_datetime": "1900-01-01T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "Department of Animal and Plant Sciences",
+            "role": "provider"
+          },
+          {
+            "name": "EMODnet Biology",
+            "role": "provider"
+          }
+        ],
+        "data rights and restrictions": "Attribution (CC BY)",
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:40:32.688130Z",
+        "created": "2025-05-21T13:40:32.688130Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          3.49,
+          52.59
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas/items/63ad5275-c0dd-5b1e-b69e-e1fdb1ce75b4"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9iaW9sb2d5LzE1MTg1L2V1c21fYmVudGhvcy5uYyNtb2RlPWJ5dGVzIiwgZW5naW5lPSJuZXRjZGY0IikKcHJpbnQoZGF0YXNldCk=",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/6d617269-6e65-696e-666f-000000008777/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=6d617269-6e65-696e-666f-000000008777",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://ows.emodnet.eu/geoserver/biology/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=biology:eusm_benthos_n_species&VERSION=1.1.1&CRS=CRS:84&BBOX=-36.06,23.58,43.04,81.6&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "netcdf": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/15185/eusm_benthos.nc",
+          "type": "application/vnd+netcdf",
+          "title": "NetCDF",
+          "roles": [
+            "data"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -36.06,
+        23.58,
+        43.03999999999999,
+        81.6
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "63ad5275-c0dd-5b1e-b69e-e1fdb1ce75b4",
+      "identifier": "63ad5275-c0dd-5b1e-b69e-e1fdb1ce75b4",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas/items/63ad5275-c0dd-5b1e-b69e-e1fdb1ce75b4",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas/items/63ad5275-c0dd-5b1e-b69e-e1fdb1ce75b4",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-36.06 23.58 43.04 81.6"
+        }
+      },
+      "temporalCoverage": "1900-01-01T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/6d617269-6e65-696e-666f-000000008777/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=6d617269-6e65-696e-666f-000000008777",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://ows.emodnet.eu/geoserver/biology/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=biology:eusm_benthos_n_species&VERSION=1.1.1&CRS=CRS:84&BBOX=-36.06,23.58,43.04,81.6&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/15185/eusm_benthos.nc",
+          "fileFormat": "application/vnd+netcdf",
+          "title": "NetCDF"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "d7157944-9dbf-5241-a230-3a82e069ebab",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -36.06,
+              23.58
+            ],
+            [
+              43.04,
+              23.58
+            ],
+            [
+              43.04,
+              81.6
+            ],
+            [
+              -36.06,
+              81.6
+            ],
+            [
+              -36.06,
+              23.58
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "number_of_macrobenthos_surveys",
+        "title": "Number of macrobenthos surveys",
+        "start_datetime": "1900-01-01T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "Department of Animal and Plant Sciences",
+            "role": "provider"
+          },
+          {
+            "name": "EMODnet Biology",
+            "role": "provider"
+          }
+        ],
+        "data rights and restrictions": "Attribution (CC BY)",
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:40:32.504620Z",
+        "created": "2025-05-21T13:40:32.504620Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          3.49,
+          52.59
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas/items/d7157944-9dbf-5241-a230-3a82e069ebab"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        },
+        {
+          "href": "data:text/x-python;charset=utf-8;base64,aW1wb3J0IHhhcnJheQoKZGF0YXNldCA9IHhhcnJheS5vcGVuX2RhdGFzZXQoImh0dHBzOi8vczMud2F3My0xLmNsb3VkZmVycm8uY29tL2Vtb2RuZXQvZW1vZG5ldF9iaW9sb2d5LzE1MTg1L2V1c21fYmVudGhvcy5uYyNtb2RlPWJ5dGVzIiwgZW5naW5lPSJuZXRjZGY0IikKcHJpbnQoZGF0YXNldCk=",
+          "rel": "example",
+          "type": "text/x-python",
+          "example:language": "Python",
+          "title": "Python code example to open dataset"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/6d617269-6e65-696e-666f-000000008777/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=6d617269-6e65-696e-666f-000000008777",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://ows.emodnet.eu/geoserver/biology/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=biology:eusm_benthos_n_surveys&VERSION=1.1.1&CRS=CRS:84&BBOX=-36.06,23.58,43.04,81.6&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "netcdf": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/15185/eusm_benthos.nc",
+          "type": "application/vnd+netcdf",
+          "title": "NetCDF",
+          "roles": [
+            "data"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/example-links/v0.0.1/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -36.06,
+        23.58,
+        43.03999999999999,
+        81.6
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "d7157944-9dbf-5241-a230-3a82e069ebab",
+      "identifier": "d7157944-9dbf-5241-a230-3a82e069ebab",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas/items/d7157944-9dbf-5241-a230-3a82e069ebab",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas/items/d7157944-9dbf-5241-a230-3a82e069ebab",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-36.06 23.58 43.04 81.6"
+        }
+      },
+      "temporalCoverage": "1900-01-01T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/6d617269-6e65-696e-666f-000000008777/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=6d617269-6e65-696e-666f-000000008777",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://ows.emodnet.eu/geoserver/biology/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=biology:eusm_benthos_n_surveys&VERSION=1.1.1&CRS=CRS:84&BBOX=-36.06,23.58,43.04,81.6&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/15185/eusm_benthos.nc",
+          "fileFormat": "application/vnd+netcdf",
+          "title": "NetCDF"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "a74cd632-5a05-5c53-9806-c373401e1f88",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -36.06,
+              23.58
+            ],
+            [
+              43.04,
+              23.58
+            ],
+            [
+              43.04,
+              81.6
+            ],
+            [
+              -36.06,
+              81.6
+            ],
+            [
+              -36.06,
+              23.58
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "eunis_habitats_2019",
+        "title": "Eunis habitats 2019",
+        "start_datetime": "1900-01-01T00:00:00.000000Z",
+        "end_datetime": "2025-12-31T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "Department of Animal and Plant Sciences",
+            "role": "provider"
+          },
+          {
+            "name": "EMODnet Biology",
+            "role": "provider"
+          }
+        ],
+        "data rights and restrictions": "Attribution (CC BY)",
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:40:32.325610Z",
+        "created": "2025-05-21T13:40:32.325610Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          3.49,
+          52.59
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas/items/a74cd632-5a05-5c53-9806-c373401e1f88"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/6d617269-6e65-696e-666f-000000008777/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=6d617269-6e65-696e-666f-000000008777",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://geo.vliz.be/geoserver/Emodnetbio/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=Emodnetbio:eb185_eusm23_total&VERSION=1.1.1&CRS=CRS:84&BBOX=-36.06,23.58,43.04,81.6&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/14172/benthos_full_matched.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/14172/benthos_full_matched.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -36.06,
+        23.58,
+        43.03999999999999,
+        81.6
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "a74cd632-5a05-5c53-9806-c373401e1f88",
+      "identifier": "a74cd632-5a05-5c53-9806-c373401e1f88",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas/items/a74cd632-5a05-5c53-9806-c373401e1f88",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-seabed_habitat_and_macrobenthos_occurrences_in_european_seas/items/a74cd632-5a05-5c53-9806-c373401e1f88",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-36.06 23.58 43.04 81.6"
+        }
+      },
+      "temporalCoverage": "1900-01-01T00:00:00.000000Z/2025-12-31T00:00:00.000000Z",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/6d617269-6e65-696e-666f-000000008777/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=6d617269-6e65-696e-666f-000000008777",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://geo.vliz.be/geoserver/Emodnetbio/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=Emodnetbio:eb185_eusm23_total&VERSION=1.1.1&CRS=CRS:84&BBOX=-36.06,23.58,43.04,81.6&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/14172/benthos_full_matched.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/14172/benthos_full_matched.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        }
+      ]
+    },
+    {
+      "type": "Feature",
+      "id": "426b87c6-409d-5dfd-9522-1be4e30b4b01",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -180,
+              -90
+            ],
+            [
+              180,
+              -90
+            ],
+            [
+              180,
+              90
+            ],
+            [
+              -180,
+              90
+            ],
+            [
+              -180,
+              -90
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "productIdentifier": "occurrence_data_eurobis_database_observations",
+        "title": "Occurrence data eurobis database observations",
+        "start_datetime": "1753-01-01T00:00:00.000000Z",
+        "end_datetime": "2035-05-19T00:00:00.000000Z",
+        "provider": [
+          {
+            "name": "EMODnet Biology",
+            "role": "resourceProvider"
+          }
+        ],
+        "data rights and restrictions": "CC-BY-4.0",
+        "proj:code": "EPSG:4326",
+        "updated": "2025-05-21T13:40:37.826478Z",
+        "created": "2025-05-21T13:40:37.826478Z",
+        "likes": 0,
+        "comments": 0,
+        "owner": "226779592474001643",
+        "status": 1,
+        "centroid": [
+          0,
+          0
+        ],
+        "ssys:targets": [
+          "earth"
+        ]
+      },
+      "collection": "emodnet-occurrence_data",
+      "links": [
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-occurrence_data/items/426b87c6-409d-5dfd-9522-1be4e30b4b01"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "title": "emodnet-occurrence_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-occurrence_data"
+        },
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "title": "emodnet-occurrence_data",
+          "href": "https://api.dive.edito.eu/data/collections/emodnet-occurrence_data"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://api.dive.edito.eu/data"
+        }
+      ],
+      "assets": {
+        "xml": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/6d617269-6e65-696e-666f-000000001510/formatters/xml",
+          "type": "application/xml",
+          "title": "XML",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "csw": {
+          "href": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=6d617269-6e65-696e-666f-000000001510",
+          "type": "application/csw",
+          "title": "CSW",
+          "roles": [
+            "metadata"
+          ]
+        },
+        "wms": {
+          "href": "https://geo.vliz.be/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=Dataportal:eurobis_rasters-obisenv&VERSION=1.1.1&CRS=CRS:84&BBOX=-180,-90,180,90&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "type": "OGC:WMS",
+          "title": "Web Map Service (WMS)",
+          "roles": [
+            "service"
+          ]
+        },
+        "parquet": {
+          "href": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/12639/eurobis_obisenv_view_2025-03-20.parquet",
+          "type": "application/vnd+parquet",
+          "title": "Parquet",
+          "roles": [
+            "data"
+          ]
+        },
+        "parquet-datalab-data-explorer": {
+          "href": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/12639/eurobis_obisenv_view_2025-03-20.parquet",
+          "title": "Parquet (Open in Data Explorer)",
+          "type": "text/html",
+          "roles": [
+            "data",
+            "graphic"
+          ]
+        }
+      },
+      "stac_version": "1.1.0",
+      "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ssys/v1.1.0/schema.json"
+      ],
+      "visibility": [
+        "100"
+      ],
+      "bbox": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "@context": "https://schema.org/",
+      "@type": "DataCatalog",
+      "name": "426b87c6-409d-5dfd-9522-1be4e30b4b01",
+      "identifier": "426b87c6-409d-5dfd-9522-1be4e30b4b01",
+      "isBasedOn": "https://api.dive.edito.eu/data/collections/emodnet-occurrence_data/items/426b87c6-409d-5dfd-9522-1be4e30b4b01",
+      "url": "https://radiantearth.github.io/stac-browser/#/external/api.dive.edito.eu/data/collections/emodnet-occurrence_data/items/426b87c6-409d-5dfd-9522-1be4e30b4b01",
+      "spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "-180 -90 180 90"
+        }
+      },
+      "temporalCoverage": "1753-01-01T00:00:00.000000Z/2035-05-19T00:00:00.000000Z",
+      "distribution": [
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/srv/api/records/6d617269-6e65-696e-666f-000000001510/formatters/xml",
+          "fileFormat": "application/xml",
+          "title": "XML"
+        },
+        {
+          "contentUrl": "https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/csw?request=GetRecordById&service=CSW&version=2.0.2&elementSetName=full&id=6d617269-6e65-696e-666f-000000001510",
+          "fileFormat": "application/csw",
+          "title": "CSW"
+        },
+        {
+          "contentUrl": "https://geo.vliz.be/geoserver/wms?SERVICE=WMS&REQUEST=GetMap&LAYERS=Dataportal:eurobis_rasters-obisenv&VERSION=1.1.1&CRS=CRS:84&BBOX=-180,-90,180,90&WIDTH=800&HEIGHT=600&FORMAT=image/png",
+          "fileFormat": "OGC:WMS",
+          "title": "Web Map Service (WMS)"
+        },
+        {
+          "contentUrl": "https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/12639/eurobis_obisenv_view_2025-03-20.parquet",
+          "fileFormat": "application/vnd+parquet",
+          "title": "Parquet"
+        },
+        {
+          "contentUrl": "https://datalab.dive.edito.eu/data-explorer?source=https://s3.waw3-1.cloudferro.com/emodnet/emodnet_biology/12639/eurobis_obisenv_view_2025-03-20.parquet",
+          "fileFormat": "text/html",
+          "title": "Parquet (Open in Data Explorer)"
+        }
+      ]
+    }
+  ]
+}

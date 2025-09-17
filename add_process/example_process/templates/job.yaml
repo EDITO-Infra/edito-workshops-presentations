@@ -1,0 +1,138 @@
+{{- $fullName := include "library-chart.fullname" . -}}
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  template:
+    spec:
+      initContainers:
+      - name: download-input-data
+        image: minio/mc
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_SECRET_ACCESS_KEY
+        - name: AWS_SESSION_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_SESSION_TOKEN
+        - name: AWS_S3_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_S3_ENDPOINT
+        - name: AWS_DEFAULT_REGION
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_DEFAULT_REGION
+        command: ["/bin/sh"]
+        args:
+          - -c
+          - |
+            export MC_HOST_s3=https://$(AWS_ACCESS_KEY_ID):$(AWS_SECRET_ACCESS_KEY):$(AWS_SESSION_TOKEN)@$(AWS_S3_ENDPOINT)
+            mkdir -p /data/input
+            echo "Downloading input data from s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.inputData.s3Path }}/"
+            mc cp --recursive s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.inputData.s3Path }}/ /data/input/ || echo "No input data found at {{ .Values.inputData.s3Path }}, will use sample data"
+            ls -la /data/input
+        volumeMounts:
+        - mountPath: /data
+          name: data-volume
+        resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      - name: {{ .Release.Name }}-data-preparation
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        env:
+        - name: EDITO_INFRA_OUTPUT
+          value: "/data/output"
+        - name: USER_NAME
+          value: "{{ .Release.Namespace }}"
+        volumeMounts:
+        - mountPath: /data
+          name: data-volume
+        resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        command: ["/bin/bash", "-c", "mkdir -p /data/output && Rscript /Scripts/01_data_preparation.R", "ls /data/output", "echo 'Data preparation done'"]
+      - name: {{ .Release.Name }}-model-analysis
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        env:
+        - name: EDITO_INFRA_OUTPUT
+          value: "/data/output"
+        - name: USER_NAME
+          value: "{{ .Release.Namespace }}"
+        volumeMounts:
+        - mountPath: /data
+          name: data-volume
+        resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        command: ["/bin/bash", "-c", "Rscript /Scripts/02_model_analysis.R", "ls /data/output", "echo 'Model analysis done'"]
+      - name: copy-output
+        image: minio/mc
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_SECRET_ACCESS_KEY
+        - name: AWS_SESSION_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_SESSION_TOKEN
+        - name: AWS_S3_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_S3_ENDPOINT
+        - name: AWS_DEFAULT_REGION
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_DEFAULT_REGION
+        command: ["/bin/sh"]
+        args:
+          - -c
+          - |
+            echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
+            echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
+            echo "AWS_SESSION_TOKEN: $AWS_SESSION_TOKEN"
+            echo "AWS_S3_ENDPOINT: $AWS_S3_ENDPOINT"
+            echo "release_point: $release_point"
+            export MC_HOST_s3=https://$(AWS_ACCESS_KEY_ID):$(AWS_SECRET_ACCESS_KEY):$(AWS_SESSION_TOKEN)@$(AWS_S3_ENDPOINT)
+            mc cp --recursive /data/output/ s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Release.Name }}
+            echo "Files copied to s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Release.Name }}"
+        volumeMounts:
+        - mountPath: /data
+          name: data-volume
+        resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+
+      containers:
+        - name: done
+          image: busybox
+          command: ["sh", "-c", "echo 'process done, files copied'; exit 0"]
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+
+      restartPolicy: Never
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: {{ include "library-chart.fullname" . }}
+
+  backoffLimit: 4
