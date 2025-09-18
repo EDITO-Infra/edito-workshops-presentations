@@ -11,16 +11,13 @@ Learn how to access and analyze marine data through EDITO's data infrastructure.
 
 ## 🚀 Quick Start
 
-1. **Follow the presentation**: [Data Exploration Guide](presentations/explore_data_slidedeck.html)
-2. **Explore the examples**: Check out the various data viewers and scripts
-3. **Start analyzing**: Use the provided templates and examples
+- **Explore the examples**: Check out the various data viewers and scripts
+- **Start analyzing**: Use the provided templates and examples
 
 ## 📁 Contents
 
 - `viewparquet/` - Interactive Parquet data viewer
 - `shiny_parquet_app/` - Shiny application for data exploration
-- `presentations/explore_data_slidedeck.html` - Interactive presentation
-- `presentations/explore_data_slidedeck.pdf` - PDF version
 
 ## 🛠️ Requirements
 
@@ -35,7 +32,7 @@ Learn how to access and analyze marine data through EDITO's data infrastructure.
 
 ## 🎥 Presentation
 
-[View the interactive presentation](presentations/explore_data_slidedeck.html) to get started with exploring marine data through EDITO.
+[View the interactive presentation](../docs/presentations/explore_data_slidedeck.pd) to get started with exploring marine data through EDITO.
 
 ## 🤝 Contributing
 

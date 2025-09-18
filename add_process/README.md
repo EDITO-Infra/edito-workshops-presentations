@@ -14,26 +14,24 @@ Learn how to deploy computational models and data processing workflows to EDITO.
 
 ## 🚀 Quick Start
 
-1. **Follow the presentation**: [Process Deployment Guide](../presentations/add_edito_process_slidedeck.html)
-2. **Explore the example**: Check out `example_model/` for a complete example
-3. **Start deploying**: Use the templates and guidelines provided
+- **Explore the example**: Check out `example_process/` for a complete template
+- **Start deploying**: Use the templates and guidelines provided
 
 ## 📁 Contents
 
 - `example_model/` - Complete example model workflow
 - `example_process/` - **Demonstrative process template** (see detailed description below)
-- `../presentations/add_edito_process_slidedeck.html` - Interactive presentation
 
 ## 🔬 Example Process Template
 
 The `example_process/` directory contains a **demonstrative template** that shows how to create a data processing workflow on EDITO. This template follows a simple three-stage pattern:
 
 ### Process Flow
-1. **Download**: Input data is downloaded from your personal S3 storage to `/data/input`
-2. **Process**: Two sequential processing steps run in `/data`:
-   - Data preparation (`Rscript /Scripts/01_data_preparation.R`)
-   - Model analysis (`Rscript /Scripts/02_model_analysis.R`)
-3. **Upload**: Results are uploaded from `/data/output` back to your personal S3 storage
+- **Download**: Input data is downloaded from your personal S3 storage to `/data/input`
+- **Process**: Two sequential processing steps run in `/data`:
+  - Data preparation (`Rscript /Scripts/01_data_preparation.R`)
+  - Model analysis (`Rscript /Scripts/02_model_analysis.R`)
+- **Upload**: Results are uploaded from `/data/output` back to your personal S3 storage
 
 ### Key Features
 - **Simple S3 Integration**: Downloads from and uploads to your personal storage
@@ -82,17 +80,17 @@ Your application qualifies as a **model** when it:
 
 The process of adding a model to EDITO follows these key steps:
 
-### 1. Dockerize Your Model
+### Dockerize Your Model
 - Containerize your computational workflow
 - Ensure all dependencies are included
 - Test locally before deployment
 
-### 2. Configure Helm Charts
+### Configure Helm Charts
 - Create Kubernetes Job configurations
 - Set up resource requirements
 - Configure input/output data handling
 
-### 3. Publish Your Model
+### Publish Your Model
 - Push Docker image to container registry
 - Deploy to EDITO playground for testing
 - Submit for production deployment
@@ -133,11 +131,11 @@ The example process Helm chart demonstrates a simple three-stage workflow with t
 
 ### Key Components
 
-1. **S3 Download Init Container** - Downloads data to `/data/input`
-2. **Data Preparation Container** - Runs configurable data preparation command
-3. **Model Analysis Container** - Runs configurable model analysis command  
-4. **S3 Upload Container** - Uploads results from `/data/output` to S3
-5. **Shared Volume** - `/data` directory shared between all containers
+- **S3 Download Init Container** - Downloads data to `/data/input`
+- **Data Preparation Container** - Runs configurable data preparation command
+- **Model Analysis Container** - Runs configurable model analysis command  
+- **S3 Upload Container** - Uploads results from `/data/output` to S3
+- **Shared Volume** - `/data` directory shared between all containers
 
 ### Mount Points
 
@@ -211,10 +209,6 @@ The example process uses a straightforward approach:
 
 > **⚠️ Note**: The example model scripts are demonstrative. You'll need to create your own processing logic based on your specific requirements.
 
-## 🎥 Presentation
-
-[View the interactive presentation](../presentations/add_edito_process_slidedeck.html) to get started with deploying processes to EDITO.
-
 ## 🤝 Contributing
 
 Found an issue or have suggestions? Please contribute to improve this workshop!
@@ -229,3 +223,5 @@ Found an issue or have suggestions? Please contribute to improve this workshop!
 ---
 
 > **⚠️ Final Reminder**: This tutorial provides a demonstrative example process template to help you understand the concepts and structure. The actual processing logic, data handling, and workflow steps will need to be customized or completely rewritten to match your specific use case and requirements. Use this as a starting point for learning, not as a production-ready solution.
+
+📄 **Presentation**: [Process Deployment Guide](../docs/presentations/add_edito_process_slidedeck.pdf)

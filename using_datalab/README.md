@@ -14,20 +14,20 @@ Learn how to use EDITO Datalab for marine data analysis with this comprehensive 
 
 ## 🚀 Quick Start (15 minutes)
 
-### Step 1: Find Services
-1. Go to [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
-2. Browse the service catalog
-3. Choose your preferred environment:
-   - **RStudio** for R analysis and visualization
-   - **Jupyter** for Python notebooks and machine learning
-   - **VSCode** for mixed R/Python projects and development
+### Find Services
+- Go to [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
+- Browse the service catalog
+- Choose your preferred environment:
+  - **RStudio** for R analysis and visualization
+  - **Jupyter** for Python notebooks and machine learning
+  - **VSCode** for mixed R/Python projects and development
 
-### Step 2: Configure Service
+### Configure Service
 - Select appropriate CPU/memory resources (2-8 cores, 4-16GB RAM)
 - Choose your preferred environment
 - Launch the service (credentials are automatically configured)
 
-### Step 3: Run Analysis
+### Run Analysis
 - Use the provided scripts to get started
 - Search STAC catalog for data collections
 - Process Parquet and Zarr files
@@ -85,10 +85,10 @@ Learn how to use EDITO Datalab for marine data analysis with this comprehensive 
 - Quick data exploration and analysis
 
 **Getting Started:**
-1. Launch RStudio service in EDITO Datalab
-2. Run `r/01_stac_search.R` to discover data collections
-3. Use `r/02_read_parquet.R` to process biodiversity data
-4. Try `r/03_personal_storage.R` for data management
+- Launch RStudio service in EDITO Datalab
+- Run `r/01_stac_search.R` to discover data collections
+- Use `r/02_read_parquet.R` to process biodiversity data
+- Try `r/03_personal_storage.R` for data management
 
 ### Jupyter Service
 **Perfect for:**
@@ -98,13 +98,13 @@ Learn how to use EDITO Datalab for marine data analysis with this comprehensive 
 - Notebook-based research workflows
 
 **Getting Started:**
-1. Launch Jupyter service in EDITO Datalab
-2. Run the Python scripts in sequence:
-   - `python/01_get_stac_collections.py`
-   - `python/02_search_stac_assets.py`
-   - `python/03_get_zarr_to_df.py`
-   - `python/04_get_parquet_data.py`
-   - `python/05_combine_and_save.py`
+- Launch Jupyter service in EDITO Datalab
+- Run the Python scripts in sequence:
+  - `python/01_get_stac_collections.py`
+  - `python/02_search_stac_assets.py`
+  - `python/03_get_zarr_to_df.py`
+  - `python/04_get_parquet_data.py`
+  - `python/05_combine_and_save.py`
 
 ### VSCode Service
 **Perfect for:**
@@ -114,10 +114,10 @@ Learn how to use EDITO Datalab for marine data analysis with this comprehensive 
 - Advanced data processing workflows
 
 **Getting Started:**
-1. Launch VSCode service in EDITO Datalab
-2. Open the `using_datalab` folder
-3. Run either R or Python scripts as needed
-4. Use integrated terminal for command-line tools
+- Launch VSCode service in EDITO Datalab
+- Open the `using_datalab` folder
+- Run either R or Python scripts as needed
+- Use integrated terminal for command-line tools
 
 ## 📊 Data Formats & Sources
 
@@ -159,21 +159,21 @@ The tutorial includes video demonstrations of:
 
 ## 🚀 Getting Started
 
-### Option 1: Quick Start (15 minutes)
-1. **Launch a service** at [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
-2. **Run one script** to get familiar with the workflow
-3. **Explore the data** and see what's available
+### Quick Start (15 minutes)
+- **Launch a service** at [datalab.dive.edito.eu](https://datalab.dive.edito.eu/)
+- **Run one script** to get familiar with the workflow
+- **Explore the data** and see what's available
 
-### Option 2: Complete Workflow (1 hour)
-1. **Start with R**: Run `r/01_stac_search.R` to discover data
-2. **Process data**: Use `r/02_read_parquet.R` for biodiversity data
-3. **Manage storage**: Try `r/03_personal_storage.R` for data management
-4. **Advanced Python**: Run the Python scripts in sequence for full workflow
+### Complete Workflow (1 hour)
+- **Start with R**: Run `r/01_stac_search.R` to discover data
+- **Process data**: Use `r/02_read_parquet.R` for biodiversity data
+- **Manage storage**: Try `r/03_personal_storage.R` for data management
+- **Advanced Python**: Run the Python scripts in sequence for full workflow
 
-### Option 3: Automated Demo
-1. **Run the complete demo**: `python/run_full_demo.py`
-2. **Watch the process**: See all steps automated
-3. **Examine results**: Check the output files and storage
+### Automated Demo
+- **Run the complete demo**: `python/run_full_demo.py`
+- **Watch the process**: See all steps automated
+- **Examine results**: Check the output files and storage
 
 ## 📖 Additional Resources
 
@@ -190,3 +190,7 @@ Found an issue or have suggestions? Please contribute to improve this workshop!
 ---
 
 **Ready to start?** Go to [datalab.dive.edito.eu](https://datalab.dive.edito.eu/) and launch your first service! 🌊🐠
+
+---
+
+📄 **Presentation**: [Using the Datalab](../docs/presentations/using_datalab_slidedeck.pdf)

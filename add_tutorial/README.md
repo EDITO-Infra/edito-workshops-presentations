@@ -11,15 +11,12 @@ Learn how to create and publish interactive tutorials on the EDITO platform.
 
 ## 🚀 Quick Start
 
-1. **Follow the presentation**: [Interactive Tutorial Guide](presentations/add_edito_tutorial_slidedeck.html)
-2. **Explore the example**: Check out `my_stac_r_tutorial/` for a complete example
-3. **Start creating**: Use the templates and guidelines provided
+- **Explore the example**: Check out `my_stac_r_tutorial/` for a complete example
+- **Start creating**: Use the templates and guidelines provided
 
 ## 📁 Contents
 
 - `my_stac_r_tutorial/` - Complete example tutorial project
-- `presentations/add_edito_tutorial_slidedeck.html` - Interactive presentation
-- `presentations/add_edito_tutorial_slidedeck.pdf` - PDF version
 
 ## 🛠️ Requirements
 
@@ -35,7 +32,7 @@ Learn how to create and publish interactive tutorials on the EDITO platform.
 
 ## 🎥 Presentation
 
-[View the interactive presentation](presentations/add_edito_tutorial_slidedeck.html) to get started with creating tutorials for EDITO.
+[View the interactive presentation](../docs/presentations/add_edito_tutorial_slidedeck.pdf) to get started with creating tutorials for EDITO.
 
 ## 🤝 Contributing
 
