@@ -1,0 +1,7 @@
+# R Package Dependencies
+# These packages are installed in the Dockerfile
+# dplyr - Data manipulation
+# ggplot2 - Data visualization  
+# readr - Data reading
+# jsonlite - JSON handling
+# arrow - Parquet file support

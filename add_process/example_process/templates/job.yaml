@@ -1,0 +1,193 @@
+{{- $fullName := include "library-chart.fullname" . -}}
+
+apiVersion: batch/v1
+kind: Job
+
+metadata:
+  name: {{ .Release.Name }}
+
+spec:
+  template:
+    spec:
+      initContainers:
+      - name: download-input-data
+        image: minio/mc
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_SECRET_ACCESS_KEY
+        - name: AWS_SESSION_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_SESSION_TOKEN
+        - name: AWS_S3_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_S3_ENDPOINT
+        - name: AWS_DEFAULT_REGION
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_DEFAULT_REGION
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - |
+            echo "=== Downloading data from S3 ==="
+            echo "S3 prefix: {{ .Values.inputData.s3Path }}"
+
+            # Create directories
+            mkdir -p /data/input
+            mkdir -p /data/output
+
+            # Set up MinIO client
+            export MC_HOST_s3=https://$(AWS_ACCESS_KEY_ID):$(AWS_SECRET_ACCESS_KEY):$(AWS_SESSION_TOKEN)@$(AWS_S3_ENDPOINT)
+
+            # Download files from S3
+            echo "Downloading from s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.inputData.s3Path }}"
+            mc cp --recursive s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.inputData.s3Path }}/ /data/input/
+
+            echo "=== Downloaded files ==="
+            ls -la /data/input
+        volumeMounts:
+        - name: data-volume
+          mountPath: /data
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
+      containers:
+      - name: {{ .Release.Name }}-data-preparation
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        command: ["/bin/bash", "-c"]
+        args:
+          - |
+            echo "=== Starting data preparation ==="
+            cd /data
+            mkdir -p output
+            {{ .Values.processing.dataPreparationCommand }}
+            echo "=== Data preparation completed ==="
+            ls -la output
+        env:
+        - name: EDITO_INFRA_OUTPUT
+          value: "/data/output"
+        - name: USER_NAME
+          value: "{{ .Release.Namespace }}"
+        volumeMounts:
+        - name: data-volume
+          mountPath: /data
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+      - name: {{ .Release.Name }}-model-analysis
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        command: ["/bin/bash", "-c"]
+        args:
+          - |
+            echo "=== Starting model analysis ==="
+            cd /data
+            {{ .Values.processing.modelAnalysisCommand }}
+            echo "=== Model analysis completed ==="
+            ls -la output
+        env:
+        - name: EDITO_INFRA_OUTPUT
+          value: "/data/output"
+        - name: USER_NAME
+          value: "{{ .Release.Namespace }}"
+        volumeMounts:
+        - name: data-volume
+          mountPath: /data
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+      - name: upload-results
+        image: minio/mc
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_SECRET_ACCESS_KEY
+        - name: AWS_SESSION_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_SESSION_TOKEN
+        - name: AWS_S3_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_S3_ENDPOINT
+        - name: AWS_DEFAULT_REGION
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_DEFAULT_REGION
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - |
+            echo "=== Waiting for processing to complete ==="
+
+            # Set maximum wait time (30 minutes)
+            MAX_WAIT_TIME=1800
+            WAIT_INTERVAL=30
+            ELAPSED_TIME=0
+
+            # Wait for the processing containers to finish by checking if output files exist
+            while [ ! -d "/data/output" ] || [ -z "$(ls -A /data/output 2>/dev/null)" ]; do
+              echo "Waiting for output files... (${ELAPSED_TIME}s elapsed)"
+
+              # Check if we've exceeded maximum wait time
+              if [ $ELAPSED_TIME -ge $MAX_WAIT_TIME ]; then
+                echo "ERROR: Maximum wait time (${MAX_WAIT_TIME}s) exceeded. Processing may have failed."
+                exit 1
+              fi
+
+              sleep $WAIT_INTERVAL
+              ELAPSED_TIME=$((ELAPSED_TIME + WAIT_INTERVAL))
+            done
+
+            echo "Output files found after ${ELAPSED_TIME}s. Proceeding with upload..."
+
+            echo "=== Uploading results to S3 ==="
+            echo "Uploading to s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.output.s3Path }}"
+
+            # Set up MinIO client
+            export MC_HOST_s3=https://$(AWS_ACCESS_KEY_ID):$(AWS_SECRET_ACCESS_KEY):$(AWS_SESSION_TOKEN)@$(AWS_S3_ENDPOINT)
+
+            # Upload results to S3
+            mc cp --recursive /data/output/ s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.output.s3Path }}/
+
+            echo "=== Upload completed ==="
+        volumeMounts:
+        - name: data-volume
+          mountPath: /data
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
+      restartPolicy: Never
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: {{ include "library-chart.fullname" . }}
+  backoffLimit: 3

@@ -45,21 +45,26 @@ check-marp:
 		echo "✅ marp-cli is available"; \
 	fi
 
+# Presentation files - only files with 'slidedeck' in the name
+PRESENTATIONS = $(wildcard $(SOURCEDIR)/presentations/*slidedeck*.md)
+HTML_PRESENTATIONS = $(PRESENTATIONS:$(SOURCEDIR)/presentations/%.md=$(BUILDDIR)/html/presentations/%.html)
+PDF_PRESENTATIONS = $(PRESENTATIONS:$(SOURCEDIR)/presentations/%.md=presentations/%.pdf)
+
 # Build presentations (for local use)
-presentations: check-marp
-	@echo "Building presentations locally..."
+presentations: check-marp $(HTML_PRESENTATIONS) $(PDF_PRESENTATIONS)
+	@echo "✅ All presentations (HTML and PDF) built successfully!"
+
+# Build individual HTML presentations
+$(BUILDDIR)/html/presentations/%.html: $(SOURCEDIR)/presentations/%.md
+	@echo "Building HTML presentation: $@"
 	@mkdir -p $(BUILDDIR)/html/presentations
-	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/add_edito_service_slidedeck.md --output docs/$(BUILDDIR)/html/presentations/add_edito_service_slidedeck.html --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
-	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/add_edito_tutorial_slidedeck.md --output docs/$(BUILDDIR)/html/presentations/add_edito_tutorial_slidedeck.html --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
-	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/explore_data_slidedeck.md --output docs/$(BUILDDIR)/html/presentations/explore_data_slidedeck.html --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
-	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/using_datalab_slidedeck.md --output docs/$(BUILDDIR)/html/presentations/using_datalab_slidedeck.html --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
-	@echo "Building PDF presentations..."
+	@cd .. && . .venv/bin/activate && marp docs/$< --output docs/$@ --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
+
+# Build individual PDF presentations
+presentations/%.pdf: $(SOURCEDIR)/presentations/%.md
+	@echo "Building PDF presentation: $@"
 	@mkdir -p presentations
-	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/add_edito_service_slidedeck.md --pdf --output docs/presentations/add_edito_service_slidedeck.pdf --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
-	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/add_edito_tutorial_slidedeck.md --pdf --output docs/presentations/add_edito_tutorial_slidedeck.pdf --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
-	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/explore_data_slidedeck.md --pdf --output docs/presentations/explore_data_slidedeck.pdf --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
-	@cd .. && . .venv/bin/activate && marp docs/$(SOURCEDIR)/presentations/using_datalab_slidedeck.md --pdf --output docs/presentations/using_datalab_slidedeck.pdf --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
-	@echo "✅ Local presentations (HTML and PDF) built successfully!"
+	@cd .. && . .venv/bin/activate && marp docs/$< --pdf --output docs/$@ --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
 
 # Build everything (for manual builds)
 all: html presentations

@@ -6,10 +6,10 @@ MARP = marp
 OUTPUT_DIR = ../../build/html/presentations
 CSS_FILE = ../static/styles/edito-marp.css
 
-# Source files
-SOURCES = $(wildcard *.md)
-HTML_TARGETS = $(SOURCES:.md=.html)
-PDF_TARGETS = $(SOURCES:.md=.pdf)
+# Presentation files - only files with 'slidedeck' in the name
+PRESENTATIONS = $(wildcard *slidedeck*.md)
+HTML_TARGETS = $(PRESENTATIONS:.md=.html)
+PDF_TARGETS = $(PRESENTATIONS:.md=.pdf)
 
 # Default target
 all: html pdf
@@ -48,13 +48,25 @@ clean:
 	@echo "Cleaning presentation build artifacts..."
 	rm -f $(OUTPUT_DIR)/*.html $(OUTPUT_DIR)/*.pdf
 
+# Show which presentations will be built
+list:
+	@echo "Presentation files found:"
+	@echo "$(PRESENTATIONS)"
+	@echo ""
+	@echo "HTML presentations:"
+	@echo "$(HTML_TARGETS)"
+	@echo ""
+	@echo "PDF presentations:"
+	@echo "$(PDF_TARGETS)"
+
 # Help
 help:
 	@echo "Available targets:"
 	@echo "  all     - Build all HTML and PDF presentations"
 	@echo "  html    - Build all HTML presentations"
 	@echo "  pdf     - Build all PDF presentations"
+	@echo "  list    - Show which presentations will be built"
 	@echo "  clean   - Remove build artifacts"
 	@echo "  help    - Show this help"
 
-.PHONY: all html pdf clean help
+.PHONY: all html pdf list clean help
