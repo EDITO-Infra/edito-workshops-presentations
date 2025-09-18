@@ -12,13 +12,47 @@ Learn how to deploy computational models and data processing workflows to EDITO.
 - Configure Helm charts for batch processing jobs
 - Handle input data from online sources or personal storage
 
-## 🚀 Quick Start
+## 🛠️ Requirements
 
-- **Start with the example model**: Check out `example_model/` for a complete workflow
-- **Follow the deployment process**: Use the step-by-step guide below
-- **Explore the example process**: See `example_process/` for the Helm chart template
+- **Docker** - Containerization
+- **GitLab account** - EDITO infrastructure access
+- **Container registry** (GitHub Packages, Docker Hub, etc.)
 
-## 📁 Contents
+## 🤔 When Is My App a Model?
+
+Your application qualifies as a **model** when it:
+- Takes input data and transforms it into output data
+- Performs computational analysis, prediction, or simulation
+- Processes data through algorithms or mathematical operations
+- Generates results that can be used for decision-making or further analysis
+
+**Examples:**
+- Machine learning models (prediction, classification)
+- Statistical analysis workflows
+- Simulation models
+- Data processing pipelines
+- Image processing algorithms
+
+## 📊 Input Data Sources
+
+Your model can work with data from several sources:
+
+### External APIs and URLs
+- Download data from external services
+- Access real-time data streams
+- Connect to public datasets and repositories
+
+### Pre-loaded Data
+- Include static data in your Docker image
+- Copy data files during container build
+- Access data from `/app/data/` directory
+
+### Generated Data
+- Create sample data for demonstration
+- Generate synthetic datasets for testing
+- Use built-in R data generation functions
+
+## 📁 Tutorial examples
 
 - `example_model/` - Complete example model workflow with R scripts
 - `example_process/` - **Demonstrative process template** (Helm chart for deployment)
@@ -235,51 +269,6 @@ The Kubernetes Job YAML orchestrates data flow through a simple three-stage proc
 **Learn More:**
 - [Kubernetes Jobs Documentation](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 - [EDITO Process Examples](https://gitlab.mercator-ocean.fr/pub/edito-infra/process-playground)
-
-## 🛠️ Requirements
-
-- **Docker** - Containerization
-- **GitLab account** - EDITO infrastructure access
-- **Container registry** (GitHub Packages, Docker Hub, etc.)
-
-## 🤔 When Is My App a Model?
-
-Your application qualifies as a **model** when it:
-- Takes input data and transforms it into output data
-- Performs computational analysis, prediction, or simulation
-- Processes data through algorithms or mathematical operations
-- Generates results that can be used for decision-making or further analysis
-
-**Examples:**
-- Machine learning models (prediction, classification)
-- Statistical analysis workflows
-- Simulation models
-- Data processing pipelines
-- Image processing algorithms
-
-## 📊 Input Data Sources
-
-Your model can work with data from several sources:
-
-### External APIs and URLs
-- Download data from external services
-- Access real-time data streams
-- Connect to public datasets and repositories
-
-### Pre-loaded Data
-- Include static data in your Docker image
-- Copy data files during container build
-- Access data from `/app/data/` directory
-
-### Generated Data
-- Create sample data for demonstration
-- Generate synthetic datasets for testing
-- Use built-in R data generation functions
-
-### EDITO Data API (Advanced)
-- Access marine data through EDITO's data infrastructure
-- Use STAC catalog for geospatial data
-- Integrate with EDITO's data services
 
 ## 🤝 Contributing
 
