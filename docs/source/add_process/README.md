@@ -8,53 +8,234 @@ Learn how to deploy computational models and data processing workflows to EDITO.
 
 - Identify when your application is a model (input → output transformation)
 - Dockerize computational workflows and models
+- Deploy processes to EDITO using the process playground
 - Configure Helm charts for batch processing jobs
 - Handle input data from online sources or personal storage
-- Deploy and manage process execution on EDITO infrastructure
 
 ## 🚀 Quick Start
 
-1. **Follow the presentation**: [Process Deployment Guide](../presentations/add_edito_process_slidedeck.html)
-2. **Explore the example**: Check out `example_process/` for a complete example
-3. **Start deploying**: Use the templates and guidelines provided
+- **Start with the example model**: Check out `example_model/` for a complete workflow
+- **Follow the deployment process**: Use the step-by-step guide below
+- **Explore the example process**: See `example_process/` for the Helm chart template
 
 ## 📁 Contents
 
-- `example_process/` - **Demonstrative process template** (see detailed description below)
-- `../presentations/add_edito_process_slidedeck.html` - Interactive presentation
+- `example_model/` - Complete example model workflow with R scripts
+- `example_process/` - **Demonstrative process template** (Helm chart for deployment)
 
-## 🔬 Example Process Template
+## 🔬 Example Model
 
-The `example_process/` directory contains a **demonstrative template** that shows how to create a data processing workflow on EDITO. This template follows a simple three-stage pattern:
+The `example_model/` directory contains a complete R-based model that demonstrates the typical workflow:
+
+### Model Components
+
+- **`Dockerfile`** - Container configuration with R environment
+- **`Scripts/`** - R scripts for data processing and analysis
+  - `01_data_preparation.R` - Data preprocessing script
+  - `02_model_analysis.R` - Statistical analysis and visualization
+- **`requirements.txt`** - R package dependencies
+
+### Model Workflow
+
+```r
+# 01_data_preparation.R
+# Load and clean input data
+data <- read.csv("/data/input/sample_data.csv")
+processed_data <- data %>%
+  filter(!is.na(value)) %>%
+  mutate(processed_value = value * 2)
+
+# 02_model_analysis.R  
+# Run analysis and generate results
+model <- lm(processed_value ~ category, data = processed_data)
+results <- summary(model)
+
+# Save outputs
+write.csv(results, "/data/output/analysis_results.csv")
+```
+
+## 🐳 Dockerize and Push
+
+### 1. Build Your Docker Image
+
+```bash
+cd example_model/
+docker build -t your-registry/your-model:latest .
+```
+
+### 2. Push to Container Registry
+
+```bash
+# Tag for your registry
+docker tag your-registry/your-model:latest your-registry.com/your-model:latest
+
+# Push to registry
+docker push your-registry.com/your-model:latest
+```
+
+**Supported Registries:**
+- GitHub Packages
+- Docker Hub
+- GitLab Container Registry
+- Any OCI-compatible registry
+
+## 🚀 Deploy to EDITO
+
+### 1. Clone EDITO Process Playground
+
+```bash
+git clone https://gitlab.mercator-ocean.fr/pub/edito-infra/process-playground.git
+cd process-playground
+```
+
+### README!
+
+Follow the [EDITO Process Playground README](https://gitlab.mercator-ocean.fr/pub/edito-infra/process-playground)
+
+
+### Deploy Your Process
+
+Use the process playground interface to deploy your containerized model with the Helm chart template.
+
+## 📋 Example Process Template
+
+The `example_process/` directory contains a complete Helm chart that demonstrates how to deploy your model as a Kubernetes job.
 
 ### Process Flow
-1. **Download**: Input data is downloaded from your personal S3 storage to `/data/input`
-2. **Process**: Two sequential processing steps run in `/data`:
-   - Data preparation (`Rscript /Scripts/01_data_preparation.R`)
-   - Model analysis (`Rscript /Scripts/02_model_analysis.R`)
-3. **Upload**: Results are uploaded from `/data/output` back to your personal S3 storage
+
+- **Download**: Input data is downloaded from your personal S3 storage to `/data/input`
+- **Process**: Two sequential processing steps run in `/data`:
+  - Data preparation (`Rscript /Scripts/01_data_preparation.R`)
+  - Model analysis (`Rscript /Scripts/02_model_analysis.R`)
+- **Upload**: Results are uploaded from `/data/output` back to your personal S3 storage
 
 ### Key Features
+
 - **Simple S3 Integration**: Downloads from and uploads to your personal storage
 - **Configurable Processing**: Commands can be customized in `values.yaml`
 - **Tutorial-Friendly**: Clear data flow with `/data` directory structure
 - **Error Handling**: Proper timeout and logging mechanisms
 
-### Directory Structure
-```
-/data/
-├── input/     # Downloaded from S3
-├── output/    # Generated results (uploaded to S3)
-└── ...        # Processing happens here
+## 🔧 Important Components
+
+### Job YAML (`templates/job.yaml`)
+
+The main Kubernetes Job configuration that orchestrates your process:
+
+```yaml
+# Init container downloads data
+initContainers:
+- name: s3-download
+  command: ["aws", "s3", "sync", "s3://your-bucket/input/", "/data/input/"]
+
+# Your processing containers run sequentially  
+containers:
+- name: data-prep
+  command: ["Rscript", "/Scripts/01_data_preparation.R"]
+- name: model-analysis  
+  command: ["Rscript", "/Scripts/02_model_analysis.R"]
+
+# Final container uploads results
+- name: s3-upload
+  command: ["aws", "s3", "sync", "/data/output/", "s3://your-bucket/output/"]
 ```
 
-### Configuration Options
-- **Input Path**: Where to find your input data in S3
-- **Output Path**: Where to store results in S3  
-- **Processing Commands**: Customize the R scripts or commands to run
-- **Docker Image**: Specify your container image
+**Key Features:**
+- **Init Container**: Downloads input data from S3
+- **Processing Containers**: Run your model scripts sequentially
+- **Upload Container**: Uploads results back to S3
+- **Shared Volume**: All containers share `/data` directory
 
-> **⚠️ Remember**: This is a template for learning purposes. You'll need to adapt the processing commands, data handling, and potentially the entire workflow structure to match your specific use case.
+### Values Schema (`values.schema.json`)
+
+Defines the configuration form in the EDITO playground:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "image.repository": {
+      "title": "Docker Image Repository",
+      "description": "Your container registry URL"
+    },
+    "s3.inputPath": {
+      "title": "Input S3 Path", 
+      "description": "S3 path to your input data"
+    },
+    "s3.outputPath": {
+      "title": "Output S3 Path",
+      "description": "S3 path for results"
+    }
+  }
+}
+```
+
+**Purpose:**
+- **UI Form Generation**: Creates input fields in the playground
+- **Validation**: Ensures required values are provided
+- **Documentation**: Describes each configuration option
+
+### Chart Metadata (`Chart.yaml`)
+
+Helm chart information and dependencies:
+
+```yaml
+apiVersion: v2
+name: example-process
+description: Example data processing workflow
+version: 0.1.0
+dependencies:
+- name: s3-secret
+  version: "1.0.0"
+  repository: "file://../s3-secret"
+```
+
+**Components:**
+- **Chart Identity**: Name, version, description
+- **Dependencies**: Required sub-charts (S3 secrets, etc.)
+- **Metadata**: For chart management and discovery
+
+### Configuration Values (`values.yaml`)
+
+Default configuration for your process:
+
+```yaml
+# Docker image configuration
+image:
+  repository: "your-registry.com/your-model"
+  tag: "latest"
+
+# S3 configuration
+s3:
+  inputPath: "your-bucket/input/"
+  outputPath: "your-bucket/output/"
+
+# Processing commands
+processing:
+  dataPrep: "Rscript /Scripts/01_data_preparation.R"
+  modelAnalysis: "Rscript /Scripts/02_model_analysis.R"
+
+```
+
+**Configuration Options:**
+- **Docker Image**: Your containerized model
+- **S3 Paths**: Input and output data locations
+- **Processing Commands**: Customizable R/Python scripts
+- **Resources**: CPU and memory limits
+
+## 🔄 Input/Output Handling
+
+The Kubernetes Job YAML orchestrates data flow through a simple three-stage process:
+
+**Input Stage**: An init container downloads your data from S3 storage to `/data/input`
+
+**Processing Stage**: Your containers run sequentially, processing data in the shared `/data` directory
+
+**Output Stage**: A final container uploads results from `/data/output` back to your S3 storage
+
+**Learn More:**
+- [Kubernetes Jobs Documentation](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
+- [EDITO Process Examples](https://gitlab.mercator-ocean.fr/pub/edito-infra/process-playground)
 
 ## 🛠️ Requirements
 
@@ -62,13 +243,13 @@ The `example_process/` directory contains a **demonstrative template** that show
 - **GitLab account** - EDITO infrastructure access
 - **Container registry** (GitHub Packages, Docker Hub, etc.)
 
-## 🤔 When Is My App a Process?
+## 🤔 When Is My App a Model?
 
-Your application qualifies as a **process** when it:
+Your application qualifies as a **model** when it:
 - Takes input data and transforms it into output data
 - Performs computational analysis, prediction, or simulation
-- Runs as a batch job (not interactive)
 - Processes data through algorithms or mathematical operations
+- Generates results that can be used for decision-making or further analysis
 
 **Examples:**
 - Machine learning models (prediction, classification)
@@ -77,137 +258,29 @@ Your application qualifies as a **process** when it:
 - Data processing pipelines
 - Image processing algorithms
 
-## 🔧 Core Steps
-
-The process of adding a process to EDITO follows these key steps:
-
-### 1. Dockerize Your Process
-- Containerize your computational workflow
-- Ensure all dependencies are included
-- Test locally before deployment
-
-### 2. Configure Helm Charts
-- Create Kubernetes Job configurations
-- Set up resource requirements
-- Configure input/output data handling
-
-### 3. Publish Your Process
-- Push Docker image to container registry
-- Deploy to EDITO Process Playground for testing
-- Submit for production deployment
-
 ## 📊 Input Data Sources
 
-Your process can work with data from several sources:
+Your model can work with data from several sources:
 
-### Personal S3 Storage
-- Download data from your personal S3 storage
-- Access data through the `/data/input` directory
-- Upload results back to your personal storage
+### External APIs and URLs
+- Download data from external services
+- Access real-time data streams
+- Connect to public datasets and repositories
 
 ### Pre-loaded Data
 - Include static data in your Docker image
 - Copy data files during container build
-- Access data from `/data/` directory
+- Access data from `/app/data/` directory
 
 ### Generated Data
 - Create sample data for demonstration
 - Generate synthetic datasets for testing
-- Use built-in data generation functions
+- Use built-in R data generation functions
 
-## ⚙️ Kubernetes Job Configuration
-
-The example process Helm chart demonstrates a simple three-stage workflow with these key features:
-
-- **S3 Download Init Container** - Downloads input data from personal S3 storage
-- **Two Processing Containers** - Run sequential data processing steps
-- **S3 Upload Container** - Uploads results back to personal S3 storage
-- **Simple Volume Mount** - All containers share `/data` directory
-- **Resource limits** and proper error handling
-
-### Key Components
-
-1. **S3 Download Init Container** - Downloads data to `/data/input`
-2. **Data Preparation Container** - Runs configurable data preparation command
-3. **Model Analysis Container** - Runs configurable model analysis command  
-4. **S3 Upload Container** - Uploads results from `/data/output` to S3
-5. **Shared Volume** - `/data` directory shared between all containers
-
-### Mount Points
-
-- `/data/input` - Downloaded input data from S3
-- `/data/output` - Generated results (uploaded to S3)
-- `/data` - Working directory for all processing steps
-
-### Configuration
-
-The process is highly configurable through `values.yaml`:
-- **Input/Output S3 paths** - Where to find input data and store results
-- **Processing commands** - Customize the actual processing steps
-- **Docker image** - Specify your container image
-- **Resource requirements** - CPU and memory limits
-
-## 📊 Input Data Handling
-
-Your processing scripts can access input data through the `/data/input` directory:
-
-```r
-# Get input directory
-input_dir <- "/data/input"
-
-# List all data files
-input_files <- list.files(input_dir, pattern = "\\.(csv|parquet)$", 
-                         full.names = TRUE, recursive = TRUE)
-
-# Process each file
-for (file in input_files) {
-  if (grepl("\\.csv$", file)) {
-    data <- read_csv(file, show_col_types = FALSE)
-  } else if (grepl("\\.parquet$", file)) {
-    data <- arrow::read_parquet(file)
-  }
-  # ... process your data
-}
-
-# Write output to /data/output
-output_dir <- "/data/output"
-dir.create(output_dir, showWarnings = FALSE)
-write_csv(results, file.path(output_dir, "processed_results.csv"))
-```
-
-### Simple Directory Structure
-
-The example process uses a straightforward approach:
-- Input data: `/data/input`
-- Processing: `/data` (working directory)
-- Output: `/data/output`
-
-## 📚 Key Files
-
-### Example Process Template (`example_process/`)
-
-- `Chart.yaml` - Helm chart metadata and dependencies
-- `values.yaml` - Default configuration values
-- `values.schema.json` - UI form schema for configuration
-- `templates/` - Kubernetes resource templates
-  - `job.yaml` - Main Kubernetes Job configuration
-  - `pvc.yaml` - Persistent Volume Claim for data storage
-  - `secret-s3.yaml` - S3 credentials secret
-  - `serviceaccount.yaml` - Service account for S3 access
-
-### Example Model (`example_model/`)
-
-- `Dockerfile` - Container configuration with R environment
-- `Scripts/` - R scripts for data processing and analysis
-  - `01_data_preparation.R` - Data preprocessing script
-  - `02_model_analysis.R` - Statistical analysis and visualization
-- `requirements.txt` - R package dependencies
-
-> **⚠️ Note**: The example model scripts are demonstrative. You'll need to create your own processing logic based on your specific requirements.
-
-## 🎥 Presentation
-
-[View the interactive presentation](../presentations/add_edito_process_slidedeck.html) to get started with deploying processes to EDITO.
+### EDITO Data API (Advanced)
+- Access marine data through EDITO's data infrastructure
+- Use STAC catalog for geospatial data
+- Integrate with EDITO's data services
 
 ## 🤝 Contributing
 
@@ -224,3 +297,5 @@ Found an issue or have suggestions? Please contribute to improve this workshop!
 ---
 
 > **⚠️ Final Reminder**: This tutorial provides a demonstrative example process template to help you understand the concepts and structure. The actual processing logic, data handling, and workflow steps will need to be customized or completely rewritten to match your specific use case and requirements. Use this as a starting point for learning, not as a production-ready solution.
+
+📄 **Presentation**: [Process Deployment Guide](../presentations/add_edito_process_slidedeck.html)
