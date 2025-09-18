@@ -11,11 +11,13 @@ DOCS_DIR      = $(shell pwd)
 # Put it first so that "make" without argument is like "make help".
 help:
 	@echo "Available targets:"
-	@echo "  all          - Build documentation and presentations (HTML + PDF)"
-	@echo "  html         - Build MkDocs documentation only"
-	@echo "  presentations - Build all presentations (HTML + PDF)"
-	@echo "  clean        - Remove build artifacts"
-	@echo "  help         - Show this help"
+	@echo "  all              - Build documentation and presentations (HTML + PDF)"
+	@echo "  html             - Build MkDocs documentation only"
+	@echo "  presentations    - Build all presentations (HTML + PDF)"
+	@echo "  presentations-html - Build HTML presentations only (for CI)"
+	@echo "  presentations-pdf  - Build PDF presentations only (for local)"
+	@echo "  clean            - Remove build artifacts"
+	@echo "  help             - Show this help"
 
 # Build MkDocs HTML documentation only
 html:
@@ -50,8 +52,16 @@ PRESENTATIONS = $(wildcard $(SOURCEDIR)/presentations/*slidedeck*.md)
 HTML_PRESENTATIONS = $(PRESENTATIONS:$(SOURCEDIR)/presentations/%.md=$(BUILDDIR)/html/presentations/%.html)
 PDF_PRESENTATIONS = $(PRESENTATIONS:$(SOURCEDIR)/presentations/%.md=presentations/%.pdf)
 
-# Build presentations (for local use)
-presentations: check-marp $(HTML_PRESENTATIONS) $(PDF_PRESENTATIONS)
+# Build HTML presentations only (for CI/browser)
+presentations-html: check-marp $(HTML_PRESENTATIONS)
+	@echo "✅ HTML presentations built successfully!"
+
+# Build PDF presentations only (for local use)
+presentations-pdf: check-marp $(PDF_PRESENTATIONS)
+	@echo "✅ PDF presentations built successfully!"
+
+# Build all presentations (HTML and PDF)
+presentations: presentations-html presentations-pdf
 	@echo "✅ All presentations (HTML and PDF) built successfully!"
 
 # Build individual HTML presentations

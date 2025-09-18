@@ -64,13 +64,9 @@ jobs:
           echo "Copying static files..."
           cp -r docs/source/static/* docs/build/html/static/
           
-          # Build HTML presentations
-          echo "Building HTML presentations..."
-          mkdir -p docs/build/html/presentations
-          marp docs/source/presentations/add_edito_service_slidedeck.md --output docs/build/html/presentations/add_edito_service_slidedeck.html --theme docs/source/static/styles/edito-marp.css --allow-local-files
-          marp docs/source/presentations/add_edito_tutorial_slidedeck.md --output docs/build/html/presentations/add_edito_tutorial_slidedeck.html --theme docs/source/static/styles/edito-marp.css --allow-local-files
-          marp docs/source/presentations/explore_data_slidedeck.md --output docs/build/html/presentations/explore_data_slidedeck.html --theme docs/source/static/styles/edito-marp.css --allow-local-files
-          marp docs/source/presentations/using_datalab_slidedeck.md --output docs/build/html/presentations/using_datalab_slidedeck.html --theme docs/source/static/styles/edito-marp.css --allow-local-files
+          # Build HTML presentations using Makefile
+          echo "Building HTML presentations using Makefile..."
+          cd docs && make presentations-html
           
           echo "✅ Documentation and presentations built successfully!"
 
