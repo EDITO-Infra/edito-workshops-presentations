@@ -1,0 +1,253 @@
+{{- $fullName := include "library-chart.fullname" . -}}
+
+apiVersion: batch/v1
+kind: Job
+
+metadata:
+  name: {{ .Release.Name }}
+
+spec:
+  template:
+    spec:
+      initContainers:
+      {{- if eq .Values.inputSource.type "s3" }}
+      - name: s3-download
+        image: minio/mc
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_SECRET_ACCESS_KEY
+        - name: AWS_SESSION_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_SESSION_TOKEN
+        - name: AWS_S3_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_S3_ENDPOINT
+        - name: AWS_DEFAULT_REGION
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_DEFAULT_REGION
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - |
+            echo "=== Downloading data from S3 ==="
+            echo "S3 prefix: {{ .Values.inputSource.input }}"
+
+            # Create directories
+            mkdir -p /geotoparquet/input
+            mkdir -p /geotoparquet/output
+
+            # Set up MinIO client
+            export MC_HOST_s3=https://$(AWS_ACCESS_KEY_ID):$(AWS_SECRET_ACCESS_KEY):$(AWS_SESSION_TOKEN)@$(AWS_S3_ENDPOINT)
+
+            # Download files from S3
+            echo "Downloading from s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.inputSource.input }}"
+            mc cp --recursive s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.inputSource.input }}/ /geotoparquet/input/
+
+            echo "=== Downloaded files ==="
+            ls -la /geotoparquet/input
+        volumeMounts:
+        - name: data-volume
+          mountPath: /geotoparquet
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
+      {{- else if eq .Values.inputSource.type "url" }}
+      - name: url-download
+        image: alpine:latest
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - |
+            echo "=== Installing required packages ==="
+            apk add --no-cache curl unzip
+
+            echo "=== Downloading data from URL ==="
+            echo "URL: {{ .Values.inputSource.downloadUrl }}"
+            echo "Filename: {{ .Values.inputSource.filename }}"
+
+            # Debug: Check if volume mount exists
+            echo "=== Debugging volume mount ==="
+            ls -la /geotoparquet || echo "Volume mount not found"
+            whoami
+            id
+
+            # Create directories with proper permissions
+            mkdir -p /geotoparquet/input
+            mkdir -p /geotoparquet/output
+            mkdir -p /geotoparquet/download
+
+            # Download file to temporary location
+            cd /geotoparquet/download
+            curl -L -o "{{ .Values.inputSource.filename }}" "{{ .Values.inputSource.downloadUrl }}"
+
+            # Extract if needed
+            {{- if .Values.inputSource.extract }}
+            echo "=== Extracting downloaded file ==="
+            if [[ "{{ .Values.inputSource.filename }}" == *.zip ]]; then
+              unzip "{{ .Values.inputSource.filename }}" -d /geotoparquet/input/
+            elif [[ "{{ .Values.inputSource.filename }}" == *.tar.gz ]]; then
+              tar -xzf "{{ .Values.inputSource.filename }}" -C /geotoparquet/input/
+            elif [[ "{{ .Values.inputSource.filename }}" == *.tar ]]; then
+              tar -xf "{{ .Values.inputSource.filename }}" -C /geotoparquet/input/
+            fi
+            {{- else }}
+            # If not extracting, just copy the file
+            cp "{{ .Values.inputSource.filename }}" /geotoparquet/download/
+            {{- end }}
+
+            echo "=== Downloaded files ==="
+            ls -la /geotoparquet/input
+        volumeMounts:
+        - name: data-volume
+          mountPath: /geotoparquet
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "512Mi"
+      {{- end }}
+      containers:
+      - name: {{ .Release.Name }}-main-container
+        image: samfooks/geo-to-parquet:1.0.0
+        command: ["python", "-m", "geo_to_parquet.cli"]
+        args:
+          {{- if eq .Values.conversion.command "convert" }}
+          - "convert"
+          - "/geotoparquet/input"
+          - "/geotoparquet/output"
+          - "--format"
+          - "{{ .Values.conversion.outputFormat }}"
+          {{- else if eq .Values.conversion.command "convert-dir" }}
+          - "convert-dir"
+          - "/geotoparquet/input"
+          - "/geotoparquet/output"
+          - "--format"
+          - "{{ .Values.conversion.outputFormat }}"
+          {{- if .Values.conversion.recursive }}
+          - "--recursive"
+          {{- else }}
+          - "--no-recursive"
+          {{- end }}
+          {{- end }}
+        env:
+        - name: GEO_TO_PARQUET_OUTPUT_FORMAT
+          value: "{{ .Values.conversion.outputFormat }}"
+        - name: GEO_TO_PARQUET_COMPRESSION
+          value: "{{ .Values.conversion.compression }}"
+        envFrom:
+          - secretRef:
+              name: {{ include "library-chart.secretNameS3" . }}
+        volumeMounts:
+        - name: data-volume
+          mountPath: /geotoparquet
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+      - name: upload-results
+        image: minio/mc
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_SECRET_ACCESS_KEY
+        - name: AWS_SESSION_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_SESSION_TOKEN
+        - name: AWS_S3_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_S3_ENDPOINT
+        - name: AWS_DEFAULT_REGION
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secrets3
+              key: AWS_DEFAULT_REGION
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - |
+            echo "=== Waiting for main processing to complete ==="
+
+            # Set maximum wait time (30 minutes)
+            MAX_WAIT_TIME=1800
+            WAIT_INTERVAL=30
+            ELAPSED_TIME=0
+
+            # Wait for the main container to finish by checking if output files exist
+            while [ ! -d "/geotoparquet/output" ] || [ -z "$(ls -A /geotoparquet/output 2>/dev/null)" ]; do
+              echo "Waiting for output files... (${ELAPSED_TIME}s elapsed)"
+
+              # Check if we've exceeded maximum wait time
+              if [ $ELAPSED_TIME -ge $MAX_WAIT_TIME ]; then
+                echo "ERROR: Maximum wait time (${MAX_WAIT_TIME}s) exceeded. Main container may have failed."
+                echo "Checking if main container is still running..."
+
+                # Check if main container is still running by looking for its process
+                if ! pgrep -f "geo_to_parquet.cli" > /dev/null; then
+                  echo "ERROR: Main container process not found. Upload aborted."
+                  exit 1
+                else
+                  echo "Main container still running, continuing to wait..."
+                fi
+              fi
+
+              sleep $WAIT_INTERVAL
+              ELAPSED_TIME=$((ELAPSED_TIME + WAIT_INTERVAL))
+            done
+
+            echo "Output files found after ${ELAPSED_TIME}s. Proceeding with upload..."
+
+            echo "=== Uploading results to S3 ==="
+            echo "Uploading to s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.conversion.output }}"
+
+            # Set up MinIO client
+            export MC_HOST_s3=https://$(AWS_ACCESS_KEY_ID):$(AWS_SECRET_ACCESS_KEY):$(AWS_SESSION_TOKEN)@$(AWS_S3_ENDPOINT)
+
+            # Upload results to S3
+            mc cp --recursive /geotoparquet/output/ s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.conversion.output }}/
+
+            echo "=== Upload completed ==="
+        volumeMounts:
+        - name: data-volume
+          mountPath: /geotoparquet
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
+      restartPolicy: Never
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: {{ include "library-chart.fullname" . }}
+  backoffLimit: 3

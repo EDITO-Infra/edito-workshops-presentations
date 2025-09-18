@@ -5,6 +5,9 @@
     "resources": {
       "description": "Your service will have at least the requested resources and never more than its limits. No limit for a resource and you can consume everything left on the host machine.",
       "type": "object",
+      "x-onyxia": {
+        "overwriteSchemaWith": "ide/resources.json"
+      },
       "properties": {
         "requests": {
           "description": "Guaranteed resources",
@@ -16,27 +19,35 @@
               "type": "string",
               "default": "100m",
               "render": "slider",
-              "sliderMin": 100,
-              "sliderMax": 7200,
+              "sliderMin": 50,
+              "sliderMax": 8000,
               "sliderStep": 100,
               "sliderUnit": "m",
               "sliderExtremity": "down",
               "sliderExtremitySemantic": "guaranteed",
-              "sliderRangeId": "cpu"
+              "sliderRangeId": "cpu",
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.resources.cpuRequest",
+                "useRegionSliderConfig": "cpu"
+              }
             },
             "memory": {
               "description": "The amount of memory guaranteed",
               "title": "memory",
               "type": "string",
-              "default": "1Gi",
+              "default": "2Gi",
               "render": "slider",
               "sliderMin": 1,
-              "sliderMax": 28,
+              "sliderMax": 16,
               "sliderStep": 1,
               "sliderUnit": "Gi",
               "sliderExtremity": "down",
               "sliderExtremitySemantic": "guaranteed",
-              "sliderRangeId": "memory"
+              "sliderRangeId": "memory",
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.resources.memoryRequest",
+                "useRegionSliderConfig": "memory"
+              }
             }
           }
         },
@@ -48,15 +59,19 @@
               "description": "The maximum amount of cpu",
               "title": "CPU",
               "type": "string",
-              "default": "1000m",
+              "default": "2000m",
               "render": "slider",
-              "sliderMin": 100,
-              "sliderMax": 7200,
+              "sliderMin": 50,
+              "sliderMax": 8000,
               "sliderStep": 100,
               "sliderUnit": "m",
               "sliderExtremity": "up",
               "sliderExtremitySemantic": "Maximum",
-              "sliderRangeId": "cpu"
+              "sliderRangeId": "cpu",
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.resources.cpuLimit",
+                "useRegionSliderConfig": "cpu"
+              }
             },
             "memory": {
               "description": "The maximum amount of memory",
@@ -65,12 +80,16 @@
               "default": "4Gi",
               "render": "slider",
               "sliderMin": 1,
-              "sliderMax": 28,
+              "sliderMax": 16,
               "sliderStep": 1,
               "sliderUnit": "Gi",
               "sliderExtremity": "up",
               "sliderExtremitySemantic": "Maximum",
-              "sliderRangeId": "memory"
+              "sliderRangeId": "memory",
+              "x-onyxia": {
+                "overwriteDefaultWith": "region.resources.memoryLimit",
+                "useRegionSliderConfig": "memory"
+              }
             }
           }
         }
@@ -92,7 +111,7 @@
           "description": "AWS Access Key",
           "type": "string",
           "x-form": {
-            "value": "{{s3.AWS_ACCESS_KEY_ID}}"
+            "value": "{{s3.AWS_ACCESS_KEY_ID}"
           },
           "x-onyxia": {
             "overwriteDefaultWith": "s3.AWS_ACCESS_KEY_ID"
@@ -106,10 +125,10 @@
           "description": "AWS S3 Endpoint",
           "type": "string",
           "x-form": {
-            "value": "{{s3.AWS_S3_ENDPOINT}}"
+            "value": "{{s3.AWS_S3_ENDPOINT}"
           },
           "x-onyxia": {
-            "overwriteDefaultWith": "{{s3.AWS_S3_ENDPOINT}}"
+            "overwriteDefaultWith": "{{s3.AWS_S3_ENDPOINT}"
           },
           "hidden": {
             "value": false,
@@ -120,10 +139,10 @@
           "description": "AWS S3 default region",
           "type": "string",
           "x-form": {
-            "value": "{{s3.AWS_DEFAULT_REGION}}"
+            "value": "{{s3.AWS_DEFAULT_REGION}"
           },
           "x-onyxia": {
-            "overwriteDefaultWith": "{{s3.AWS_DEFAULT_REGION}}"
+            "overwriteDefaultWith": "{{s3.AWS_DEFAULT_REGION}"
           },
           "hidden": {
             "value": false,
@@ -135,10 +154,10 @@
           "type": "string",
           "render": "password",
           "x-form": {
-            "value": "{{s3.AWS_SECRET_ACCESS_KEY}}"
+            "value": "{{s3.AWS_SECRET_ACCESS_KEY}"
           },
           "x-onyxia": {
-            "overwriteDefaultWith": "{{s3.AWS_SECRET_ACCESS_KEY}}"
+            "overwriteDefaultWith": "{{s3.AWS_SECRET_ACCESS_KEY}"
           },
           "hidden": {
             "value": false,
@@ -150,10 +169,10 @@
           "type": "string",
           "render": "password",
           "x-form": {
-            "value": "{{s3.AWS_SESSION_TOKEN}}"
+            "value": "{{s3.AWS_SESSION_TOKEN}"
           },
           "x-onyxia": {
-            "overwriteDefaultWith": "{{s3.AWS_SESSION_TOKEN}}"
+            "overwriteDefaultWith": "{{s3.AWS_SESSION_TOKEN}"
           },
           "hidden": {
             "value": false,
@@ -162,83 +181,100 @@
         }
       }
     },
-    "image": {
-      "description": "Docker image configuration for your processing model",
+    "inputSource": {
       "type": "object",
+      "description": "Input data source configuration",
       "properties": {
-        "repository": {
-          "description": "Docker image repository",
+        "type": {
           "type": "string",
-          "default": "your-registry/your-model",
-          "x-form": {
-            "placeholder": "your-registry/your-model"
-          }
+          "title": "Input Source Type",
+          "description": "How to obtain input data",
+          "enum": [
+            "s3",
+            "url"
+          ],
+          "default": "s3"
         },
-        "tag": {
-          "description": "Docker image tag",
+        "input": {
           "type": "string",
-          "default": "1.0.0",
-          "x-form": {
-            "placeholder": "1.0.0"
-          }
+          "title": "S3 Input Location",
+          "description": "location of the input files",
+          "default": "geotoparquet/input"
         },
-        "pullPolicy": {
-          "description": "Docker image pull policy",
+        "downloadUrl": {
           "type": "string",
-          "default": "IfNotPresent",
-          "enum": ["IfNotPresent", "Always", "Never"]
+          "title": "Download URL",
+          "description": "URL to download input data from",
+          "default": ""
+        },
+        "filename": {
+          "type": "string",
+          "title": "Download Filename",
+          "description": "Filename to save the downloaded file as",
+          "default": "input.zip"
+        },
+        "extract": {
+          "type": "boolean",
+          "title": "Extract File",
+          "description": "Whether to extract the downloaded file",
+          "default": true
         }
       }
     },
-    "processing": {
-      "description": "Processing configuration",
+    "conversion": {
       "type": "object",
+      "description": "Geo-to-Parquet conversion settings",
       "properties": {
-        "dataPreparationCommand": {
-          "description": "Command to run for data preparation",
+        "command": {
           "type": "string",
-          "default": "Rscript /Scripts/01_data_preparation.R",
-          "x-form": {
-            "placeholder": "Rscript /Scripts/01_data_preparation.R"
-          }
+          "title": "CLI Command",
+          "description": "The CLI command to execute",
+          "enum": [
+            "convert",
+            "convert-dir"
+          ],
+          "default": "convert-dir"
         },
-        "modelAnalysisCommand": {
-          "description": "Command to run for model analysis",
+        "output": {
           "type": "string",
-          "default": "Rscript /Scripts/02_model_analysis.R",
-          "x-form": {
-            "placeholder": "Rscript /Scripts/02_model_analysis.R"
-          }
-        }
-      }
-    },
-    "inputData": {
-      "description": "Input data configuration",
-      "type": "object",
-      "properties": {
-        "s3Path": {
-          "description": "S3 path to input data folder (e.g., 'example-process/input' or 'my-project/data')",
+          "title": "Output Location",
+          "description": "location of the output files in your S3 bucket",
+          "default": "geotoparquet/output",
+          "pattern": "^[^/].*[^/]$"
+        },
+        "outputFormat": {
           "type": "string",
-          "default": "example-process/input",
-          "x-form": {
-            "placeholder": "example-process/input"
-          }
-        }
-      }
-    },
-    "output": {
-      "description": "Output configuration",
-      "type": "object",
-      "properties": {
-        "s3Path": {
-          "description": "S3 path to output data folder (e.g., 'example-process/output' or 'my-project/data')",
+          "title": "Output Format",
+          "description": "Output format for the converted files",
+          "enum": [
+            "parquet",
+            "geoparquet"
+          ],
+          "default": "geoparquet"
+        },
+        "compression": {
           "type": "string",
-          "default": "example-process/output",
-          "x-form": {
-            "placeholder": "example-process/output"
-          }
+          "title": "Compression",
+          "description": "Compression algorithm for output files",
+          "enum": [
+            "snappy",
+            "gzip",
+            "brotli",
+            "lz4",
+            "zstd"
+          ],
+          "default": "zstd"
+        },
+        "recursive": {
+          "type": "boolean",
+          "title": "Recursive Search",
+          "description": "Search subdirectories for geospatial files (only for convert-dir command)",
+          "default": true
         }
-      }
+      },
+      "required": [
+        "output"
+      ]
     },
     "startupProbe": {
       "type": "object",
@@ -246,7 +282,7 @@
       "default": {},
       "x-form": {
         "hidden": true,
-        "value": "{{region.startupProbe}}"
+        "value": "{{region.startupProbe}"
       },
       "x-onyxia": {
         "hidden": true,

@@ -1,0 +1,23 @@
+Running {{ .Chart.Name }} ...
+
+Input data will be downloaded from: s3/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.inputData.s3Path }}/
+
+The processed data and analysis results will be available in "My Files", in the directory {{ .Release.Name }}.
+
+Expected output files:
+- processed_data.csv - Cleaned and processed input data
+- data_summary.csv - Summary statistics by category  
+- model_results.csv - Data with predictions and residuals
+- model_summary.csv - Model performance metrics
+- regression_plot.png - Scatter plot with regression line
+- residuals_plot.png - Residuals analysis plot
+- category_comparison.png - Box plot by category
+- preparation_metadata.json - Metadata from data preparation
+- model_details.json - Detailed model information
+
+Links for EDITO data viewer:
+https://minio.lab.dive.edito.eu/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Release.Name }}/processed_data.csv
+https://minio.lab.dive.edito.eu/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Release.Name }}/model_results.csv
+https://minio.lab.dive.edito.eu/{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Release.Name }}/regression_plot.png
+
+NOTE: Set the link permissions to 'download', either using the 'eye button' beside your file or with minio client

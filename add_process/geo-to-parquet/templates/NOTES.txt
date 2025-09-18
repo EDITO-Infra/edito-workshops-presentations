@@ -1,0 +1,3 @@
+1. Upload your geospatial files to: s3://{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.conversion.inputDirectory }}
+2. The job will convert them to: s3://{{ .Release.Namespace | replace "user-" "oidc-" }}/{{ .Values.conversion.outputDirectory }}
+3. Download your converted files from the output location

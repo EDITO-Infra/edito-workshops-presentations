@@ -15,12 +15,11 @@ Learn how to deploy computational models and data processing workflows to EDITO.
 ## 🚀 Quick Start
 
 1. **Follow the presentation**: [Process Deployment Guide](../presentations/add_edito_process_slidedeck.html)
-2. **Explore the example**: Check out `example_model/` for a complete example
+2. **Explore the example**: Check out `example_process/` for a complete example
 3. **Start deploying**: Use the templates and guidelines provided
 
 ## 📁 Contents
 
-- `example_model/` - Complete example model workflow
 - `example_process/` - **Demonstrative process template** (see detailed description below)
 - `../presentations/add_edito_process_slidedeck.html` - Interactive presentation
 
@@ -63,13 +62,13 @@ The `example_process/` directory contains a **demonstrative template** that show
 - **GitLab account** - EDITO infrastructure access
 - **Container registry** (GitHub Packages, Docker Hub, etc.)
 
-## 🤔 When Is My App a Model?
+## 🤔 When Is My App a Process?
 
-Your application qualifies as a **model** when it:
+Your application qualifies as a **process** when it:
 - Takes input data and transforms it into output data
 - Performs computational analysis, prediction, or simulation
+- Runs as a batch job (not interactive)
 - Processes data through algorithms or mathematical operations
-- Generates results that can be used for decision-making or further analysis
 
 **Examples:**
 - Machine learning models (prediction, classification)
@@ -80,9 +79,9 @@ Your application qualifies as a **model** when it:
 
 ## 🔧 Core Steps
 
-The process of adding a model to EDITO follows these key steps:
+The process of adding a process to EDITO follows these key steps:
 
-### 1. Dockerize Your Model
+### 1. Dockerize Your Process
 - Containerize your computational workflow
 - Ensure all dependencies are included
 - Test locally before deployment
@@ -92,34 +91,29 @@ The process of adding a model to EDITO follows these key steps:
 - Set up resource requirements
 - Configure input/output data handling
 
-### 3. Publish Your Model
+### 3. Publish Your Process
 - Push Docker image to container registry
-- Deploy to EDITO playground for testing
+- Deploy to EDITO Process Playground for testing
 - Submit for production deployment
 
 ## 📊 Input Data Sources
 
-Your model can work with data from several sources:
+Your process can work with data from several sources:
 
-### External APIs and URLs
-- Download data from external services
-- Access real-time data streams
-- Connect to public datasets and repositories
+### Personal S3 Storage
+- Download data from your personal S3 storage
+- Access data through the `/data/input` directory
+- Upload results back to your personal storage
 
 ### Pre-loaded Data
 - Include static data in your Docker image
 - Copy data files during container build
-- Access data from `/app/data/` directory
+- Access data from `/data/` directory
 
 ### Generated Data
 - Create sample data for demonstration
 - Generate synthetic datasets for testing
-- Use built-in R data generation functions
-
-### EDITO Data API (Advanced)
-- Access marine data through EDITO's data infrastructure
-- Use STAC catalog for geospatial data
-- Integrate with EDITO's data services
+- Use built-in data generation functions
 
 ## ⚙️ Kubernetes Job Configuration
 
@@ -158,8 +152,8 @@ The process is highly configurable through `values.yaml`:
 Your processing scripts can access input data through the `/data/input` directory:
 
 ```r
-# Get input directory from environment
-input_dir <- Sys.getenv("EDITO_INFRA_INPUT", "/data/input")
+# Get input directory
+input_dir <- "/data/input"
 
 # List all data files
 input_files <- list.files(input_dir, pattern = "\\.(csv|parquet)$", 
@@ -222,6 +216,7 @@ Found an issue or have suggestions? Please contribute to improve this workshop!
 ## 📖 Additional Resources
 
 - [EDITO Datalab](https://datalab.dive.edito.eu/)
+- [Process Playground](https://gitlab.mercator-ocean.fr/pub/edito-infra/process-playground)
 - [Docker Documentation](https://docs.docker.com/)
 - [Kubernetes Jobs Documentation](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 - [EDITO Process Playground](https://pub.pages.mercator-ocean.fr/edito-infra/edito-tutorials-content/#/Contribution/process-playground)

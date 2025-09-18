@@ -46,6 +46,8 @@ nav:
     - Overview: add_tutorial/README.md
   - Add Service:
     - Overview: add_service/README.md
+  - Add Process:
+    - Overview: add_process/README.md
   - Explore Data:
     - Overview: explore_data/README.md
   - Using Datalab:
@@ -53,6 +55,7 @@ nav:
   - Presentations:
     - Add Tutorial: presentations/add_edito_tutorial_slidedeck.html
     - Add Service: presentations/add_edito_service_slidedeck.html
+    - Add Process: presentations/add_edito_process_slidedeck.html
     - Explore Data: presentations/explore_data_slidedeck.html
     - Using Datalab: presentations/using_datalab_slidedeck.html
 
