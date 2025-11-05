@@ -92,7 +92,7 @@ Once your account is created, you will be added as a developer to the following 
 
 ##### [/add_tutorial/my_stac_r_tutorial/stac_r_tutorial.Rmd](https://github.com/EDITO-Infra/edito-workshops-presentations/blob/main/add_tutorial/my_stac_r_tutorial/stac_r_tutorial.Rmd)
 
-<img src="https://github.com/EDITO-Infra/edito-workshops-presentations/blob/main/assets/images/makingRmdtutorial.png?raw=true" alt="Making Rmd" />
+<img src="../static/images/makingRmdtutorial.png?raw=true" alt="Making Rmd" />
 
 ---
 
@@ -168,7 +168,7 @@ Creating Your First GitHub Repository and Pushing Code [Youtube](https://youtu.b
 **Save the Configuration**  
   - Click **Save** to store your settings. 
 
-**Copy the URL in your brower**[deployment_url](https://github.com/EDITO-Infra/edito-workshops-presentations/blob/main/assets/images/deploymenturl.png?raw=true)
+**Copy the URL in your brower**[deployment_url](../static/images/deploymenturl.png?raw=true)
   - This is the link used to deploy your service and clone your github into the service
 
 **Launch the Service**  

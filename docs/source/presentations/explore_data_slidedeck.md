@@ -41,9 +41,10 @@ Learn to explore, search, and use marine data from the EDITO Data Lake
 
 The data available in the EU DTO consists of a **STAC (SpatioTemporal Asset Catalog)** as well Data storage on S3 buckets
 
-<img src="https://github.com/EDITO-Infra/edito-workshops-presentations/blob/main/assets/images/editodatalake.png?raw=true">EDITO Data Lake</img>
+<img src="../static/images/editodatalake.png?raw=true">EDITO Data Lake</img>
 
 <div class="logo-strip"></div>
+
 ---
 
 # 🗄️ EDITO Data Storage
@@ -108,7 +109,7 @@ EMODnet -> Biodiversity -> Occurrence data ->  Occurrence data eurobis database 
 ---
 
 ## [DEMO Using STAC Viewer](../static/videos/usingEDITOSTACviewer.mp4)
-<img src="https://raw.githubusercontent.com/EDITO-Infra/edito-workshops-presentations/main/assets/images/usingEDITOSTACviewer.png"></img>
+<img src="../static/images/usingEDITOSTACviewer.png"></img>
 
 
 Can also view in your browser [radiantearth.github.io/stac-browser](https://radiantearth.github.io/stac-browser/#/https%3A%2F%2Fapi.dive.edito.eu%2Fdata%2F?.language=en)
