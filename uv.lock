@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.10"
 resolution-markers = [
     "python_full_version >= '3.14'",
@@ -1142,8 +1143,10 @@ dependencies = [
     { name = "pandas" },
     { name = "pyarrow" },
     { name = "pydap" },
+    { name = "pystac" },
     { name = "pystac-client" },
     { name = "python-dotenv" },
+    { name = "python-pptx" },
     { name = "requests" },
     { name = "s3fs" },
     { name = "seaborn" },
@@ -1226,10 +1229,12 @@ requires-dist = [
     { name = "pandas", specifier = ">=2.0.0" },
     { name = "pyarrow", specifier = ">=12.0.0" },
     { name = "pydap", specifier = ">=3.5.6" },
+    { name = "pystac", specifier = ">=1.13.0" },
     { name = "pystac-client", specifier = ">=0.7.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.4.0" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.1.0" },
     { name = "python-dotenv", specifier = ">=1.0.0" },
+    { name = "python-pptx", specifier = ">=1.0.2" },
     { name = "requests", specifier = ">=2.31.0" },
     { name = "rpy2", marker = "extra == 'r'", specifier = ">=3.5.0" },
     { name = "s3fs", specifier = ">=2023.6.0" },
@@ -1240,6 +1245,7 @@ requires-dist = [
     { name = "xarray", specifier = ">=2023.1.0" },
     { name = "zarr", specifier = ">=2.16.0" },
 ]
+provides-extras = ["dev", "r", "all"]
 
 [package.metadata.requires-dev]
 dev = [
@@ -2895,6 +2901,16 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/71/96/d5d8859a6dac29f8ebc815ff8e75770bd513db9f08d7a711e21ae562a948/netCDF4-1.7.2-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:30d20e56b9ba2c48884eb89c91b63e6c0612b4927881707e34402719153ef17f", size = 9378149 },
     { url = "https://files.pythonhosted.org/packages/d1/80/b9c19f1bb4ac6c5fa6f94a4f278bc68a778473d1814a86a375d7cffa193a/netCDF4-1.7.2-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8d6bfd38ba0bde04d56f06c1554714a2ea9dab75811c89450dc3ec57a9d36b80", size = 9254471 },
     { url = "https://files.pythonhosted.org/packages/66/b5/e04550fd53de57001dbd5a87242da7ff784c80790adc48897977b6ccf891/netCDF4-1.7.2-cp313-cp313-win_amd64.whl", hash = "sha256:5c5fbee6134ee1246c397e1508e5297d825aa19221fdf3fa8dc9727ad824d7a5", size = 6990521 },
+    { url = "https://files.pythonhosted.org/packages/d6/dd/c713bfe9aa122fe2d1e3c9320fc436b5ad922c93df24d707d9fffb66b0e2/netcdf4-1.7.2-cp310-cp310-macosx_13_0_x86_64.whl", hash = "sha256:16c3ba053930ed990e58827de6ab03184e407549004fb77438b98e5777e8cf3b", size = 2803405 },
+    { url = "https://files.pythonhosted.org/packages/75/b7/6b66ad69d034dc81ee2a1617ebd892cf25ff415dc7aa003323884c4a77f0/netcdf4-1.7.2-cp310-cp310-macosx_14_0_arm64.whl", hash = "sha256:142c9ed2db8a87a15ae0530c8a99f4f045435b0f495df733e9f111995e389d4f", size = 2417569 },
+    { url = "https://files.pythonhosted.org/packages/50/e4/7238549f0625042f8d94ec2f58977bb186a8e2acf4d65b2ad1de2a58d672/netcdf4-1.7.2-cp310-cp310-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:76cb3bbbbe4cd5fca612578eb105c16217380f7f93af2b549e8f38296bc906bb", size = 9682157 },
+    { url = "https://files.pythonhosted.org/packages/49/3c/1129ea3943f6f5736be08c2d79ca5965d0a55adbfc38f313a59938a7a62a/netcdf4-1.7.2-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:835ae7bcef666c967241baeeee9bef9376ddb7527297b24735597131f6f628e2", size = 9520752 },
+    { url = "https://files.pythonhosted.org/packages/0b/eb/144709b60d89eb8995236f49a4e446be87f15b0d63f05dbda55e1315dba3/netcdf4-1.7.2-cp310-cp310-win_amd64.whl", hash = "sha256:73bd7eda3cefb04c4076e76911f652f5ed56bf434e0a3958e367932953437557", size = 7215191 },
+    { url = "https://files.pythonhosted.org/packages/84/0a/182bb4fe5639699ba39d558b553b8e6f04fbfea6cf78404c0f21ef149bf7/netcdf4-1.7.2-cp311-abi3-macosx_13_0_x86_64.whl", hash = "sha256:7e81c3c47f2772eab0b93fba8bb05b17b58dce17720e1bed25e9d76551deecd0", size = 2751391 },
+    { url = "https://files.pythonhosted.org/packages/2d/1f/54ac27c791360f7452ca27ed1cb2917946bbe1ea4337c590a5abcef6332d/netcdf4-1.7.2-cp311-abi3-macosx_14_0_arm64.whl", hash = "sha256:cb2791dba37fc98fd1ac4e236c97822909f54efbcdf7f1415c9777810e0a28f4", size = 2387513 },
+    { url = "https://files.pythonhosted.org/packages/5c/5e/9bf3008a9e45c08f4c9fedce4d6f722ef5d970f56a9c5eb375a200dd2b66/netcdf4-1.7.2-cp311-abi3-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:bf11480f6b8a5b246818ffff6b4d90481e51f8b9555b41af0c372eb0aaf8b65f", size = 9621674 },
+    { url = "https://files.pythonhosted.org/packages/a1/75/46871e85f2bbfb1efe229623d25d7c9daa17e2e968d5235572b2c8bb53e8/netcdf4-1.7.2-cp311-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:1ccc05328a8ff31921b539821791aeb20b054879f3fdf6d1d505bf6422824fec", size = 9453759 },
+    { url = "https://files.pythonhosted.org/packages/cd/10/c52f12297965938d9b9be666ea1f9d8340c2aea31d6909d90aa650847248/netcdf4-1.7.2-cp311-abi3-win_amd64.whl", hash = "sha256:999bfc4acebf400ed724d5e7329e2e768accc7ee1fa1d82d505da782f730301b", size = 7148514 },
 ]
 
 [[package]]
@@ -3777,6 +3793,21 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/9e/de/d3144a0bceede957f961e975f3752760fbe390d57fbe194baf709d8f1f7b/python_json_logger-3.3.0.tar.gz", hash = "sha256:12b7e74b17775e7d565129296105bbe3910842d9d0eb083fc83a6a617aa8df84", size = 16642 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/08/20/0f2523b9e50a8052bc6a8b732dfc8568abbdc42010aef03a2d750bdab3b2/python_json_logger-3.3.0-py3-none-any.whl", hash = "sha256:dd980fae8cffb24c13caf6e158d3d61c0d6d22342f932cb6e9deedab3d35eec7", size = 15163 },
+]
+
+[[package]]
+name = "python-pptx"
+version = "1.0.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "lxml" },
+    { name = "pillow" },
+    { name = "typing-extensions" },
+    { name = "xlsxwriter" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/52/a9/0c0db8d37b2b8a645666f7fd8accea4c6224e013c42b1d5c17c93590cd06/python_pptx-1.0.2.tar.gz", hash = "sha256:479a8af0eaf0f0d76b6f00b0887732874ad2e3188230315290cd1f9dd9cc7095", size = 10109297 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d9/4f/00be2196329ebbff56ce564aa94efb0fbc828d00de250b1980de1a34ab49/python_pptx-1.0.2-py3-none-any.whl", hash = "sha256:160838e0b8565a8b1f67947675886e9fea18aa5e795db7ae531606d68e785cba", size = 472788 },
 ]
 
 [[package]]
@@ -5064,6 +5095,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/4e/0b/bbb76e05c8e2099baf90e259c29cafe6a525524b1d1da8bfbc39577c043e/xarray-2025.9.0.tar.gz", hash = "sha256:7dd6816fe0062c49c5e9370dd483843bc13e5ed80a47a9ff10baff2b51e070fb", size = 3040318 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/8d/f0/73c24457c941b8b08f7d090853e40f4b2cdde88b5da721f3f28e98df77c9/xarray-2025.9.0-py3-none-any.whl", hash = "sha256:79f0e25fb39571f612526ee998ee5404d8725a1db3951aabffdb287388885df0", size = 1349595 },
+]
+
+[[package]]
+name = "xlsxwriter"
+version = "3.2.9"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/46/2c/c06ef49dc36e7954e55b802a8b231770d286a9758b3d936bd1e04ce5ba88/xlsxwriter-3.2.9.tar.gz", hash = "sha256:254b1c37a368c444eac6e2f867405cc9e461b0ed97a3233b2ac1e574efb4140c", size = 215940 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3a/0c/3662f4a66880196a590b202f0db82d919dd2f89e99a27fadef91c4a33d41/xlsxwriter-3.2.9-py3-none-any.whl", hash = "sha256:9a5db42bc5dff014806c58a20b9eae7322a134abb6fce3c92c181bfb275ec5b3", size = 175315 },
 ]
 
 [[package]]
