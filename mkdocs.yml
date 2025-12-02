@@ -43,21 +43,24 @@ theme:
 nav:
   - Home: index.md
   - Add Tutorial:
-    - Overview: add_tutorial/README.md
+      - Overview: add_tutorial/README.md
   - Add Service:
-    - Overview: add_service/README.md
+      - Overview: add_service/README.md
   - Add Process:
-    - Overview: add_process/README.md
+      - Overview: add_process/README.md
   - Explore Data:
-    - Overview: explore_data/README.md
+      - Overview: explore_data/README.md
+  - Add Data:
+      - Overview: add_data/README.md
   - Using Datalab:
-    - Overview: using_datalab/README.md
+      - Overview: using_datalab/README.md
   - Presentations:
-    - Add Tutorial: presentations/add_edito_tutorial_slidedeck.html
-    - Add Service: presentations/add_edito_service_slidedeck.html
-    - Add Process: presentations/add_edito_process_slidedeck.html
-    - Explore Data: presentations/explore_data_slidedeck.html
-    - Using Datalab: presentations/using_datalab_slidedeck.html
+      - Add Tutorial: presentations/add_edito_tutorial_slidedeck.html
+      - Add Service: presentations/add_edito_service_slidedeck.html
+      - Add Process: presentations/add_edito_process_slidedeck.html
+      - Explore Data: presentations/explore_data_slidedeck.html
+      - Add Data: presentations/add_data_slidedeck.html
+      - Using Datalab: presentations/using_datalab_slidedeck.html
 
 plugins:
   - search
