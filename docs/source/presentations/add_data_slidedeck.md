@@ -240,16 +240,7 @@ The script will prompt for start and end datetime.
 
 # 📚 Posting to EDITO
 
-**Official Documentation:**
-
-📖 **Interactive API**: [rest.wiki - EDITO Data API](https://rest.wiki/?https://api.dive.edito.eu/data/api#)  
-📘 **Integration Guide**: [docs.dive.edito.eu](https://docs.dive.edito.eu/articles/integration/interactWithTheDataAPI.html)
-**Find all collections:**
-`GET https://api.dive.edito.eu/data/collections`
-**After creating your STAC item:**
-1. Upload data to accessible storage
-2. Post STAC item to EDITO API
-3. See official docs for authentication and posting
+**UNDER CONSTRUCTION**
 
 ---
 

@@ -272,10 +272,10 @@ my_process/
 
 ## Key Features
 
-- **Init Container** - Downloads input data from S3
+- **Init Container** - Use to ensure your process has data/credentials/etc before it starts
 - **Processing Containers** - Run your custom commands sequentially
-- **Upload Container** - Uploads results to S3
-- **Shared Volume** - `/data` directory for all containers
+- **Upload Container** - Wait for output, copy to personal storage(or other s3)
+- **Shared Volume** - Use an adequate mounted Volume (ex `/data`)
 - **Resource Management** - CPU and memory limits
 
 
@@ -339,7 +339,7 @@ my_process/
 
 1. **Prepare your data** - Ensure file is accessible via URL
 2. **Create STAC item** - Obtain all appropriate metadata for the data (ex try dataset_to_stac_item.py)
-3. **Post to EDITO** - Submit STAC item via Data API [interactWithTheDataAPI](https://docs.dive.edito.eu/articles/integration/interactWithTheDataAPI.html)
+3. **Post to EDITO** - UNDER CONSTRUCTION
 
 ---
 

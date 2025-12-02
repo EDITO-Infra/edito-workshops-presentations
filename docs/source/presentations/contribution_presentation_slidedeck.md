@@ -996,7 +996,7 @@ python make_stac_from_data.py parquet my_data.parquet <data_url>
 **Questions?**
 
 **Contact:**
-- Email: [your-email]
+- Email: [samuel.fooks@vliz.be]
 - EDITO Community: edito-infra.eu
 
 **Funded by the European Union**

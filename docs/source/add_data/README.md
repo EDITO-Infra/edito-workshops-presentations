@@ -273,10 +273,6 @@ If your data file doesn't contain temporal information (no time coordinate in Ne
 
 STAC requires all datetime values to be in UTC to ensure consistency across different timezones and systems. The script validates this requirement and will reject non-UTC datetimes.
 
-### Posting STAC Items to EDITO
-
-Once you have created a STAC item, you can post it to the EDITO API. See the [official documentation](https://docs.dive.edito.eu/articles/integration/interactWithTheDataAPI.html) for details.
-
 ## 🎥 Presentation
 
 [View the interactive presentation](../presentations/add_data_slidedeck.html) to get started with contributing data to EDITO.

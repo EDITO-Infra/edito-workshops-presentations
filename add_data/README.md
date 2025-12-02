@@ -81,12 +81,6 @@ The URL will be included in the STAC item's `assets` section, allowing users to 
 pip install xarray zarr duckdb pystac requests numpy
 ```
 
-## Getting an Access Token
-
-To post items to EDITO, you need an access token. See the [EDITO documentation on getting tokens](https://docs.dive.edito.eu/articles/integration/getTokensAndAccessTokens.html).
-
-**Note:** When requesting a token, set `client_id` to `edito`.
-
 ## Data Format Requirements
 
 ### NetCDF Files
@@ -160,10 +154,7 @@ See the [STAC specification](https://stacspec.org/) for complete details.
 
 ## Posting STAC Items to EDITO
 
-Once you have created a STAC item with the correct data URL, you can post it to the EDITO API. For complete documentation, see:
-
-- **Interactive API Docs**: [rest.wiki - EDITO Data API](https://rest.wiki/?https://api.dive.edito.eu/data/api#)
-- **Integration Guide**: [docs.dive.edito.eu - Interact with the Data API](https://docs.dive.edito.eu/articles/integration/interactWithTheDataAPI.html)
+!!! Under Construction !!!
 
 ## Resources
 
