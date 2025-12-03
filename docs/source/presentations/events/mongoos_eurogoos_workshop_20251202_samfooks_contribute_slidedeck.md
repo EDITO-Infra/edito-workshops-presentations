@@ -2,10 +2,10 @@
 marp: true
 paginate: true
 theme: edito-marp
-backgroundImage: url('../static/images/editobackgrounddark.png')
+backgroundImage: url('../../static/images/editobackgrounddark.png')
 backgroundSize: cover
 backgroundPosition: center
-footer: '![Funded by the European Union](../static/images/footer-banner.png)'
+footer: '![Funded by the European Union](../../static/images/footer-banner.png)'
 title: Contributing Data to EDITO
 description: From NetCDF, Zarr, and Parquet files to STAC items in the EDITO Data Lake
 class: lead
@@ -363,9 +363,9 @@ my_process/
 1. **Get Account** - Sign up as beta tester at [edito-infra.eu](https://edito-infra.eu)
 2. **Access GitLab** - Create account at [gitlab.mercator-ocean.fr](https://gitlab.mercator-ocean.fr)
 3. **Choose Your Path** - Data, Tutorial, Service, or Process
-4. **Follow Documentation** - Check workshop repository
-
-**Repository:** [github.com/EDITO-Infra/edito-workshops-presentations](https://github.com/EDITO-Infra/edito-workshops-presentations)
+4. **Follow Documentation**:
+     - [docs.dive.edito.eu](https://docs.dive.edito.eu)
+     - [github.com/EDITO-Infra/edito-workshops-presentations](https://github.com/EDITO-Infra/edito-workshops-presentations)
 
 ---
 

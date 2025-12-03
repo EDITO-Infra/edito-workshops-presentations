@@ -16,6 +16,9 @@ help:
 	@echo "  presentations    - Build all presentations (HTML + PDF)"
 	@echo "  presentations-html - Build HTML presentations only (for CI)"
 	@echo "  presentations-pdf  - Build PDF presentations only (for local)"
+	@echo "  events           - Build all events (HTML + PDF)"
+	@echo "  events-html      - Build HTML events only (for CI)"
+	@echo "  events-pdf       - Build PDF events only (for local)"
 	@echo "  clean            - Remove build artifacts"
 	@echo "  help             - Show this help"
 
@@ -64,6 +67,35 @@ presentations-pdf: check-marp $(PDF_PRESENTATIONS)
 presentations: presentations-html presentations-pdf
 	@echo "✅ All presentations (HTML and PDF) built successfully!"
 
+# Event files - only files with 'slidedeck' in the name
+EVENTS = $(wildcard $(SOURCEDIR)/presentations/events/*slidedeck*.md)
+HTML_EVENTS = $(EVENTS:$(SOURCEDIR)/presentations/events/%.md=$(BUILDDIR)/html/presentations/events/%.html)
+PDF_EVENTS = $(EVENTS:$(SOURCEDIR)/presentations/events/%.md=presentations/events/%.pdf)
+
+# Build HTML events only (for CI/browser)
+events-html: check-marp $(HTML_EVENTS)
+	@echo "✅ HTML events built successfully!"
+
+# Build PDF events only (for local use)
+events-pdf: check-marp $(PDF_EVENTS)
+	@echo "✅ PDF events built successfully!"
+
+# Build all events (HTML and PDF)
+events: events-html events-pdf
+	@echo "✅ All events (HTML and PDF) built successfully!"
+
+# Build individual HTML events
+$(BUILDDIR)/html/presentations/events/%.html: $(SOURCEDIR)/presentations/events/%.md
+	@echo "Building HTML event: $@"
+	@mkdir -p $(BUILDDIR)/html/presentations/events
+	@cd .. && . .venv/bin/activate && marp docs/$< --output docs/$@ --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
+
+# Build individual PDF events
+presentations/events/%.pdf: $(SOURCEDIR)/events/%.md
+	@echo "Building PDF event: $@"
+	@mkdir -p presentations/events
+	@cd .. && . .venv/bin/activate && marp docs/$< --pdf --output docs/$@ --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
+
 # Build individual HTML presentations
 $(BUILDDIR)/html/presentations/%.html: $(SOURCEDIR)/presentations/%.md
 	@echo "Building HTML presentation: $@"
@@ -77,13 +109,13 @@ presentations/%.pdf: $(SOURCEDIR)/presentations/%.md
 	@cd .. && . .venv/bin/activate && marp docs/$< --pdf --output docs/$@ --theme docs/$(SOURCEDIR)/static/styles/edito-marp.css --allow-local-files
 
 # Build everything (for manual builds)
-all: html presentations
+all: html presentations events
 
 # Ensure build/html directory exists
 $(BUILDDIR)/html:
 	@mkdir -p $@
 
-.PHONY: help html presentations check-marp all clean
+.PHONY: help html presentations events check-marp all clean
 
 clean:
 	rm -rf $(BUILDDIR)/*

@@ -54,13 +54,7 @@ nav:
       - Overview: add_data/README.md
   - Using Datalab:
       - Overview: using_datalab/README.md
-  - Presentations:
-      - Add Tutorial: presentations/add_edito_tutorial_slidedeck.html
-      - Add Service: presentations/add_edito_service_slidedeck.html
-      - Add Process: presentations/add_edito_process_slidedeck.html
-      - Explore Data: presentations/explore_data_slidedeck.html
-      - Add Data: presentations/add_data_slidedeck.html
-      - Using Datalab: presentations/using_datalab_slidedeck.html
+  - Presentations: presentations.md
 
 plugins:
   - search

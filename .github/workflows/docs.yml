@@ -52,22 +52,22 @@ jobs:
         run: |
           # Activate virtual environment
           source .venv/bin/activate
-          
+
           # Build MkDocs documentation
           echo "Building MkDocs documentation..."
           mkdocs build --site-dir docs/build/html
-          
+
           # Ensure Pages doesn't run Jekyll
           touch docs/build/html/.nojekyll
-          
+
           # Copy static files to build directory
           echo "Copying static files..."
           cp -r docs/source/static/* docs/build/html/static/
-          
+
           # Build HTML presentations using Makefile
           echo "Building HTML presentations using Makefile..."
-          cd docs && make presentations-html
-          
+          cd docs && make presentations-html events-html
+
           echo "✅ Documentation and presentations built successfully!"
 
       - name: Upload Pages artifact
